@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités — LAB'IA Loire Valley</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .actu-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all .3s var(--ease-out);
+      background: white;
+    }
+    .actu-card:hover { box-shadow: var(--shadow-lg); border-color: transparent; transform: translateY(-6px); }
+    .actu-card__img {
+      height: 200px;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .actu-card__img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(226,0,125,.2) 0%, transparent 60%);
+    }
+    .actu-card__body { padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .actu-card__date { font-family: var(--font-display); font-size: .72rem; font-weight: 700; color: var(--magenta); text-transform: uppercase; letter-spacing: .08em; }
+    .actu-card__title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.4; color: var(--ink); }
+    .actu-card__excerpt { font-size: .85rem; color: var(--ink-60); line-height: 1.6; flex: 1; }
+    .actu-card__footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
+    .actu-card__cat { font-size: .75rem; font-family: var(--font-display); font-weight: 600; color: var(--ink-60); }
+
+    .actu-featured {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 64px;
+      transition: all .3s var(--ease-out);
+    }
+    .actu-featured:hover { box-shadow: var(--shadow-lg); border-color: transparent; }
+    .actu-featured__img {
+      background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      min-height: 360px;
+      position: relative;
+    }
+    .actu-featured__img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(226,0,125,.15) 0%, transparent 60%);
+    }
+    .actu-featured__body { padding: 48px; display: flex; flex-direction: column; gap: 16px; }
+    .actu-featured__date { font-family: var(--font-display); font-size: .72rem; font-weight: 700; color: var(--magenta); text-transform: uppercase; letter-spacing: .1em; }
+    .actu-featured__title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; line-height: 1.3; color: var(--ink); }
+    .actu-featured__excerpt { font-size: .92rem; color: var(--ink-60); line-height: 1.8; }
+    @media (max-width:768px) { .actu-featured { grid-template-columns: 1fr; } .actu-featured__img { min-height: 200px; } .actu-featured__body { padding: 28px; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav nav--dark-page">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="https://static.wixstatic.com/media/667cf1_bff20db22a4c4da8bc1b4cbe992b6280~mv2.png" alt="LAB'IA Loire Valley" /></a>
+      <ul class="nav__links">
+        <li><a href="notre-offre.html" class="nav__link">Notre Offre</a></li>
+        <li><a href="nos-solutions.html" class="nav__link">Nos Solutions</a></li>
+        <li><a href="qui-sommes-nous.html" class="nav__link">Qui sommes-nous</a></li>
+        <li class="nav__dropdown"><a href="#" class="nav__link">Références ▾</a><div class="nav__dropdown-menu"><a href="ils-nous-font-confiance.html">Ils nous font confiance</a><a href="partenariat.html">Partenaires</a></div></li>
+        <li class="nav__dropdown"><a href="#" class="nav__link active">Médias ▾</a><div class="nav__dropdown-menu"><a href="actualites.html">Actualités</a><a href="presse.html">Presse</a></div></li>
+      </ul>
+      <div class="nav__actions"><a href="contact.html" class="btn btn-primary btn-sm">Nous contacter</a></div>
+      <button class="nav__burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile">
+  <button class="nav__mobile-close">✕</button>
+  <a href="index.html">Accueil</a><a href="notre-offre.html">Notre Offre</a><a href="nos-solutions.html">Nos Solutions</a><a href="qui-sommes-nous.html">Qui sommes-nous</a><a href="ils-nous-font-confiance.html">Ils nous font confiance</a><a href="partenariat.html">Partenaires</a><a href="actualites.html" class="active">Actualités</a><a href="presse.html">Presse</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Nos nouvelles</span></div>
+      <h1 class="t-display page-hero__title">Actualités</h1>
+      <p class="page-hero__lead t-lead">Événements, projets, interventions, nouveautés — tout ce qui fait vivre le LAB'IA Loire Valley au quotidien.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+
+    <!-- Article à la une -->
+    <div class="actu-featured reveal">
+      <div class="actu-featured__img"><span style="position:relative;z-index:1;">🎬</span></div>
+      <div class="actu-featured__body">
+        <span class="badge badge-magenta" style="align-self:flex-start;">Événement</span>
+        <div class="actu-featured__date">21 Janvier 2026</div>
+        <h2 class="actu-featured__title">After movie — Journée « Boostez votre transition numérique » du 3 décembre 2025</h2>
+        <p class="actu-featured__excerpt">L'after movie de la journée co-organisée par le LAB'IA Loire Valley et le Loire Valley Data Hub est en ligne. 94 participants, des prises de parole inspirantes, des retours d'expérience concrets et des échanges riches autour de l'IA au service des organisations.</p>
+        <div style="margin-top:auto;">
+          <a href="#" class="btn btn-primary btn-sm">Voir l'after movie<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grille articles -->
+    <div class="grid-3">
+      <div class="actu-card reveal">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">🏙️</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Innovation</span>
+          <div class="actu-card__date">14 Janvier 2026</div>
+          <div class="actu-card__title">L'innovation au cœur du territoire orléanais</div>
+          <p class="actu-card__excerpt">Orléans Métropole met en lumière la Technopole d'Orléans, pilier historique de l'écosystème d'innovation local, au sein du LAB'O Village By CA Orléans.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">Territoire</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actu-card reveal reveal-delay-1">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">💧</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-blue" style="align-self:flex-start;margin-bottom:4px;">Projet</span>
+          <div class="actu-card__date">13 Mars 2025</div>
+          <div class="actu-card__title">Gestion de l'eau en Centre-Val de Loire : l'IA au service du territoire</div>
+          <p class="actu-card__excerpt">Le LAB'IA Loire Valley signe officiellement sa participation au consortium PrevizO — une initiative innovante pour une gestion durable de l'eau grâce à une IA frugale.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">PrevizO · Environnement</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actu-card reveal reveal-delay-2">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">📺</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-magenta" style="align-self:flex-start;margin-bottom:4px;">Médias</span>
+          <div class="actu-card__date">13 Février 2025</div>
+          <div class="actu-card__title">L'IA au cœur des débats en Centre-Val de Loire</div>
+          <p class="actu-card__excerpt">Frédéric Ros a participé à l'émission spéciale « IA, le grand bouleversement » sur France 3, échangeant sur les enjeux industriels, énergétiques et sociétaux de l'IA en région.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">France 3 · Interview</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actu-card reveal">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">👩‍💼</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Événement</span>
+          <div class="actu-card__date">5 Février 2025</div>
+          <div class="actu-card__title">Le LAB'IA à l'honneur dans La République du Centre</div>
+          <p class="actu-card__excerpt">Frédéric Ros était l'un des intervenants clés de la 2ème édition des RDV 360° de l'Éco d'Orléans Métropole, autour de l'IA au service de l'humain.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">Presse · Événement</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actu-card reveal reveal-delay-1">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">🏛️</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-magenta" style="align-self:flex-start;margin-bottom:4px;">Visite officielle</span>
+          <div class="actu-card__date">12 Novembre 2024</div>
+          <div class="actu-card__title">Visite de la ministre Clara Chappaz</div>
+          <p class="actu-card__excerpt">Le LAB'IA a accueilli Clara Chappaz, Secrétaire d'État chargée de l'IA et du Numérique. Une visite officielle qui a mis en lumière les initiatives du LAB'IA et des startups de l'écosystème orléanais.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">Institutionnel</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="actu-card reveal reveal-delay-2">
+        <div class="actu-card__img"><span style="position:relative;z-index:1;">📊</span></div>
+        <div class="actu-card__body">
+          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Presse économique</span>
+          <div class="actu-card__date">27 Novembre 2024</div>
+          <div class="actu-card__title">Le LAB'IA dans le Panorama des entreprises du Loiret</div>
+          <p class="actu-card__excerpt">Le magazine annuel de 84 pages revenant sur l'actualité économique du Loiret en 2024 consacre une page au LAB'IA Loire Valley.</p>
+          <div class="actu-card__footer">
+            <span class="actu-card__cat">Presse économique</span>
+            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voir plus -->
+    <div style="text-align:center; margin-top:56px;" class="reveal">
+      <a href="presse.html" class="btn btn-outline btn-lg">
+        Voir aussi nos articles presse
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter / LinkedIn -->
+<section class="ctx-dark s-sm">
+  <div class="container" style="text-align:center;">
+    <h2 class="t-h2 reveal mb-16" style="color:white;">Restez informé</h2>
+    <p class="reveal reveal-delay-1" style="color:rgba(255,255,255,.5); margin-bottom:32px;">Suivez toutes nos actualités en temps réel sur LinkedIn.</p>
+    <a href="https://www.linkedin.com/company/lab-ia-loire-valley" target="_blank" rel="noopener" class="btn btn-outline-white reveal reveal-delay-2">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      Suivre sur LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><div class="footer__logo"><img src="https://static.wixstatic.com/media/667cf1_bff20db22a4c4da8bc1b4cbe992b6280~mv2.png" alt="LAB'IA Loire Valley" /></div><p class="footer__desc">Centre de ressources partagées autour de la donnée, porté par la Technopole d'Orléans depuis 2020.</p><div class="footer__social"><a href="https://www.linkedin.com/company/lab-ia-loire-valley" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+      <div><div class="footer__col-title">Offre</div><ul class="footer__links"><li><a href="notre-offre.html">Notre offre</a></li><li><a href="nos-solutions.html">Nos solutions</a></li></ul></div>
+      <div><div class="footer__col-title">À propos</div><ul class="footer__links"><li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li><li><a href="ils-nous-font-confiance.html">Nos clients</a></li><li><a href="partenariat.html">Partenaires</a></li></ul></div>
+      <div><div class="footer__col-title">Contact</div><ul class="footer__links"><li><a href="contact.html">Nous écrire</a></li><li><a href="tel:0238698087">02 38 69 80 87</a></li><li><a href="mailto:contact@labia-loirevalley.fr">contact@labia-loirevalley.fr</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span class="footer__bottom-text">© 2025 LAB'IA Loire Valley — Technopole d'Orléans</span><div class="footer__bottom-links"><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a><a href="#">Cookies</a></div></div>
+    <div class="footer__financeurs">
+      <div class="footer__financeurs-row">
+        <div class="footer__financeurs-col">
+          <div class="footer__financeurs-label">Nos financeurs</div>
+          <img src="https://static.wixstatic.com/media/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png/v1/fill/w_820,h_117,al_c,q_90,enc_auto/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png" alt="Financeurs du LAB'IA Loire Valley — Technopole d'Orléans, LAB'O, Région CVL, Préfète, Orléans Métropole, RECEVA" />
+        </div>
+        <div class="footer__financeurs-col">
+          <div class="footer__financeurs-label">La Technopole d'Orléans est financée par</div>
+          <img src="https://static.wixstatic.com/media/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png/v1/fill/w_820,h_108,al_c,q_90,enc_auto/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png" alt="Financeurs de la Technopole d'Orléans" />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos Solutions — LAB'IA Loire Valley</title>
+  <meta name="description" content="Solutions IA prêtes à déployer : assistant documentaire RAG, extraction intelligente, automatisation de mails, chatbot service client." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .solution-hero-card {
+      background: var(--dark);
+      border-radius: var(--radius-xl);
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .solution-hero-card::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,0,125,.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .solution-hero-card__content { position: relative; z-index: 1; }
+    .solution-hero-card__visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius-lg);
+    }
+    .solution-card-full {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all .3s var(--ease-out);
+    }
+    .solution-card-full:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+      transform: translateY(-4px);
+    }
+    .solution-card-full__header {
+      padding: 40px 40px 32px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .solution-card-full__icon {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .solution-card-full__body {
+      padding: 0 40px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .solution-feature {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: .88rem;
+      color: var(--ink-60);
+      line-height: 1.5;
+    }
+    .solution-feature::before {
+      content: '→';
+      color: var(--magenta);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .solution-footer {
+      padding: 20px 40px;
+      background: var(--offwhite);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .sector-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: .78rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--ink-60);
+    }
+    @media (max-width: 768px) {
+      .solution-hero-card { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+      .solution-hero-card__visual { display: none; }
+      .solution-card-full__body { grid-template-columns: 1fr; }
+      .solution-card-full__header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav nav--dark-page" aria-label="Navigation principale">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="https://static.wixstatic.com/media/667cf1_bff20db22a4c4da8bc1b4cbe992b6280~mv2.png" alt="LAB'IA Loire Valley" />
+      </a>
+      <ul class="nav__links">
+        <li><a href="notre-offre.html" class="nav__link">Notre Offre</a></li>
+        <li><a href="nos-solutions.html" class="nav__link active">Nos Solutions</a></li>
+        <li><a href="qui-sommes-nous.html" class="nav__link">Qui sommes-nous</a></li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Références ▾</a>
+          <div class="nav__dropdown-menu">
+            <a href="ils-nous-font-confiance.html">Ils nous font confiance</a>
+            <a href="partenariat.html">Partenaires</a>
+          </div>
+        </li>
+        <li class="nav__dropdown">
+          <a href="#" class="nav__link">Médias ▾</a>
+          <div class="nav__dropdown-menu">
+            <a href="actualites.html">Actualités</a>
+            <a href="presse.html">Presse</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">Nous contacter</a>
+      </div>
+      <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav__mobile">
+  <button class="nav__mobile-close">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="notre-offre.html">Notre Offre</a>
+  <a href="nos-solutions.html" class="active">Nos Solutions</a>
+  <a href="qui-sommes-nous.html">Qui sommes-nous</a>
+  <a href="ils-nous-font-confiance.html">Ils nous font confiance</a>
+  <a href="partenariat.html">Partenaires</a>
+  <a href="actualites.html">Actualités</a>
+  <a href="presse.html">Presse</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Prêt à déployer</span></div>
+      <h1 class="t-display page-hero__title">Nos Solutions</h1>
+      <p class="page-hero__lead t-lead">
+        Trois solutions IA développées et éprouvées, déployables en quelques semaines —
+        souveraines, hébergées chez vous, adaptées à vos enjeux terrain.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Les 3 solutions ──────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <div class="section-label reveal mb-48"><span>Toutes nos solutions</span></div>
+
+    <!-- 1. Assistant IA Documentaire -->
+    <div id="assistant" class="solution-card-full reveal mb-32">
+      <div class="solution-card-full__header">
+        <div class="solution-card-full__icon" style="background:var(--blue-faint);">🤖</div>
+        <div style="flex:1;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span class="badge badge-blue">IA Générative</span>
+            <span class="badge badge-dark">RAG · LLM</span>
+            <span class="badge badge-dark">Usage interne</span>
+          </div>
+          <h3 class="t-h2 mb-12">Assistant IA Documentaire</h3>
+          <p class="t-lead" style="font-size:1rem;">Chatbot intelligent basé sur vos documents internes. Déployable en 2 à 4 semaines, souverain, sans fuite de données.</p>
+        </div>
+      </div>
+      <div class="solution-card-full__body">
+        <div class="solution-feature">Interrogation en langage naturel de votre base documentaire</div>
+        <div class="solution-feature">Réponses sourcées et traçables (anti-hallucination)</div>
+        <div class="solution-feature">Hébergement on-premise ou cloud privé — données sécurisées</div>
+        <div class="solution-feature">Compatible PDF, Word, Excel, scan et images — extraction automatique des données clés</div>
+        <div class="solution-feature">Interface personnalisée à votre charte graphique</div>
+        <div class="solution-feature">Formation et transfert de compétences inclus</div>
+      </div>
+      <div class="solution-footer">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="sector-tag">⚖️ Juridique</span>
+          <span class="sector-tag">🏥 Santé</span>
+          <span class="sector-tag">🏭 Industrie</span>
+          <span class="sector-tag">🎓 Formation</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span class="badge badge-dark">Hébergement flexible — Local · Cloud souverain · Hybride</span>
+          <span class="badge badge-dark">2–4 semaines</span>
+          <a href="contact.html?solution=assistant" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Automatisation de boîte de mails -->
+    <div id="mails" class="solution-card-full reveal mb-32">
+      <div class="solution-card-full__header">
+        <div class="solution-card-full__icon" style="background:var(--magenta-faint);">📧</div>
+        <div style="flex:1;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span class="badge badge-magenta">Productivité</span>
+            <span class="badge badge-dark">LLM · NLP</span>
+          </div>
+          <h3 class="t-h2 mb-12">Automatisation de boîte de mails</h3>
+          <p class="t-lead" style="font-size:1rem;">Triez, priorisez et répondez à vos emails automatiquement. Réduisez le temps passé sur votre messagerie et ne ratez plus aucun message urgent.</p>
+        </div>
+      </div>
+      <div class="solution-card-full__body">
+        <div class="solution-feature">Classification et tri automatique des emails entrants par thème</div>
+        <div class="solution-feature">Génération de brouillons de réponse contextualisés</div>
+        <div class="solution-feature">Détection d'urgence et scoring de priorité</div>
+        <div class="solution-feature">Routing intelligent vers les bons services ou collaborateurs</div>
+        <div class="solution-feature">Résumé automatique des fils de discussion longs</div>
+        <div class="solution-feature">Compatible Outlook, Gmail et messageries d'entreprise</div>
+      </div>
+      <div class="solution-footer">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="sector-tag">💼 Commercial</span>
+          <span class="sector-tag">🛎️ SAV</span>
+          <span class="sector-tag">🏛️ Collectivités</span>
+          <span class="sector-tag">🏥 Santé</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span class="badge badge-dark">1–3 semaines</span>
+          <a href="contact.html?solution=mails" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Chatbot service client -->
+    <div id="chatbot" class="solution-card-full reveal">
+      <div class="solution-card-full__header">
+        <div class="solution-card-full__icon" style="background:#f0fff4;">💬</div>
+        <div style="flex:1;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span class="badge" style="background:#f0fff4;color:#22863a;">Service client</span>
+            <span class="badge badge-dark">IA Générative</span>
+            <span class="badge" style="background:#f0fff4;color:#22863a;">Tourné clients</span>
+          </div>
+          <h3 class="t-h2 mb-12">Chatbot service client</h3>
+          <p class="t-lead" style="font-size:1rem;">Un assistant conversationnel disponible 24h/24 sur votre site ou portail — répond aux questions de vos clients, utilisateurs ou usagers sans intervention humaine.</p>
+        </div>
+      </div>
+      <div class="solution-card-full__body">
+        <div class="solution-feature">Réponse automatique aux questions fréquentes (FAQ dynamique)</div>
+        <div class="solution-feature">Disponible 24h/24, 7j/7 sur votre site web ou portail</div>
+        <div class="solution-feature">Transfert vers un agent humain si la question dépasse le périmètre</div>
+        <div class="solution-feature">Personnalisé à votre domaine métier et votre ton de marque</div>
+        <div class="solution-feature">Déployable en webchat, Slack, Teams ou SMS</div>
+        <div class="solution-feature">Tableau de bord des questions pour amélioration continue</div>
+      </div>
+      <div class="solution-footer">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="sector-tag">🛒 Commerce</span>
+          <span class="sector-tag">🎓 Formation</span>
+          <span class="sector-tag">🏛️ Collectivités</span>
+          <span class="sector-tag">🤝 Associations</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span class="badge badge-dark">2–4 semaines</span>
+          <a href="contact.html?solution=chatbot" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctx-magenta cta-section">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;"><span style="color:rgba(255,255,255,.6);">Votre projet</span></div>
+    <h2 class="t-h1 reveal mt-16" style="color:var(--white);">Votre besoin ne rentre pas dans une case ?</h2>
+    <p class="t-lead reveal reveal-delay-1" style="color:rgba(255,255,255,.75);">
+      Nous co-construisons chaque solution avec vous. Partagez votre problématique,
+      nos experts vous proposent une approche adaptée en moins d'une semaine.
+    </p>
+    <div class="flex-center gap-16 flex-wrap reveal reveal-delay-2" style="margin-top:40px;">
+      <a href="contact.html" class="btn btn-white btn-lg" style="color:var(--magenta);">
+        Parler de mon besoin
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="https://static.wixstatic.com/media/667cf1_bff20db22a4c4da8bc1b4cbe992b6280~mv2.png" alt="LAB'IA Loire Valley" /></div>
+        <p class="footer__desc">Centre de ressources partagées autour de la donnée, porté par la Technopole d'Orléans depuis 2021.</p>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/company/lab-ia-loire-valley" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Solutions</div>
+        <ul class="footer__links">
+          <li><a href="#assistant">Assistant documentaire</a></li>
+          <li><a href="#mails">Automatisation mails</a></li>
+          <li><a href="#chatbot">Chatbot service client</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">À propos</div>
+        <ul class="footer__links">
+          <li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li>
+          <li><a href="notre-offre.html">Notre offre</a></li>
+          <li><a href="ils-nous-font-confiance.html">Références</a></li>
+          <li><a href="actualites.html">Actualités</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Contact</div>
+        <ul class="footer__links">
+          <li><a href="contact.html">Nous écrire</a></li>
+          <li><a href="tel:0238698087">02 38 69 80 87</a></li>
+          <li><a href="mailto:contact@labia-loirevalley.fr">contact@labia-loirevalley.fr</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__bottom-text">© 2025 LAB'IA Loire Valley — Technopole d'Orléans</span>
+      <div class="footer__bottom-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+    <div class="footer__financeurs">
+      <div class="footer__financeurs-row">
+        <div class="footer__financeurs-col">
+          <div class="footer__financeurs-label">Nos financeurs</div>
+          <img src="https://static.wixstatic.com/media/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png/v1/fill/w_820,h_117,al_c,q_90,enc_auto/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png" alt="Financeurs du LAB'IA Loire Valley — Technopole d'Orléans, LAB'O, Région CVL, Préfète, Orléans Métropole, RECEVA" />
+        </div>
+        <div class="footer__financeurs-col">
+          <div class="footer__financeurs-label">La Technopole d'Orléans est financée par</div>
+          <img src="https://static.wixstatic.com/media/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png/v1/fill/w_820,h_108,al_c,q_90,enc_auto/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png" alt="Financeurs de la Technopole d'Orléans" />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

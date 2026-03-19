@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge — Selim MOHAMED · LAB'IA Loire Valley</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --badge-w: 86mm;
+      --badge-h: 54mm;
+      --ink:      #0a0f1e;
+      --ink-mid:  #3a4668;
+      --accent:   #0ea5e9;
+      --accent-2: #0369a1;
+      --soft:     #e0f2fe;
+      --white:    #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #dde4ed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 28px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .controls {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn {
+      background: #0a0f1e;
+      color: white;
+      border: none;
+      padding: 9px 22px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .btn:hover { background: #1c2540; }
+    .hint {
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      color: #7a8aaa;
+    }
+
+    /* ══ BADGE ══════════════════════════════════════════════ */
+    .badge {
+      width: var(--badge-w);
+      height: var(--badge-h);
+      background: var(--white);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 0.4px rgba(10,15,30,.14),
+        0 8px 36px rgba(10,15,30,.2),
+        0 2px 8px rgba(10,15,30,.1);
+    }
+
+    /* Grille de points */
+    .badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #b8cee0 0.55px, transparent 0.55px);
+      background-size: 4.5mm 4.5mm;
+      background-position: 3mm 3mm;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    /* Barre en haut : magenta → bleu */
+    .badge-topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2.2mm;
+      background: linear-gradient(90deg, #E2007D 0%, #0ea5e9 60%, #38bdf8 100%);
+      z-index: 3;
+    }
+
+    /* ── Zone contenu : 2 colonnes ──────────────────────── */
+    .badge-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      padding: calc(4mm + 20px) 0 12mm 5mm;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2mm;
+    }
+
+    /* Colonne gauche : nom + rôle */
+    .badge-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5mm;
+    }
+
+    /* Colonne droite : logo */
+    .badge-right {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: -8mm;
+    }
+
+    .badge-logo {
+      height: 26mm;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* ── Nom ────────────────────────────────────────────── */
+    .badge-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .badge-firstname {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      color: #E2007D;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+
+    .badge-lastname {
+      font-family: 'Fraunces', serif;
+      font-optical-sizing: auto;
+      font-size: 26px;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      line-height: 1;
+    }
+
+    /* ── Rôle ────────────────────────────────────────────── */
+    .badge-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7c3aed;
+    }
+
+    /* ── Nœuds déco (coin bas-gauche, fond) ────────────── */
+    .badge-nodes {
+      position: absolute;
+      bottom: 8mm;
+      left: 3mm;
+      z-index: 1;
+      opacity: 0.18;
+    }
+
+    /* ── Vagues Loire (bas) ─────────────────────────────── */
+    .badge-river {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 9mm;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .badge-river svg { position: absolute; bottom: 0; width: 100%; }
+
+    @media print {
+      body { background: white; min-height: auto; padding: 15mm; display: block; }
+      .controls { display: none; }
+      .badge { box-shadow: none; border: 0.3px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <button class="btn" onclick="window.print()">Imprimer</button>
+    <span class="hint">86 × 54 mm · format carte</span>
+  </div>
+
+  <div class="badge">
+    <div class="badge-topbar"></div>
+
+    <div class="badge-content">
+
+      <!-- Colonne gauche : nom + rôle -->
+      <div class="badge-left">
+        <div class="badge-name">
+          <span class="badge-firstname">Selim</span>
+          <span class="badge-lastname">MOHAMED</span>
+        </div>
+        <div class="badge-role">Data Scientist</div>
+      </div>
+
+      <!-- Colonne droite : logo -->
+      <div class="badge-right">
+        <img
+          class="badge-logo"
+          src="https://static.wixstatic.com/media/667cf1_bff20db22a4c4da8bc1b4cbe992b6280~mv2.png"
+          alt="LAB'IA Loire Valley"
+        />
+      </div>
+
+    </div>
+
+    <!-- Réseau de neurones décoratif -->
+    <div class="badge-nodes">
+      <svg width="26mm" height="18mm" viewBox="0 0 98 68" fill="none">
+        <circle cx="76" cy="10" r="4.5" fill="#7c3aed"/>
+        <circle cx="52" cy="28" r="4"   fill="#7c3aed"/>
+        <circle cx="90" cy="36" r="3.5" fill="#7c3aed"/>
+        <circle cx="66" cy="52" r="4"   fill="#7c3aed"/>
+        <circle cx="38" cy="48" r="3"   fill="#7c3aed"/>
+        <circle cx="95" cy="16" r="2.5" fill="#7c3aed"/>
+        <line x1="76" y1="10" x2="52" y2="28"  stroke="#7c3aed" stroke-width="1.1"/>
+        <line x1="76" y1="10" x2="90" y2="36"  stroke="#7c3aed" stroke-width="1"/>
+        <line x1="76" y1="10" x2="95" y2="16"  stroke="#7c3aed" stroke-width="0.8"/>
+        <line x1="52" y1="28" x2="38" y2="48"  stroke="#7c3aed" stroke-width="1"/>
+        <line x1="52" y1="28" x2="66" y2="52"  stroke="#7c3aed" stroke-width="1"/>
+        <line x1="90" y1="36" x2="66" y2="52"  stroke="#7c3aed" stroke-width="1"/>
+        <line x1="38" y1="48" x2="66" y2="52"  stroke="#7c3aed" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Vagues Loire — violet -->
+    <div class="badge-river">
+      <svg viewBox="0 0 325 34" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 16 C40 4,80 28,120 14 C160 0,200 24,240 12 C280 0,310 18,325 12 L325 34 L0 34 Z" fill="#ede9fe" opacity="0.9"/>
+        <path d="M0 22 C50 10,90 32,140 20 C190 8,230 30,280 18 C305 12,318 22,325 18 L325 34 L0 34 Z" fill="#c4b5fd" opacity="0.6"/>
+        <path d="M0 28 C60 18,110 34,170 26 C220 18,270 32,325 24 L325 34 L0 34 Z" fill="#7c3aed" opacity="0.25"/>
+      </svg>
+    </div>
+
+  </div>
+
+</body>
+</html>
