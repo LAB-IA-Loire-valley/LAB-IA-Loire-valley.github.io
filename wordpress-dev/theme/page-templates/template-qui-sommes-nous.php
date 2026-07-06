@@ -97,14 +97,14 @@ get_header();
                 $init_clr  = get_post_meta( $member->ID, 'initials_color', true );
                 $is_horiz  = $pole['horizontal'];
                 $style = $is_horiz ? 'text-align:left;flex-direction:row;gap:20px;align-items:flex-start;' : '';
-                $photo_style = $photo_url ? '' : ( $init_bg ? 'background:' . $init_bg : '' ) . ( $is_horiz ? ';flex-shrink:0;' : ';' );
+                $photo_style = $photo_url ? '' : ( ( $init_bg && ! $pole_color ) ? 'background:' . $init_bg : '' ) . ( $is_horiz ? ';flex-shrink:0;' : ';' );
             ?>
                 <div class="card card--team reveal<?php echo isset( $delay_map[ $i ] ) ? $delay_map[ $i ] : ''; ?>"<?php echo $style ? ' style="' . $style . '"' : ''; ?>>
                     <div class="card--team-photo"<?php echo $photo_style ? ' style="' . $photo_style . '"' : ''; ?>>
                         <?php if ( $photo_url ) : ?>
                             <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $member->post_title ); ?>" />
                         <?php else : ?>
-                            <span<?php echo $init_clr ? ' style="color:' . $init_clr . ';"' : ''; ?>><?php echo esc_html( $initials ); ?></span>
+                            <span<?php echo ( $init_clr && ! $pole_color ) ? ' style="color:' . $init_clr . ';"' : ''; ?>><?php echo esc_html( $initials ); ?></span>
                         <?php endif; ?>
                     </div>
                     <div>
