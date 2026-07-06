@@ -44,19 +44,19 @@
   });
 })();
 
-// ── Active nav link ─────────────────────────────────────────
-(function() {
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__link, .nav__mobile a').forEach(link => {
-    const href = link.getAttribute('href') || '';
-    if (href && path.includes(href.split('/').pop())) {
-      link.classList.add('active');
-    }
-    if ((path === '' || path === 'index.html') && href === 'index.html') {
-      link.classList.add('active');
-    }
-  });
-})();
+// // ── Active nav link ─────────────────────────────────────────
+// (function() {
+//   const path = window.location.pathname.split('/').pop() || 'index.html';
+//   document.querySelectorAll('.nav__link, .nav__mobile a').forEach(link => {
+//     const href = link.getAttribute('href') || '';
+//     if (href && path.includes(href.split('/').pop())) {
+//       link.classList.add('active');
+//     }
+//     if ((path === '' || path === 'index.html') && href === 'index.html') {
+//       link.classList.add('active');
+//     }
+//   });
+// })();
 
 // ── Scroll reveal ────────────────────────────────────────────
 (function() {
@@ -126,8 +126,12 @@
   let w, h, particles, animId;
   const PARTICLE_COUNT = 60;
   const CONNECTION_DIST = 180;
-  const MAGENTA = '226, 0, 125';
-  const BLUE = '79, 176, 255';
+  const COLORS = [
+    '79, 176, 255',   // blue
+    '71, 82, 151',    // indigo
+    '133, 47, 133',   // violet
+    '226, 0, 125',    // magenta
+  ];
 
   function resize() {
     const hero = canvas.parentElement;
@@ -143,7 +147,7 @@
       this.vx = (Math.random() - .5) * .4;
       this.vy = (Math.random() - .5) * .4;
       this.r = Math.random() * 2 + 1;
-      this.color = Math.random() > .65 ? MAGENTA : BLUE;
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
       this.alpha = Math.random() * .4 + .2;
     }
     update() {
@@ -259,3 +263,34 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ── Presse filter ────────────────────────────────────────────
+(function() {
+  const filterBtns = document.querySelectorAll('.media-type-btn');
+  const timeline = document.getElementById('press-timeline');
+  if (!filterBtns.length || !timeline) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.type;
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      timeline.querySelectorAll('.press-item').forEach(item => {
+        if (type === 'all' || item.dataset.type === type) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Hide year groups that have no visible items
+      timeline.querySelectorAll('.press-year-group').forEach(group => {
+        const visible = Array.from(group.querySelectorAll('.press-item'))
+          .some(item => item.style.display !== 'none');
+        group.style.display = visible ? '' : 'none';
+      });
+    });
+  });
+})();
