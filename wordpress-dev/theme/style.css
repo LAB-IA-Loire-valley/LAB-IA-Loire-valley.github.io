@@ -871,7 +871,7 @@ section.s-lg { padding: 140px 0; }
   margin-bottom: 28px;
 }
 .hero__tagline em {
-  color: var(--magenta-light);
+  color: var(--blue);
   font-style: normal;
 }
 @media (max-width: 360px) {
