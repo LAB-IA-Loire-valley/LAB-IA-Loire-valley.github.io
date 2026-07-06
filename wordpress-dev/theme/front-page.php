@@ -5,64 +5,25 @@
 
 get_header();
 ?>
-<!-- ── Hero ───────────────────────────────────────────────── -->
-<section class="hero" id="main-content">
-  <canvas id="hero-canvas"></canvas>
-
-  <div class="container">
-    <div class="hero__inner">
-      <div class="hero__eyebrow">
-        <span class="badge badge-white badge-dot">Ambassadeur IA — Plan national Osez l'IA</span>
-      </div>
-
-      <h1 class="t-display hero__title">
-        L'intelligence<br/>artificielle,<br/><em>accessible à tous.</em>
-      </h1>
-
-      <p class="hero__lead">
-        Le LAB'IA Loire Valley accompagne les entreprises et structures de la région
-        Centre-Val de Loire dans leurs projets Data &amp; IA — du diagnostic à l'industrialisation.
-      </p>
-
-      <div class="hero__actions">
-        <a href="<?php echo esc_url( home_url( '/notre-offre/' ) ); ?>" class="btn btn-primary btn-lg">
-          Découvrir notre offre
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn-outline-white btn-lg">Parler de mon projet</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero__badge">
-    <div class="hero__badge-circle">
-      <img class="hero__badge-img" src="https://static.wixstatic.com/media/667cf1_e5175fd9b21947b8bfc2f9016db01372~mv2.png" alt="Label Ambassadeur IA — Osez l'IA" />
-    </div>
-  </div>
-
-  <div class="hero__scroll">
-    <div class="hero__scroll-line"></div>
-    <span class="hero__scroll-text">Scroll</span>
-  </div>
-</section>
+<?php get_template_part( 'template-parts/section-hero' ); ?>
 
 <!-- ── Stats ───────────────────────────────────────────────── -->
 <section class="s-sm" style="padding:0; border-bottom: 1px solid var(--border);">
   <div class="stats-strip">
     <div class="stat-item reveal">
-      <div class="stat-number"><span>2021</span></div>
+      <div class="stat-number" style="color:#4FB0FF;"><span>2021</span></div>
       <div class="stat-label">Année de fondation<br/>au sein de la Technopole d'Orléans</div>
     </div>
     <div class="stat-item reveal reveal-delay-1">
-      <div class="stat-number"><span data-count="38" data-suffix="%">38%</span></div>
+      <div class="stat-number" style="color:#475297;"><span data-count="38" data-suffix="%">38%</span></div>
       <div class="stat-label">de productivité gagnée<br/>grâce à l'IA d'ici 2035 <span style="font-size:.75em;opacity:.6">(Accenture)</span></div>
     </div>
     <div class="stat-item reveal reveal-delay-2">
-      <div class="stat-number"><span data-count="6"></span></div>
+      <div class="stat-number" style="color:#852F85;"><span data-count="6"></span></div>
       <div class="stat-label">étapes pour<br/>un projet IA réussi</div>
     </div>
     <div class="stat-item reveal reveal-delay-3">
-      <div class="stat-number">+100</div>
+      <div class="stat-number" style="color:#E2007D;">+100</div>
       <div class="stat-label">structures accompagnées<br/>en région Centre-Val de Loire</div>
     </div>
   </div>
