@@ -821,20 +821,35 @@ section.s-lg { padding: 140px 0; }
   padding: 80px 0 80px;
   max-width: 900px;
 }
-.hero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 36px;
-}
-.hero__title {
-  margin-bottom: 28px;
+.hero__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
   color: var(--white);
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  margin-bottom: 14px;
+  white-space: nowrap;
 }
-.hero__title em {
+.hero__brand span {
   color: var(--magenta-light);
+}
+.hero__tagline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--white);
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin-bottom: 28px;
+}
+.hero__tagline em {
+  color: var(--blue);
   font-style: normal;
-  position: relative;
+}
+@media (max-width: 360px) {
+  .hero__brand { white-space: normal; }
 }
 .hero__lead {
   max-width: 580px;
