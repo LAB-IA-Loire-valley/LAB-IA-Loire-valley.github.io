@@ -65,103 +65,57 @@ get_header();
     <h2 class="t-h2 reveal mt-16 mb-12">Notre équipe opérationnelle</h2>
     <p class="t-lead reveal reveal-delay-1 mb-48" style="max-width:560px;">Notre mission : démocratiser et simplifier l'usage de l'IA pour tous nos clients.</p>
 
-    <div class="team-section-title reveal">Pôle opérationnel</div>
-    <div class="grid-3 mb-48">
-      <div class="card card--team reveal">
-        <div class="card--team-photo" style="background:var(--magenta-faint);">CN</div>
-        <div class="card--team-role">Responsable Opérationnelle</div>
-        <div class="card--team-name">Corinne Neau</div>
-        <p class="card--team-bio">Suit le projet depuis 2020. En charge de la structuration des équipes, des premiers contacts clients, des partenariats et de la communication. Double formation économie &amp; management.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-1">
-        <div class="card--team-photo" style="background:var(--blue-faint);color:#1a7acc;">TR</div>
-        <div class="card--team-role">Commercial &amp; Marketing</div>
-        <div class="card--team-name">Tommy Rajsombath</div>
-        <p class="card--team-bio">Relationnel, démarchage client et prise de contact avec les prospects. Intervient lors des événements et conférences du LAB'IA Loire Valley.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-2">
-        <div class="card--team-photo" style="background:#f0fff4;color:#22863a;">JD</div>
-        <div class="card--team-role">Communication (alternance)</div>
-        <div class="card--team-name">Jimmy Do</div>
-        <p class="card--team-bio">En charge du site internet et des publications LinkedIn. Intervient également dans la préparation des événements et conférences.</p>
-      </div>
-    </div>
+    <?php
+    $poles = array(
+        'pole-operationnel'      => array( 'label' => 'Pôle opérationnel', 'grid' => 'grid-3', 'horizontal' => false ),
+        'pole-technique'         => array( 'label' => 'Pôle technique — Data Scientists', 'grid' => 'grid-3', 'horizontal' => false ),
+        'reseau-experts'         => array( 'label' => 'Réseau d\'experts — Data Scientists partenaires', 'grid' => 'grid-2', 'horizontal' => true ),
+        'equipe-technopolitaine' => array( 'label' => 'Équipe Technopolitaine — en support', 'grid' => 'grid-4', 'horizontal' => false ),
+    );
+    $delay_map = array( 0 => '', 1 => ' reveal-delay-1', 2 => ' reveal-delay-2', 3 => ' reveal-delay-3' );
+    foreach ( $poles as $slug => $pole ) :
+        $members = labia_get_team_members( $slug );
+        if ( empty( $members ) ) continue;
 
-    <div class="team-section-title reveal">Pôle technique — Data Scientists</div>
-    <div class="grid-3 mb-48">
-      <div class="card card--team reveal">
-        <div class="card--team-photo"><img src="https://static.wixstatic.com/media/667cf1_99afd254e641486895b2388a7eb26cf8~mv2.jpg" alt="Narimane Berradj" /></div>
-        <div class="card--team-role">Data Scientist</div>
-        <div class="card--team-name">Narimane Berradj</div>
-        <p class="card--team-bio">Master Big Data & Analytics Management (Univ. Tours). Compétences en Machine Learning, Deep Learning, Data Engineering. Expertise Talend &amp; Oracle.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-1">
-        <div class="card--team-photo"><img src="https://static.wixstatic.com/media/667cf1_3169d52b5878427c83c74201892abba0~mv2.jpg" alt="Kévin Goupil" /></div>
-        <div class="card--team-role">Data Scientist</div>
-        <div class="card--team-name">Kévin Goupil</div>
-        <p class="card--team-bio">Master recherche en écologie, reconverti en IA. Diplômé Jedha Bootcamp Data Science. Expertise en ingénierie des données, ML et analyse statistique.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-2">
-        <div class="card--team-photo"><img src="https://static.wixstatic.com/media/667cf1_b068fcdb3fe949319ae92f97e51f7fa8~mv2.jpg" alt="Sylvine Durand" /></div>
-        <div class="card--team-role">Data Scientist</div>
-        <div class="card--team-name">Sylvine Durand</div>
-        <p class="card--team-bio">Docteur en biologie évolutive, reconvertie en IA. Rigueur scientifique et créativité au service de la valorisation de la donnée et des solutions innovantes.</p>
-      </div>
-      <div class="card card--team reveal">
-        <div class="card--team-photo"><img src="https://static.wixstatic.com/media/667cf1_af3cc0a5ffbd4b07a91fc8c9d589b120~mv2.jpg" alt="Selim Mohamed" /></div>
-        <div class="card--team-role">Data Scientist (alternance)</div>
-        <div class="card--team-name">Selim Mohamed</div>
-        <p class="card--team-bio">Cycle ingénieur CESI d'Orléans. Solide maîtrise des fondamentaux mathématiques et développement logiciel. Approches créatives et efficaces sur les problématiques data.</p>
-      </div>
-    </div>
-
-    <div class="team-section-title reveal">Réseau d'experts — Data Scientists partenaires</div>
-    <div class="grid-2 mb-48">
-      <div class="card card--team reveal" style="text-align:left;flex-direction:row;gap:20px;align-items:flex-start;">
-        <div class="card--team-photo" style="flex-shrink:0;"><img src="https://static.wixstatic.com/media/667cf1_a9c7583af84145ca88e15b1b81d304fd~mv2.png" alt="Rémi Julien" /></div>
-        <div>
-          <div class="card--team-role">Data Scientist Expérimenté</div>
-          <div class="card--team-name">Rémi Julien</div>
-          <p class="card--team-bio">20+ ans d'expérience. Consultant spécialisé dans les projets à impact : transition écologique, énergie, mobilité. Technologies : R, Python, SQL, Scikit-learn, Dataiku DSS.</p>
+        $term       = get_term_by( 'slug', $slug, 'team_pole' );
+        $pole_color = $term ? get_term_meta( $term->term_id, 'pole_color', true ) : '';
+        $pole_style = '';
+        if ( $pole_color ) {
+            $faint = labia_hex_to_rgba( $pole_color, 0.08 );
+            $pole_style = ' style="--team-accent:' . esc_attr( $pole_color ) . ';--team-faint:' . esc_attr( $faint ) . ';"';
+        }
+    ?>
+        <div class="team-section-title reveal"><?php echo esc_html( $pole['label'] ); ?></div>
+        <div class="<?php echo esc_attr( $pole['grid'] ); ?> mb-48"<?php echo $pole_style; ?>>
+            <?php foreach ( $members as $i => $member ) :
+                $photo_id  = get_post_meta( $member->ID, 'photo', true );
+                $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : get_post_meta( $member->ID, 'photo_url', true );
+                $role      = get_post_meta( $member->ID, 'role', true );
+                $bio       = get_post_meta( $member->ID, 'bio', true );
+                $initials  = get_post_meta( $member->ID, 'initials', true );
+                $init_bg   = get_post_meta( $member->ID, 'initials_bg', true );
+                $init_clr  = get_post_meta( $member->ID, 'initials_color', true );
+                $is_horiz  = $pole['horizontal'];
+                $style = $is_horiz ? 'text-align:left;flex-direction:row;gap:20px;align-items:flex-start;' : '';
+                $photo_style = $photo_url ? '' : ( $init_bg ? 'background:' . $init_bg : '' ) . ( $is_horiz ? ';flex-shrink:0;' : ';' );
+            ?>
+                <div class="card card--team reveal<?php echo isset( $delay_map[ $i ] ) ? $delay_map[ $i ] : ''; ?>"<?php echo $style ? ' style="' . $style . '"' : ''; ?>>
+                    <div class="card--team-photo"<?php echo $photo_style ? ' style="' . $photo_style . '"' : ''; ?>>
+                        <?php if ( $photo_url ) : ?>
+                            <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $member->post_title ); ?>" />
+                        <?php else : ?>
+                            <span<?php echo $init_clr ? ' style="color:' . $init_clr . ';"' : ''; ?>><?php echo esc_html( $initials ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <div>
+                        <div class="card--team-role"><?php echo esc_html( $role ); ?></div>
+                        <div class="card--team-name"><?php echo esc_html( $member->post_title ); ?></div>
+                        <p class="card--team-bio"><?php echo esc_html( $bio ); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-      </div>
-      <div class="card card--team reveal reveal-delay-1" style="text-align:left;flex-direction:row;gap:20px;align-items:flex-start;">
-        <div class="card--team-photo" style="flex-shrink:0;"><img src="https://static.wixstatic.com/media/667cf1_e143d7d1a8644634bb021e0e2ae63b65~mv2.png" alt="Julien Robert" /></div>
-        <div>
-          <div class="card--team-role">Data Scientist &amp; Docteur</div>
-          <div class="card--team-name">Julien Robert</div>
-          <p class="card--team-bio">Docteur en algorithmique (ENS Lyon), agrégé de mathématiques, Chef de département informatique à l'IUT d'Orléans. Expertise technique pointue et gestion de projet.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="team-section-title reveal">Équipe Technopolitaine — en support</div>
-    <div class="grid-4">
-      <div class="card card--team reveal">
-        <div class="card--team-photo" style="background:#fff8e1;color:#c68a00;">FR</div>
-        <div class="card--team-role">Direction</div>
-        <div class="card--team-name">Frédéric Ros</div>
-        <p class="card--team-bio">Fondateur du LAB'IA, chercheur en computing science. Longue expérience de l'IA en milieu industriel. Vision stratégique du Centre de Ressources.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-1">
-        <div class="card--team-photo" style="background:var(--offwhite);">NO</div>
-        <div class="card--team-role">Expertise Juridique &amp; RH</div>
-        <div class="card--team-name">Natacha Olivier</div>
-        <p class="card--team-bio">Responsable BU Innovation et Transfert de Technologies. Apporte son regard RH et son soutien en conseils juridiques.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-2">
-        <div class="card--team-photo" style="background:var(--offwhite);">CD</div>
-        <div class="card--team-role">Ressources Humaines</div>
-        <div class="card--team-name">Cécile Deloge</div>
-        <p class="card--team-bio">Gère les ressources humaines de la Technopole d'Orléans et du LAB'IA.</p>
-      </div>
-      <div class="card card--team reveal reveal-delay-3">
-        <div class="card--team-photo" style="background:var(--offwhite);">MS</div>
-        <div class="card--team-role">Comptabilité</div>
-        <div class="card--team-name">Marie Silva Ferreira</div>
-        <p class="card--team-bio">Rédaction des devis, facturation et suivi du financement PIA3.</p>
-      </div>
-    </div>
+    <?php endforeach; ?>
   </div>
 </section>
 

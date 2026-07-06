@@ -67,6 +67,13 @@ function labia_register_team_metabox() {
     ) );
 
     $box->add_field( array(
+        'name' => 'Photo URL (fallback)',
+        'desc' => 'URL directe si la photo n\'est pas uploadée dans la médiathèque (ex: image hébergée sur Wix)',
+        'id'   => 'photo_url',
+        'type' => 'text',
+    ) );
+
+    $box->add_field( array(
         'name' => 'Rôle',
         'id'   => 'role',
         'type' => 'text',
@@ -108,6 +115,34 @@ function labia_register_team_metabox() {
         'id'   => 'initials_color',
         'type' => 'text',
     ) );
+}
+
+add_action( 'cmb2_admin_init', 'labia_register_team_pole_metabox' );
+function labia_register_team_pole_metabox() {
+    $box = new_cmb2_box( array(
+        'id'           => 'team_pole_metabox',
+        'title'        => 'Couleur du pôle',
+        'object_types' => array( 'term' ),
+        'taxonomies'   => array( 'team_pole' ),
+    ) );
+
+    $box->add_field( array(
+        'name'    => "Couleur d'accentuation",
+        'desc'    => 'Utilisée pour le rôle, la bordure avatar, et le fond des initiales des membres de ce pôle. Laissez vide pour utiliser le magenta par défaut.',
+        'id'      => 'pole_color',
+        'type'    => 'colorpicker',
+    ) );
+}
+
+function labia_hex_to_rgba( $hex, $alpha = 0.08 ) {
+    $hex = ltrim( $hex, '#' );
+    if ( strlen( $hex ) === 3 ) {
+        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    }
+    $r = hexdec( substr( $hex, 0, 2 ) );
+    $g = hexdec( substr( $hex, 2, 2 ) );
+    $b = hexdec( substr( $hex, 4, 2 ) );
+    return "rgba({$r},{$g},{$b},{$alpha})";
 }
 
 function labia_get_team_members( $pole_slug = null ) {
