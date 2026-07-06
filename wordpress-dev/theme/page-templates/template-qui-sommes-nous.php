@@ -85,8 +85,9 @@ get_header();
             $pole_style = ' style="--team-accent:' . esc_attr( $pole_color ) . ';--team-faint:' . esc_attr( $faint ) . ';"';
         }
     ?>
+        <div<?php echo $pole_style; ?>>
         <div class="team-section-title reveal"><?php echo esc_html( $pole['label'] ); ?></div>
-        <div class="<?php echo esc_attr( $pole['grid'] ); ?> mb-48"<?php echo $pole_style; ?>>
+        <div class="<?php echo esc_attr( $pole['grid'] ); ?> mb-48">
             <?php foreach ( $members as $i => $member ) :
                 $photo_id  = get_post_meta( $member->ID, 'photo', true );
                 $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : get_post_meta( $member->ID, 'photo_url', true );
@@ -115,6 +116,7 @@ get_header();
                 </div>
             <?php endforeach; ?>
         </div>
+    </div>
     <?php endforeach; ?>
   </div>
 </section>

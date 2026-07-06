@@ -1492,7 +1492,7 @@ section.s-lg { padding: 140px 0; }
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--magenta);
+      color: var(--team-accent, var(--magenta));
       padding: 0 0 16px;
       border-bottom: 1px solid var(--border);
       margin-bottom: 32px;
