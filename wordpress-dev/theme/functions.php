@@ -13,6 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'LABIA_THEME_DIR', get_template_directory() );
 define( 'LABIA_THEME_URI', get_template_directory_uri() );
 
+// Site icon (favicon)
+add_theme_support( 'site-icon', LABIA_THEME_DIR . '/assets/img/logos/labia noname.png' );
+
+// Document title tag
+add_theme_support( 'title-tag' );
+
 // Load in correct order (CPTs first, then CMB2 config, then enqueue).
 require_once LABIA_THEME_DIR . '/inc/enqueue.php';
 require_once LABIA_THEME_DIR . '/inc/cmb2-config.php';
