@@ -187,6 +187,9 @@ get_header();
     </div>
 
     <div class="timeline">
+      <svg class="timeline-connector" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M50 6 H300 V46 H0 V65 H250" />
+      </svg>
       <div class="timeline-item reveal">
         <div class="timeline-step">1</div>
         <div class="timeline-title">Planification</div>
