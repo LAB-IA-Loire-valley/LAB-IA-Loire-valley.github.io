@@ -583,6 +583,10 @@ section.s-lg { padding: 140px 0; }
   opacity: 0.15;
   pointer-events: none;
 }
+.card--testimonial {
+  display: flex;
+  flex-direction: column;
+}
 .card--testimonial-quote {
   font-size: 0.95rem;
   line-height: 1.8;
@@ -594,19 +598,20 @@ section.s-lg { padding: 140px 0; }
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: auto;
 }
 .card--testimonial-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--magenta-faint);
+  background: var(--avatar-faint, var(--magenta-faint));
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.9rem;
-  color: var(--magenta);
+  color: var(--avatar-color, var(--magenta));
   flex-shrink: 0;
   overflow: hidden;
 }

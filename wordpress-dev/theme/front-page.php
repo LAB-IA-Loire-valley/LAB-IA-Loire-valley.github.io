@@ -266,38 +266,42 @@ get_header();
     <div class="section-label reveal"><span>Témoignages</span></div>
     <h2 class="t-h2 reveal mt-8 mb-48">Ce que disent nos partenaires</h2>
 
+    <?php
+    $home_testimonials = labia_get_testimonials( 3, true );
+    if ( $home_testimonials ) :
+    ?>
     <div class="grid-3">
-      <div class="card card--testimonial reveal">
-        <p class="card--testimonial-quote">"Une collaboration pleine de sens ! Le LAB'IA, pleinement intégré à l'écosystème orléanais, nous accompagne pour identifier et développer différents leviers visant à améliorer le service offert aux voyageurs."</p>
+      <?php foreach ( $home_testimonials as $i => $t ) :
+        $quote     = get_post_meta( $t->ID, 'quote', true );
+        $author    = get_post_meta( $t->ID, 'author', true );
+        $author_role = get_post_meta( $t->ID, 'author_role', true );
+        $company   = get_post_meta( $t->ID, 'company', true );
+        $photo_id  = get_post_meta( $t->ID, 'photo', true );
+        $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : '';
+        $initials  = labia_get_initials( $author );
+        $accent    = labia_avatar_color( $i );
+        $faint     = labia_hex_to_rgba( $accent, 0.12 );
+        $role_line = $author_role || $company ? ( $author_role ? ( $company ? "$author_role — $company" : $author_role ) : $company ) : '';
+      ?>
+      <div class="card card--testimonial reveal<?php echo $i ? ' reveal-delay-' . $i : ''; ?>">
+        <p class="card--testimonial-quote">"<?php echo esc_html( $quote ); ?>"</p>
         <div class="card--testimonial-author">
-          <div class="card--testimonial-avatar">YB</div>
+          <div class="card--testimonial-avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>">
+            <?php if ( $photo_url ) : ?>
+              <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $author ); ?>" />
+            <?php elseif ( $initials ) : ?>
+              <span><?php echo esc_html( $initials ); ?></span>
+            <?php endif; ?>
+          </div>
           <div>
-            <div class="card--testimonial-name">Yannick Berthereau</div>
-            <div class="card--testimonial-role">Directeur Innovation — Keolis Métropole Orléans</div>
+            <div class="card--testimonial-name"><?php echo esc_html( $author ); ?></div>
+            <div class="card--testimonial-role"><?php echo esc_html( $role_line ); ?></div>
           </div>
         </div>
       </div>
-      <div class="card card--testimonial reveal reveal-delay-1">
-        <p class="card--testimonial-quote">"Collaborer avec le LAB'IA et diffuser des ressources normatives reconnues est une évidence ! L'association AFNOR au service de l'intérêt général trouve dans ce partenariat une synergie naturelle."</p>
-        <div class="card--testimonial-author">
-          <div class="card--testimonial-avatar">AY</div>
-          <div>
-            <div class="card--testimonial-name">Anne Youf</div>
-            <div class="card--testimonial-role">Déléguée régionale — AFNOR Centre-Val de Loire</div>
-          </div>
-        </div>
-      </div>
-      <div class="card card--testimonial reveal reveal-delay-2">
-        <p class="card--testimonial-quote">"L'accompagnement du LAB'IA a pris différentes formes : partage de bonnes pratiques, état de l'art, analyse prospective des technologies IA, formation. Un appui qui nous permet de répondre de manière opérationnelle aux besoins clients."</p>
-        <div class="card--testimonial-author">
-          <div class="card--testimonial-avatar">DP</div>
-          <div>
-            <div class="card--testimonial-name">Daniel Pierre</div>
-            <div class="card--testimonial-role">Directeur R&amp;I — Antea Group</div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
+    <?php endif; ?>
   </div>
 </section>
 

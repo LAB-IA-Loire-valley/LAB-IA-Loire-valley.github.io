@@ -71,6 +71,13 @@ function labia_register_testimonial_metabox() {
     ) );
 
     $box->add_field( array(
+        'name'    => 'Photo de l\'auteur',
+        'id'      => 'photo',
+        'type'    => 'file',
+        'options' => array( 'url' => false ),
+    ) );
+
+    $box->add_field( array(
         'name' => 'Emoji (en-tête de la case)',
         'id'   => 'emoji',
         'type' => 'text',
@@ -121,4 +128,18 @@ function labia_get_testimonials( $limit = -1, $homepage_only = false ) {
     }
 
     return get_posts( $args );
+}
+
+function labia_get_initials( $name ) {
+    if ( empty( $name ) ) return '';
+    $parts = explode( ' ', trim( $name ) );
+    $initials = '';
+    if ( ! empty( $parts[0] ) ) $initials .= mb_substr( $parts[0], 0, 1 );
+    if ( count( $parts ) > 1 ) $initials .= mb_substr( end( $parts ), 0, 1 );
+    return mb_strtoupper( $initials );
+}
+
+function labia_avatar_color( $index ) {
+    $colors = array( '#4FB0FF', '#475297', '#852F85', '#E2007D' );
+    return $colors[ $index % count( $colors ) ];
 }
