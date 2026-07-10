@@ -124,10 +124,10 @@ function labia_register_options_page() {
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'Texte du badge hero',
-        'id'      => 'hero_badge_text',
-        'type'    => 'text',
-        'default' => "Ambassadeur IA — Plan national Osez l'IA",
+        'name'    => 'Marque hero (HTML autorisé)',
+        'id'      => 'hero_brand',
+        'type'    => 'textarea',
+        'default' => "LAB'<span>IA</span> Loire Valley",
     ) );
 
     $opt_page->add_field( array(
@@ -137,17 +137,17 @@ function labia_register_options_page() {
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'Titre hero (HTML autorisé)',
+        'name'    => 'Tagline hero (HTML autorisé)',
         'id'      => 'hero_title',
         'type'    => 'textarea',
-        'default' => "L'intelligence<br/>artificielle,<br/><em>accessible à tous.</em>",
+        'default' => "L'intelligence artificielle, <em>accessible à tous.</em>",
     ) );
 
     $opt_page->add_field( array(
         'name'    => 'Sous-titre hero',
         'id'      => 'hero_lead',
         'type'    => 'textarea',
-        'default' => "Le LAB'IA Loire Valley accompagne les entreprises et structures de la région Centre-Val de Loire dans leurs projets Data & IA — du diagnostic à l'industrialisation.",
+        'default' => "Le LAB'IA Loire Valley accompagne les entreprises et structures de la région Centre-Val de Loire dans leurs projets Data & IA, du diagnostic à l'industrialisation.",
     ) );
 
     $opt_page->add_field( array(
