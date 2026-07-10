@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: mariadb:10.6
@@ -25,7 +23,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8080:80"
+      - "8765:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wp
@@ -33,6 +31,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wpdata:/var/www/html
+      - /home/selim/projects/site/wordpress-dev/theme:/var/www/html/wp-content/themes/labia-wp
 
   pma:
     image: phpmyadmin:latest
