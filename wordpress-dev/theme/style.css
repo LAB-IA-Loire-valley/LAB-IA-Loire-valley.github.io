@@ -261,6 +261,12 @@ section.s-lg { padding: 140px 0; }
 .nav.nav--dark-page:not(.nav--scrolled) .nav__link:hover { color: var(--white); background: rgba(255,255,255,.08); }
 .nav.nav--dark-page:not(.nav--scrolled) .nav__link.active { color: var(--magenta-light); }
 
+/* Home page: hero light override nav */
+.home .nav--dark-page:not(.nav--scrolled) .nav__link { color: var(--ink-60); }
+.home .nav--dark-page:not(.nav--scrolled) .nav__link:hover { color: var(--ink); background: var(--ink-10); }
+.home .nav--dark-page:not(.nav--scrolled) .nav__link.active { color: var(--magenta); }
+.home .nav--dark-page:not(.nav--scrolled) .nav__burger span { background: var(--ink); }
+
 /* Dropdown */
 .nav__dropdown { position: relative; }
 .nav__dropdown-menu {
