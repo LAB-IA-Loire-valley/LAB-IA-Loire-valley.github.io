@@ -68,14 +68,6 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
                 </div>
             </div>
         </div>
-        <div class="footer__bottom">
-            <span class="footer__bottom-text">© <?php echo date( 'Y' ); ?> LAB'IA Loire Valley — Technopole d'Orléans</span>
-            <div class="footer__bottom-links">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">Cookies</a>
-            </div>
-        </div>
         <div class="footer__financeurs">
             <div class="footer__financeurs-row">
                 <div class="footer__financeurs-col">
@@ -86,6 +78,14 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
                     <div class="footer__financeurs-label">La Technopole d'Orléans est financée par</div>
                     <img src="<?php echo esc_url( $fin2_url ); ?>" alt="Financeurs de la Technopole d'Orléans" />
                 </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span class="footer__bottom-text">© <?php echo date( 'Y' ); ?> LAB'IA Loire Valley — Technopole d'Orléans</span>
+            <div class="footer__bottom-links">
+                <a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a>
+                <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">Politique de confidentialité</a>
+                <a href="<?php echo esc_url( home_url( '/politique-en-matiere-de-cookies/' ) ); ?>">Politique en matière de cookies</a>
             </div>
         </div>
     </div>

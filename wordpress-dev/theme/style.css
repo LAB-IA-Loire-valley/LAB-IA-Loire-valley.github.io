@@ -1189,7 +1189,7 @@ section.s-lg { padding: 140px 0; }
   gap: 10px;
   margin-bottom: 16px;
 }
-.footer__logo img { height: 52px; width: auto; max-width: 200px; filter: brightness(10); }
+.footer__logo img { height: 200px; width: auto; max-width: 400px; }
 .footer__logo-text {
   font-family: var(--font-display);
   font-weight: 800;
@@ -1243,16 +1243,21 @@ section.s-lg { padding: 140px 0; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.08);
 }
 .footer__bottom-text { font-size: 0.8rem; }
 .footer__bottom-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer__bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,.4); transition: color .2s; }
 .footer__bottom-links a:hover { color: rgba(255,255,255,.8); }
-
 .footer__financeurs {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,.06);
+  margin-top: 32px;
+  padding: 32px 32px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  margin-left: -32px;
+  margin-right: -32px;
 }
 .footer__financeurs-row {
   display: flex;
@@ -1269,17 +1274,15 @@ section.s-lg { padding: 140px 0; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.35);
+  color: var(--ink-60);
   margin-bottom: 16px;
 }
 .footer__financeurs-col img {
   display: block;
   width: 100%;
   height: auto;
-  opacity: .85;
   transition: opacity .3s;
 }
-.footer__financeurs-col img:hover { opacity: 1; }
 
 /* ── Scroll Reveal ───────────────────────────────────────────── */
 .reveal {
@@ -1935,3 +1938,45 @@ section.s-lg { padding: 140px 0; }
       .news-article__title { font-size: 1.15rem; }
       .news-article__date { padding-top: 0; }
     }
+
+/* ── Legal pages ──────────────────────────────────────────── */
+.legal-content {
+  padding: 64px 32px 96px;
+}
+.legal-content h2 {
+  margin-bottom: 20px;
+}
+.legal-content p {
+  line-height: 1.8;
+}
+.legal-content p + p {
+  margin-top: 24px;
+}
+.legal-hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+.legal-hr + h2 {
+  margin-top: 0;
+}
+.legal-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+.legal-list li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--ink-60);
+  margin-bottom: 14px;
+}
+.legal-list li:last-child {
+  margin-bottom: 0;
+}
+.legal-content a {
+  transition: opacity .2s var(--ease-out);
+}
+.legal-content a:hover {
+  opacity: .7;
+}
