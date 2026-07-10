@@ -17,6 +17,7 @@ require_once LABIA_THEME_DIR . '/inc/cpt-testimonial.php';
 require_once LABIA_THEME_DIR . '/inc/cpt-formation.php';
 require_once LABIA_THEME_DIR . '/inc/cpt-solution.php';
 require_once LABIA_THEME_DIR . '/inc/cpt-presse.php';
+require_once LABIA_THEME_DIR . '/inc/cpt-news.php';
 
 // Global options page
 require_once LABIA_THEME_DIR . '/inc/options-general.php';

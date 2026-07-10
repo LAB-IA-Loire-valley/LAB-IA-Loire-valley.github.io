@@ -64,6 +64,13 @@ function labia_register_client_metabox() {
     ) );
 
     $box->add_field( array(
+        'name' => 'Logo fichier',
+        'desc' => 'Nom du fichier dans assets/img/logos/ (ex: laposte.svg). Alternative si pas upload.',
+        'id'   => 'logo_file',
+        'type' => 'text',
+    ) );
+
+    $box->add_field( array(
         'name' => 'Emoji (fallback logo)',
         'id'   => 'emoji',
         'type' => 'text',
