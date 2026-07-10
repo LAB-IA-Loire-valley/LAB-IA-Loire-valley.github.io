@@ -1,0 +1,30 @@
+# Environment & shell
+.bashrc
+.bash_profile
+.zprofile
+.profile
+.zshrc
+.gitconfig
+.ripgreprc
+
+# Editor / IDE / tooling
+.vscode/
+.idea/
+.mcp.json
+.superpowers/
+
+# Git
+.gitmodules
+
+# Archives
+site-archive.tar.gz
+
+# Stale duplicate stylesheets (unused; theme loads root style.css)
+assets/css/style.css
+wordpress-dev/theme/assets/css/style.css
+
+# Windows cruft
+*:Zone.Identifier
+
+# Working docs
+docs/superpowers/
