@@ -126,7 +126,7 @@ get_header();
   <div class="container">
     <div class="section-label reveal"><span>Nos consortiums</span></div>
     <h2 class="t-h2 reveal mt-16 mb-48">Les consortiums dont nous faisons partie</h2>
-    <div class="grid-2">
+    <div class="grid-3">
       <div class="consortium-card reveal">
         <div>
           <span class="badge badge-blue mb-12">Loire Valley Data Hub</span>
@@ -152,6 +152,19 @@ get_header();
         </div>
         <a href="https://www.tech-orleans.fr/le-labia-loire-valley-membre-actif-du-consortium-du-loire-valley-data-hub/" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="align-self:flex-start;">
           En savoir plus
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div class="consortium-card reveal reveal-delay-2">
+        <div>
+          <span class="badge" style="background:#e3f2fd;color:#1565c0;" class="mb-12">Interreg</span>
+          <h3 class="t-h3">Interreg</h3>
+          <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Union Européenne</p>
+        </div>
+        <p class="t-body text-muted">Initiative clé de l'Union européenne qui met en relation pays, régions et collectivités grâce à un ensemble de programmes de financement favorisant la coopération transfrontalière, transnationale, interrégionale et avec les régions ultrapériphériques.</p>
+        <p class="t-body text-muted">En soutenant des projets qui relèvent des défis communs et apportent des solutions durables, Interreg lutte contre les inégalités régionales tout en promouvant le développement économique, social et environnemental en Europe.</p>
+        <a href="https://interreg.eu/" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="align-self:flex-start;">
+          Découvrir Interreg
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
       </div>

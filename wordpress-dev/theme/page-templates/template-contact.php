@@ -115,7 +115,7 @@ get_header();
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:28px;font-size:.8rem;color:var(--ink-60);">
             <input type="checkbox" id="rgpd" style="margin-top:2px;flex-shrink:0;accent-color:var(--magenta);" required />
-            <label for="rgpd">J'accepte que mes données soient traitées par le LAB'IA Loire Valley afin de répondre à ma demande, conformément à la <a href="#" style="color:var(--magenta);">politique de confidentialité</a>.</label>
+            <label for="rgpd">J'accepte que mes données soient traitées par le LAB'IA Loire Valley afin de répondre à ma demande, conformément à la <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>" style="color:var(--magenta);">politique de confidentialité</a>.</label>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
             Envoyer ma demande

@@ -50,133 +50,74 @@ get_header();
     </div>
 
     <!-- Filtres -->
+    <?php
+    $filter_terms = get_terms( array( 'taxonomy' => 'press_type', 'hide_empty' => true ) );
+    $filter_labels = array(
+        'article'  => '📰 Articles',
+        'video'    => '📺 Vidéo / TV',
+        'radio'    => '🎙️ Podcasts / Radio',
+        'magazine' => '📕 Magazines',
+    );
+    ?>
     <div class="media-type-filter reveal">
-      <button class="media-type-btn active">Tous</button>
-      <button class="media-type-btn">📰 Articles</button>
-      <button class="media-type-btn">📺 Vidéo / TV</button>
-      <button class="media-type-btn">🎙️ Podcasts / Radio</button>
-      <button class="media-type-btn">📕 Magazines</button>
+      <button class="media-type-btn active" data-type="all">Tous</button>
+      <?php foreach ( $filter_terms as $ft ) :
+          $label = isset( $filter_labels[ $ft->slug ] ) ? $filter_labels[ $ft->slug ] : $ft->name;
+      ?>
+      <button class="media-type-btn" data-type="<?php echo esc_attr( $ft->slug ); ?>"><?php echo esc_html( $label ); ?></button>
+      <?php endforeach; ?>
     </div>
 
     <!-- Timeline presse -->
-    <div class="press-timeline">
-
-      <div class="press-year-group reveal">
-        <div class="press-year">2026</div>
-        <div class="press-items">
-          <div class="press-item">
-            <div><div class="press-item__date">21 Jan. 2026</div><div class="press-item__source"><span class="press-item__type-icon">🎬</span> Loire Valley Data Hub</div></div>
-            <div><div class="press-item__title">After movie — Journée « Boostez votre transition numérique »</div><p class="press-item__excerpt">Retour vidéo sur la journée du 3 décembre 2025 : 94 participants, IA et transformation numérique.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Voir</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">14 Jan. 2026</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> Orléans Métropole</div></div>
-            <div><div class="press-item__title">L'innovation au cœur du territoire orléanais</div><p class="press-item__excerpt">Mise en lumière de la Technopole d'Orléans et du LAB'IA comme piliers de l'innovation locale.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
+    <?php
+    $articles = labia_get_press_articles();
+    if ( $articles ) :
+        $by_year = array();
+        foreach ( $articles as $a ) {
+            $d = get_post_meta( $a->ID, 'pub_date', true );
+            $y = $d ? date( 'Y', $d ) : '—';
+            $by_year[ $y ][] = $a;
+        }
+        krsort( $by_year );
+    ?>
+    <div class="press-timeline" id="press-timeline">
+        <?php foreach ( $by_year as $year => $items ) : ?>
+        <div class="press-year-group reveal">
+            <div class="press-year"><?php echo esc_html( $year ); ?></div>
+            <div class="press-items">
+                <?php foreach ( $items as $a ) :
+                    $date    = get_post_meta( $a->ID, 'pub_date', true );
+                    $source  = get_post_meta( $a->ID, 'source', true );
+                    $url     = get_post_meta( $a->ID, 'article_url', true );
+                    $excerpt = get_post_meta( $a->ID, 'excerpt', true );
+                    $type    = wp_get_post_terms( $a->ID, 'press_type', array( 'fields' => 'slugs' ) );
+                    $type_slug = ! empty( $type ) ? $type[0] : 'article';
+                    $type_name = ! empty( $type ) ? $type[0] : 'article';
+                    $type_icon = '📰';
+                    if ( $type_slug === 'radio' ) $type_icon = '🎙️';
+                    elseif ( $type_slug === 'video' ) $type_icon = '🎬';
+                    elseif ( $type_slug === 'web' ) $type_icon = '🌐';
+                    elseif ( $type_slug === 'magazine' ) $type_icon = '📕';
+                ?>
+                <div class="press-item" data-type="<?php echo esc_attr( $type_slug ); ?>">
+                    <div>
+                        <div class="press-item__date"><?php echo $date ? date( 'd M Y', $date ) : '—'; ?></div>
+                        <div class="press-item__source"><span class="press-item__type-icon"><?php echo esc_html( $type_icon ); ?></span> <?php echo esc_html( $source ); ?></div>
+                    </div>
+                    <div>
+                        <div class="press-item__title"><?php echo esc_html( $a->post_title ); ?></div>
+                        <?php if ( $excerpt ) : ?><p class="press-item__excerpt"><?php echo esc_html( $excerpt ); ?></p><?php endif; ?>
+                    </div>
+                    <?php if ( $url ) : ?><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener" class="btn btn-sm btn-outline">Lire</a><?php endif; ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
         </div>
-      </div>
-
-      <div class="press-year-group reveal">
-        <div class="press-year">2025</div>
-        <div class="press-items">
-          <div class="press-item">
-            <div><div class="press-item__date">Oct. 2025</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> Épicentre</div></div>
-            <div><div class="press-item__title">Quand l'IA devient un actif stratégique</div><p class="press-item__excerpt">Corinne Neau et Aline Landier (Cosmetic Valley) mises en avant à l'occasion de VivaTech 2025 dans les colonnes d'Epicentre.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">13 Mars 2025</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> Actu.fr</div></div>
-            <div><div class="press-item__title">Gestion de l'eau en CVL : l'IA au service du territoire</div><p class="press-item__excerpt">Article consacré au projet PrevizO et au rôle du LAB'IA Loire Valley au sein du consortium.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">13 Fév. 2025</div><div class="press-item__source"><span class="press-item__type-icon">📺</span> France 3 CVL</div></div>
-            <div><div class="press-item__title">« IA, le grand bouleversement » — Émission spéciale</div><p class="press-item__excerpt">Frédéric Ros partage son expertise sur l'impact industriel, énergétique et sociétal de l'IA en Centre-Val de Loire.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Voir</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">5 Fév. 2025</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> La République du Centre</div></div>
-            <div><div class="press-item__title">Le LAB'IA à l'honneur — RDV 360° de l'Éco</div><p class="press-item__excerpt">Double couverture : article La République du Centre + article Orléans Métropole sur l'événement.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="press-year-group reveal">
-        <div class="press-year">2024</div>
-        <div class="press-items">
-          <div class="press-item">
-            <div><div class="press-item__date">12 Nov. 2024</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> L'Usine Nouvelle</div></div>
-            <div><div class="press-item__title">Visite de la ministre Clara Chappaz au LAB'IA</div><p class="press-item__excerpt">Clara Chappaz, Secrétaire d'État chargée de l'IA et du Numérique, visite le LAB'O et rencontre l'équipe.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">Nov. 2024</div><div class="press-item__source"><span class="press-item__type-icon">📕</span> Panorama Loiret</div></div>
-            <div><div class="press-item__title">Le LAB'IA Loire Valley présent en page 11</div><p class="press-item__excerpt">Le Panorama des entreprises du Loiret 2024 — 84 pages, bilan économique, classement par secteur.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Consulter</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">Nov. 2024</div><div class="press-item__source"><span class="press-item__type-icon">📺</span> France 3 CVL</div></div>
-            <div><div class="press-item__title">On parle de nous sur France 3 — IA &amp; développement durable</div><p class="press-item__excerpt">Frédéric Ros livre son expertise sur l'IA au service de l'environnement en Centre-Val de Loire.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Voir</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">Mai-Juin 2024</div><div class="press-item__source"><span class="press-item__type-icon">📕</span> L'Épicentre #35</div></div>
-            <div><div class="press-item__title">Dossier IA de 6 pages — L'Épicentre</div><p class="press-item__excerpt">Reportage de 6 pages avec Frédéric Ros, Christophe Brizot (Numeum) et d'autres personnalités locales.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire p.30</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">18 Jan. 2024</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> La République du Centre</div></div>
-            <div><div class="press-item__title">Double page IA — Interview exclusif Frédéric Ros &amp; Corinne Neau</div><p class="press-item__excerpt">Dossier complet sur l'IA en région avec la Technopole d'Orléans et le LAB'IA en tête d'affiche.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="press-year-group reveal">
-        <div class="press-year">2023</div>
-        <div class="press-items">
-          <div class="press-item">
-            <div><div class="press-item__date">Jan. 2024</div><div class="press-item__source"><span class="press-item__type-icon">📻</span> VoxRadio</div></div>
-            <div><div class="press-item__title">Interview de Frédéric Ros — Vision de l'IA sur VoxRadio</div><p class="press-item__excerpt">Émission diffusée le 3 décembre : Frédéric Ros partage sa vision de l'IA et son impact sociétal.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Écouter</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">28 Juin 2023</div><div class="press-item__source"><span class="press-item__type-icon">📺</span> France 3 CVL</div></div>
-            <div><div class="press-item__title">Ouassila Hoceini — Data Scientist LAB'IA au 18h30</div><p class="press-item__excerpt">Intervention en direct pour parler d'IA, de ChatGPT et de l'offre de service du LAB'IA Loire Valley.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Voir</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">13 Juin 2023</div><div class="press-item__source"><span class="press-item__type-icon">📺</span> France 3 CVL</div></div>
-            <div><div class="press-item__title">Frédéric Ros sur ChatGPT — Démystifier l'IA</div><p class="press-item__excerpt">Reportage visant à démystifier les a priori sur l'intelligence artificielle auprès du grand public.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Voir</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">6 Avril 2023</div><div class="press-item__source"><span class="press-item__type-icon">📻</span> Forum Vibration</div></div>
-            <div><div class="press-item__title">Jérémie Méhault — L'IA dans notre quotidien</div><p class="press-item__excerpt">Interview radio : enjeux sociétaux, sociaux et environnementaux de l'IA pour les particuliers et entreprises.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Écouter</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="press-year-group reveal">
-        <div class="press-year">2021–22</div>
-        <div class="press-items">
-          <div class="press-item">
-            <div><div class="press-item__date">2022</div><div class="press-item__source"><span class="press-item__type-icon">📕</span> Acteurs de l'Éco</div></div>
-            <div><div class="press-item__title">Article magazine — Le LAB'IA, un outil unique en France</div><p class="press-item__excerpt">Portrait du LAB'IA au LAB'O d'Orléans, quelques mois après son installation — un outil unique en France dans sa structuration.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire p.7</a>
-          </div>
-          <div class="press-item">
-            <div><div class="press-item__date">15 Fév. 2021</div><div class="press-item__source"><span class="press-item__type-icon">📰</span> La République du Centre</div></div>
-            <div><div class="press-item__title">Création du LAB'IA Loire Valley — Article fondateur</div><p class="press-item__excerpt">Carole Tribout annonce la création du LAB'IA Loire Valley avec de nombreuses explications sur les objectifs du centre de ressources.</p></div>
-            <a href="#" class="btn btn-sm btn-outline">Lire</a>
-          </div>
-        </div>
-      </div>
-
+        <?php endforeach; ?>
     </div>
+    <?php else : ?>
+    <p class="text-muted">Aucun article de presse pour le moment.</p>
+    <?php endif; ?>
   </div>
 </section>
 

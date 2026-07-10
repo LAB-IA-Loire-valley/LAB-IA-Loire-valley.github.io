@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Actualités
- * 1-to-1 port of actualites.html
+ * News article feed — full-width scrollable format
  */
 
 get_header();
@@ -21,114 +21,50 @@ get_header();
 <section>
   <div class="container">
 
-    <!-- Article à la une -->
-    <div class="actu-featured reveal">
-      <div class="actu-featured__img"><span style="position:relative;z-index:1;">🎬</span></div>
-      <div class="actu-featured__body">
-        <span class="badge badge-magenta" style="align-self:flex-start;">Événement</span>
-        <div class="actu-featured__date">21 Janvier 2026</div>
-        <h2 class="actu-featured__title">After movie — Journée « Boostez votre transition numérique » du 3 décembre 2025</h2>
-        <p class="actu-featured__excerpt">L'after movie de la journée co-organisée par le LAB'IA Loire Valley et le Loire Valley Data Hub est en ligne. 94 participants, des prises de parole inspirantes, des retours d'expérience concrets et des échanges riches autour de l'IA au service des organisations.</p>
-        <div style="margin-top:auto;">
-          <a href="#" class="btn btn-primary btn-sm">Voir l'after movie<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <?php
+    $articles = labia_get_news_articles();
+    if ( $articles ) :
+    ?>
+    <div class="news-feed">
+      <?php foreach ( $articles as $a ) :
+          $date     = get_post_meta( $a->ID, 'pub_date', true );
+          $category = get_post_meta( $a->ID, 'news_category', true );
+          $source   = get_post_meta( $a->ID, 'source_url', true );
+          $img_id   = get_post_meta( $a->ID, 'featured_image', true );
+          $img_url  = $img_id ? wp_get_attachment_url( $img_id ) : '';
+          $content  = apply_filters( 'the_content', $a->post_content );
+      ?>
+      <article class="news-article reveal">
+        <div class="news-article__header">
+          <div>
+            <?php if ( $category ) : ?><span class="badge badge-magenta" style="margin-bottom:8px;"><?php echo esc_html( $category ); ?></span><?php endif; ?>
+            <h2 class="news-article__title"><?php echo esc_html( $a->post_title ); ?></h2>
+          </div>
+          <div class="news-article__date"><?php echo $date ? date( 'd M Y', $date ) : ''; ?></div>
         </div>
-      </div>
+        <?php if ( $img_url ) : ?>
+          <div class="news-article__image">
+            <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $a->post_title ); ?>" />
+          </div>
+        <?php endif; ?>
+        <div class="news-article__body">
+          <?php echo $content; ?>
+        </div>
+        <?php if ( $source ) : ?>
+          <div class="news-article__footer">
+            <a href="<?php echo esc_url( $source ); ?>" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+              Lire l'article source
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        <?php endif; ?>
+      </article>
+      <?php endforeach; ?>
     </div>
+    <?php else : ?>
+    <p class="text-muted" style="text-align:center; padding:80px 0;">Aucune actualité pour le moment.</p>
+    <?php endif; ?>
 
-    <!-- Grille articles -->
-    <div class="grid-3">
-      <div class="actu-card reveal">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">🏙️</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Innovation</span>
-          <div class="actu-card__date">14 Janvier 2026</div>
-          <div class="actu-card__title">L'innovation au cœur du territoire orléanais</div>
-          <p class="actu-card__excerpt">Orléans Métropole met en lumière la Technopole d'Orléans, pilier historique de l'écosystème d'innovation local, au sein du LAB'O Village By CA Orléans.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">Territoire</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-card reveal reveal-delay-1">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">💧</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-blue" style="align-self:flex-start;margin-bottom:4px;">Projet</span>
-          <div class="actu-card__date">13 Mars 2025</div>
-          <div class="actu-card__title">Gestion de l'eau en Centre-Val de Loire : l'IA au service du territoire</div>
-          <p class="actu-card__excerpt">Le LAB'IA Loire Valley signe officiellement sa participation au consortium PrevizO — une initiative innovante pour une gestion durable de l'eau grâce à une IA frugale.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">PrevizO · Environnement</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-card reveal reveal-delay-2">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">📺</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-magenta" style="align-self:flex-start;margin-bottom:4px;">Médias</span>
-          <div class="actu-card__date">13 Février 2025</div>
-          <div class="actu-card__title">L'IA au cœur des débats en Centre-Val de Loire</div>
-          <p class="actu-card__excerpt">Frédéric Ros a participé à l'émission spéciale « IA, le grand bouleversement » sur France 3, échangeant sur les enjeux industriels, énergétiques et sociétaux de l'IA en région.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">France 3 · Interview</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-card reveal">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">👩‍💼</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Événement</span>
-          <div class="actu-card__date">5 Février 2025</div>
-          <div class="actu-card__title">Le LAB'IA à l'honneur dans La République du Centre</div>
-          <p class="actu-card__excerpt">Frédéric Ros était l'un des intervenants clés de la 2ème édition des RDV 360° de l'Éco d'Orléans Métropole, autour de l'IA au service de l'humain.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">Presse · Événement</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-card reveal reveal-delay-1">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">🏛️</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-magenta" style="align-self:flex-start;margin-bottom:4px;">Visite officielle</span>
-          <div class="actu-card__date">12 Novembre 2024</div>
-          <div class="actu-card__title">Visite de la ministre Clara Chappaz</div>
-          <p class="actu-card__excerpt">Le LAB'IA a accueilli Clara Chappaz, Secrétaire d'État chargée de l'IA et du Numérique. Une visite officielle qui a mis en lumière les initiatives du LAB'IA et des startups de l'écosystème orléanais.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">Institutionnel</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-card reveal reveal-delay-2">
-        <div class="actu-card__img"><span style="position:relative;z-index:1;">📊</span></div>
-        <div class="actu-card__body">
-          <span class="badge badge-dark" style="align-self:flex-start;margin-bottom:4px;">Presse économique</span>
-          <div class="actu-card__date">27 Novembre 2024</div>
-          <div class="actu-card__title">Le LAB'IA dans le Panorama des entreprises du Loiret</div>
-          <p class="actu-card__excerpt">Le magazine annuel de 84 pages revenant sur l'actualité économique du Loiret en 2024 consacre une page au LAB'IA Loire Valley.</p>
-          <div class="actu-card__footer">
-            <span class="actu-card__cat">Presse économique</span>
-            <a href="#" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voir plus -->
-    <div style="text-align:center; margin-top:56px;" class="reveal">
-      <a href="<?php echo esc_url( home_url( '/presse/' ) ); ?>" class="btn btn-outline btn-lg">
-        Voir aussi nos articles presse
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
-    </div>
   </div>
 </section>
 

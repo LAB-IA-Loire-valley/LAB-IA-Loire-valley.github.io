@@ -27,113 +27,45 @@ get_header();
   <div class="container">
     <div class="section-label reveal mb-48"><span>Toutes nos solutions</span></div>
 
-    <!-- 1. Assistant IA Documentaire -->
-    <div id="assistant" class="solution-card-full reveal mb-32">
+<?php
+$solutions = labia_get_solutions( false );
+if ( $solutions ) :
+    foreach ( $solutions as $i => $solution ) :
+        $slug   = get_post_meta( $solution->ID, 'anchor_slug', true ) ?: sanitize_title( $solution->post_title );
+        $emoji  = get_post_meta( $solution->ID, 'emoji', true ) ?: '🤖';
+        $bg     = get_post_meta( $solution->ID, 'hero_bg', true ) ?: 'linear-gradient(135deg,#0D0D0D,#0a1a1a)';
+        $tags   = get_post_meta( $solution->ID, 'tags', true );
+        $tags_lines = $tags ? array_filter( array_map( 'trim', explode( "\n", $tags ) ) ) : array();
+        $features   = get_post_meta( $solution->ID, 'features', true );
+        $features_lines = $features ? array_filter( array_map( 'trim', explode( "\n", $features ) ) ) : array();
+?>
+    <div id="<?php echo esc_attr( $slug ); ?>" class="solution-card-full reveal mb-32"<?php echo $i > 0 ? ($i === 1 ? ' style=""' : '') : ''; ?>>
       <div class="solution-card-full__header">
-        <div class="solution-card-full__icon" style="background:var(--blue-faint);">🤖</div>
+        <div class="solution-card-full__icon" style="background:var(--blue-faint);"><?php echo esc_html( $emoji ); ?></div>
         <div style="flex:1;">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <span class="badge badge-blue">IA Générative</span>
-            <span class="badge badge-dark">RAG · LLM</span>
-            <span class="badge badge-dark">Usage interne</span>
+            <?php foreach ( $tags_lines as $tag ) :
+                $parts = explode( ':', $tag );
+                $label = $parts[0];
+                $color = $parts[1] ?? '#000';
+                $style = $color ? 'background:' . $color : '';
+            ?>
+              <span class="badge" style="<?php echo esc_attr( $style ); ?>color:white;"><?php echo esc_html( $label ); ?></span>
+            <?php endforeach; ?>
           </div>
-          <h3 class="t-h2 mb-12">Assistant IA Documentaire</h3>
-          <p class="t-lead" style="font-size:1rem;">Chatbot intelligent basé sur vos documents internes. Déployable en 2 à 4 semaines, souverain, sans fuite de données.</p>
+          <h3 class="t-h2 mb-12"><?php echo esc_html( $solution->post_title ); ?></h3>
+          <p class="t-lead" style="font-size:1rem;"><?php echo esc_html( $solution->post_content ); ?></p>
         </div>
       </div>
       <div class="solution-card-full__body">
-        <div class="solution-feature">Interrogation en langage naturel de votre base documentaire</div>
-        <div class="solution-feature">Réponses sourcées et traçables (anti-hallucination)</div>
-        <div class="solution-feature">Hébergement on-premise ou cloud privé — données sécurisées</div>
-        <div class="solution-feature">Compatible PDF, Word, Excel, scan et images — extraction automatique des données clés</div>
-        <div class="solution-feature">Interface personnalisée à votre charte graphique</div>
-        <div class="solution-feature">Formation et transfert de compétences inclus</div>
-      </div>
-      <div class="solution-footer">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="sector-tag">⚖️ Juridique</span>
-          <span class="sector-tag">🏥 Santé</span>
-          <span class="sector-tag">🏭 Industrie</span>
-          <span class="sector-tag">🎓 Formation</span>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-          <span class="badge badge-dark">Hébergement flexible — Local · Cloud souverain · Hybride</span>
-          <span class="badge badge-dark">2–4 semaines</span>
-          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>?solution=assistant" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
+        <?php foreach ( $features_lines as $feature ) : ?>
+          <div class="solution-feature"><?php echo esc_html( $feature ); ?></div>
+        <?php endforeach; ?>
       </div>
     </div>
-
-    <!-- 2. Automatisation de boîte de mails -->
-    <div id="mails" class="solution-card-full reveal mb-32">
-      <div class="solution-card-full__header">
-        <div class="solution-card-full__icon" style="background:var(--magenta-faint);">📧</div>
-        <div style="flex:1;">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <span class="badge badge-magenta">Productivité</span>
-            <span class="badge badge-dark">LLM · NLP</span>
-          </div>
-          <h3 class="t-h2 mb-12">Automatisation de boîte de mails</h3>
-          <p class="t-lead" style="font-size:1rem;">Triez, priorisez et répondez à vos emails automatiquement. Réduisez le temps passé sur votre messagerie et ne ratez plus aucun message urgent.</p>
-        </div>
-      </div>
-      <div class="solution-card-full__body">
-        <div class="solution-feature">Classification et tri automatique des emails entrants par thème</div>
-        <div class="solution-feature">Génération de brouillons de réponse contextualisés</div>
-        <div class="solution-feature">Détection d'urgence et scoring de priorité</div>
-        <div class="solution-feature">Routing intelligent vers les bons services ou collaborateurs</div>
-        <div class="solution-feature">Résumé automatique des fils de discussion longs</div>
-        <div class="solution-feature">Compatible Outlook, Gmail et messageries d'entreprise</div>
-      </div>
-      <div class="solution-footer">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="sector-tag">💼 Commercial</span>
-          <span class="sector-tag">🛎️ SAV</span>
-          <span class="sector-tag">🏛️ Collectivités</span>
-          <span class="sector-tag">🏥 Santé</span>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-          <span class="badge badge-dark">1–3 semaines</span>
-          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>?solution=mails" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. Chatbot service client -->
-    <div id="chatbot" class="solution-card-full reveal">
-      <div class="solution-card-full__header">
-        <div class="solution-card-full__icon" style="background:#f0fff4;">💬</div>
-        <div style="flex:1;">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-            <span class="badge" style="background:#f0fff4;color:#22863a;">Service client</span>
-            <span class="badge badge-dark">IA Générative</span>
-            <span class="badge" style="background:#f0fff4;color:#22863a;">Tourné clients</span>
-          </div>
-          <h3 class="t-h2 mb-12">Chatbot service client</h3>
-          <p class="t-lead" style="font-size:1rem;">Un assistant conversationnel disponible 24h/24 sur votre site ou portail — répond aux questions de vos clients, utilisateurs ou usagers sans intervention humaine.</p>
-        </div>
-      </div>
-      <div class="solution-card-full__body">
-        <div class="solution-feature">Réponse automatique aux questions fréquentes (FAQ dynamique)</div>
-        <div class="solution-feature">Disponible 24h/24, 7j/7 sur votre site web ou portail</div>
-        <div class="solution-feature">Transfert vers un agent humain si la question dépasse le périmètre</div>
-        <div class="solution-feature">Personnalisé à votre domaine métier et votre ton de marque</div>
-        <div class="solution-feature">Déployable en webchat, Slack, Teams ou SMS</div>
-        <div class="solution-feature">Tableau de bord des questions pour amélioration continue</div>
-      </div>
-      <div class="solution-footer">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="sector-tag">🛒 Commerce</span>
-          <span class="sector-tag">🎓 Formation</span>
-          <span class="sector-tag">🏛️ Collectivités</span>
-          <span class="sector-tag">🤝 Associations</span>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-          <span class="badge badge-dark">2–4 semaines</span>
-          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>?solution=chatbot" class="btn btn-primary btn-sm">En savoir plus<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-      </div>
-    </div>
+<?php endforeach; else : ?>
+    <p class="text-muted">Aucune solution pour le moment.</p>
+<?php endif; ?>
 
   </div>
 </section>
