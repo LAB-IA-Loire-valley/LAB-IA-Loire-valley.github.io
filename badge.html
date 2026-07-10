@@ -91,6 +91,8 @@
       height: 2.2mm;
       background: linear-gradient(90deg, #E2007D 0%, #0ea5e9 60%, #38bdf8 100%);
       z-index: 3;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     /* ── Zone contenu : 2 colonnes ──────────────────────── */
@@ -192,6 +194,10 @@
       body { background: white; min-height: auto; padding: 15mm; display: block; }
       .controls { display: none; }
       .badge { box-shadow: none; border: 0.3px solid #ccc; }
+      .badge-topbar {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
