@@ -225,11 +225,11 @@ get_header();
 </section>
 
 <!-- ── Partenaires / Logos (dark) ─────────────────────────── -->
-<section class="ctx-dark s-sm">
+<section class="ctx-offwhite s-sm">
   <div class="container">
     <div style="text-align:center; margin-bottom:48px;">
-      <p class="t-label reveal" style="color:rgba(255,255,255,.3);margin-bottom:16px;">Ils nous font confiance</p>
-      <h2 class="t-h2 reveal mt-8" style="color:var(--white);">Un écosystème régional engagé</h2>
+      <p class="t-label reveal" style="margin-bottom:16px;">Ils nous font confiance</p>
+      <h2 class="t-h2 reveal mt-8">Un écosystème régional engagé</h2>
     </div>
   </div>
 
@@ -258,7 +258,7 @@ get_header();
 
   <div class="container">
     <div style="text-align:center; margin-top:40px;">
-      <a href="<?php echo esc_url( home_url( '/ils-nous-font-confiance/' ) ); ?>" class="btn btn-outline-white btn-sm">Voir toutes les références</a>
+      <a href="<?php echo esc_url( home_url( '/ils-nous-font-confiance/' ) ); ?>" class="btn btn-outline btn-sm">Voir toutes les références</a>
     </div>
   </div>
 </section>

@@ -122,7 +122,7 @@ get_header();
 </section>
 
 <!-- Contact presse -->
-<section class="ctx-dark s-sm">
+<section class="ctx-violet s-sm">
   <div class="container" style="text-align:center;">
     <h2 class="t-h2 reveal mb-16" style="color:white;">Contact presse</h2>
     <p class="reveal reveal-delay-1" style="color:rgba(255,255,255,.5); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;">Pour toute demande d'interview, d'information ou de visuels, contactez directement notre équipe.</p>

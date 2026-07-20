@@ -69,7 +69,7 @@ get_header();
 </section>
 
 <!-- Newsletter / LinkedIn -->
-<section class="ctx-dark s-sm">
+<section class="ctx-blue s-sm">
   <div class="container" style="text-align:center;">
     <h2 class="t-h2 reveal mb-16" style="color:white;">Restez informé</h2>
     <p class="reveal reveal-delay-1" style="color:rgba(255,255,255,.5); margin-bottom:32px;">Suivez toutes nos actualités en temps réel sur LinkedIn.</p>

@@ -15,6 +15,7 @@
 - **Active nav** : gérée côté serveur dans `header.php` avec `is_page()`, pas de JS
 - **URLs** : toujours `home_url()` ou `LABIA_THEME_URI` (pas de chemins relatifs)
 - **CSS** : modifications dans `style.css`, pas de styles inline sauf cas exceptionnel. Accents de couleur via variables CSS avec fallback : `var(--team-accent, var(--magenta))` ou `var(--avatar-color, var(--magenta))`
+- **Contextes colorés** : `ctx-dark`, `ctx-magenta`, `ctx-indigo`, `ctx-blue`, `ctx-violet`, `ctx-offwhite`. Les classes `ctx-*` (sauf `ctx-offwhite`) ajoutent automatiquement des éléments flottants décoratifs via `::before`/`::after`. Toujours mettre `.container` en `position: relative; z-index: 1` dans ces contextes (déjà fait dans les classes).
 - **CMB2 taxonomy fields** : champs sur les termes de taxonomie avec `'object_types' => array( 'term' ), 'taxonomies' => array( 'ma_taxo' )`
 - **Avatars témoignages** : photo si présente, sinon initiales sur fond coloré (cycle bleu `#4FB0FF` → indigo `#475297` → violet `#852F85` → magenta `#E2007D`). Utiliser `labia_get_initials($name)` et `labia_avatar_color($index)` dans `cpt-testimonial.php`.
 - **Document title** : `add_theme_support('title-tag')` activé dans `functions.php` — WordPress génère le `<title>` automatiquement.
