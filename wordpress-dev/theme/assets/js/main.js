@@ -72,6 +72,46 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 
+// ── Steps vertical progress (6 étapes, rail + fade) ──────────────
+(function() {
+  document.documentElement.classList.add('js');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sda = !reduce && window.CSS && window.CSS.supports
+    && CSS.supports('animation-timeline: view()')
+    && CSS.supports('view-timeline-name: --x');
+  if (sda) document.documentElement.classList.add('sda');
+
+  const list = document.querySelector('.steps-v');
+  if (!list) return;
+  const steps = Array.prototype.slice.call(list.querySelectorAll('.steps-v-step'));
+  if (!steps.length) return;
+
+  // Remplissage du rail au fil des étapes (fallback navigateurs sans scroll-driven)
+  function fill() {
+    if (sda) return;
+    const n = list.querySelectorAll('.steps-v-step.on').length;
+    list.style.setProperty('--fill', (n / steps.length * 100) + '%');
+  }
+  function finish() {
+    steps.forEach(s => s.classList.add('on'));
+    steps[steps.length - 1].classList.add('now');
+    fill();
+  }
+  if (reduce) { finish(); return; }
+
+  const ioSteps = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        list.querySelectorAll('.steps-v-step.now').forEach(s => s.classList.remove('now'));
+        entry.target.classList.add('on', 'now');
+        fill();
+        ioSteps.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -8% 0px' });
+  steps.forEach(s => ioSteps.observe(s));
+})();
+
 // ── Stats counter animation ──────────────────────────────────
 (function() {
   const counters = document.querySelectorAll('[data-count]');
