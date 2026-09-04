@@ -13,8 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'LABIA_THEME_DIR', get_template_directory() );
 define( 'LABIA_THEME_URI', get_template_directory_uri() );
 
-// Site icon (favicon)
-add_theme_support( 'site-icon', LABIA_THEME_DIR . '/assets/img/logos/labia noname.png' );
+// Site icon (favicon) : lien servi depuis le thème (média uploads 404, non migré)
+add_filter( 'get_site_icon_url', '__return_false' );
+add_action( 'wp_head', function() {
+    $icon = LABIA_THEME_URI . '/assets/img/logos/favicon.png';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/png">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url( $icon ) . '">' . "\n";
+}, 5 );
 
 // Document title tag
 add_theme_support( 'title-tag' );
