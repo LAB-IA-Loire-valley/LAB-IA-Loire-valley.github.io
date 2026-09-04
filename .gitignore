@@ -13,6 +13,11 @@
 .mcp.json
 .superpowers/
 
+# Import Wix (outils de dev, pas utilisés en production)
+wordpress-dev/import-data/
+wordpress-dev/theme/import-data/
+wordpress-dev/theme/inc/import-from-wix.php
+
 # Git
 .gitmodules
 
