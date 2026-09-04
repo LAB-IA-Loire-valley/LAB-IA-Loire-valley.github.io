@@ -142,7 +142,7 @@ get_header();
       </div>
       <div class="consortium-card reveal reveal-delay-1">
         <div>
-          <span class="badge" style="background:#f0fff4;color:#22863a;" class="mb-12">PrevizO</span>
+          <span class="badge mb-12" style="background:#f0fff4;color:#22863a;">PrevizO</span>
           <h3 class="t-h3">Consortium PrevizO</h3>
           <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Région Centre-Val de Loire · Climate Data Hub</p>
         </div>
@@ -157,7 +157,7 @@ get_header();
       </div>
       <div class="consortium-card reveal reveal-delay-2">
         <div>
-          <span class="badge" style="background:#e3f2fd;color:#1565c0;" class="mb-12">Interreg</span>
+          <span class="badge mb-12" style="background:#e3f2fd;color:#1565c0;">Interreg</span>
           <h3 class="t-h3">Interreg</h3>
           <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Union Européenne</p>
         </div>

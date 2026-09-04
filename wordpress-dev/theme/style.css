@@ -185,6 +185,8 @@ section.s-lg { padding: 140px 0; }
 .ctx-magenta {
   background: var(--magenta);
   color: var(--white);
+  position: relative;
+  overflow: hidden;
 }
 .ctx-magenta .t-lead { color: rgba(255,255,255,.75); }
 
@@ -360,7 +362,7 @@ section.s-lg { padding: 140px 0; }
 .home .nav--dark-page:not(.nav--scrolled) .nav__link { color: var(--ink-60); }
 .home .nav--dark-page:not(.nav--scrolled) .nav__link:hover { color: var(--ink); background: var(--ink-10); }
 .home .nav--dark-page:not(.nav--scrolled) .nav__link.active { color: var(--magenta); }
-.home .nav--dark-page:not(.nav--scrolled) .nav__burger span { background: var(--ink); }
+.home .nav.nav--dark-page:not(.nav--scrolled) .nav__burger span { background: var(--ink); }
 
 /* Dropdown */
 .nav__dropdown { position: relative; }
@@ -1099,6 +1101,27 @@ section.s-lg { padding: 140px 0; }
 .page-hero__inner { position: relative; z-index: 1; }
 .page-hero__title { color: var(--white); margin-bottom: 16px; }
 .page-hero__lead { color: rgba(255,255,255,.5); max-width: 600px; }
+.page-hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 24px;
+  transition: color .2s;
+}
+.page-hero__back:hover { color: var(--white); }
+.page-hero__meta {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--magenta-light);
+  margin-bottom: 16px;
+}
 
 /* ── CTA Section ─────────────────────────────────────────────── */
 .cta-section {
@@ -1425,11 +1448,14 @@ section.s-lg { padding: 140px 0; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .stats-strip { grid-template-columns: repeat(2, 1fr); }
   .stat-item:nth-child(2) { border-right: none; }
   .stat-item:nth-child(1), .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .nav__links, .nav__actions { display: none; }
+  .nav__burger { display: flex; margin-left: auto; }
 }
 
 @media (max-width: 768px) {
@@ -1439,8 +1465,11 @@ section.s-lg { padding: 140px 0; }
   .timeline { grid-template-columns: 1fr; }
   .timeline::before { display: none; }
   .timeline-connector { display: none; }
-  .nav__links, .nav__actions { display: none; }
-  .nav__burger { display: flex; margin-left: auto; }
+  .footer__financeurs {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 20px;
+  }
   .hero__badge { display: none; }
   .stats-strip { grid-template-columns: repeat(2, 1fr); }
   .form-row { grid-template-columns: 1fr; }
@@ -1452,6 +1481,7 @@ section.s-lg { padding: 140px 0; }
   .stats-strip { grid-template-columns: 1fr 1fr; }
   .hero__actions { flex-direction: column; align-items: flex-start; }
   .btn-lg { padding: 14px 24px; font-size: 0.9rem; }
+  .card--service .btn-sm { padding: 8px 12px; font-size: 0.72rem; }
 }
 /* --- From notre-offre.html --- */
 .offre-nav {
@@ -1653,6 +1683,7 @@ section.s-lg { padding: 140px 0; }
       border-color: var(--magenta);
       transform: translateY(-4px);
     }
+    .consortium-card .btn { white-space: normal; }
     .consortium-card h3 { margin-bottom: 4px; }
     .chiffre-block {
       display: flex;
@@ -2045,6 +2076,32 @@ section.s-lg { padding: 140px 0; }
       .news-article__header { flex-direction: column; gap: 8px; }
       .news-article__title { font-size: 1.15rem; }
       .news-article__date { padding-top: 0; }
+    }
+
+/* --- Single article --- */
+    .single-article__image {
+      margin-bottom: 32px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .single-article__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .single-article {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .single-article__footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width:768px) {
+      .single-article { padding: 24px; }
     }
 
 /* ── Legal pages ──────────────────────────────────────────── */
