@@ -20,6 +20,7 @@ wordpress-dev/theme/inc/import-from-wix.php
 
 # Git
 .gitmodules
+.worktrees/
 
 # Archives
 site-archive.tar.gz
