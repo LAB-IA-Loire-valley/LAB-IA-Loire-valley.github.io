@@ -117,6 +117,87 @@ def main(out_path):
         print(f"  SKIP [{why}] {info}")
 
 
+PRESS_URL = "https://www.labia-loirevalley.fr/presse"
+
+SOURCE_MAP = [
+    ("epicentre", "L'Épicentre"), ("actu.fr", "Actu.fr"),
+    ("france 3", "France 3 Centre-Val de Loire"), ("france bleu", "France Bleu"),
+    ("république du centre", "La République du Centre"),
+    ("usine nouvelle", "L'Usine Nouvelle"), ("vibration", "Forum Vibration"),
+    ("voxradio", "VoxRadio"), ("chérie fm", "Chérie FM Tours"),
+    ("panorama", "Panorama des entreprises du Loiret"),
+    ("acteurs de l'éco", "Acteurs de l'Éco"),
+]
+
+RANGE_RE = re.compile(r"^([a-zéû]+)\s*-\s*([a-zéû]+)\s+(\d{4})$")
+
+
+def parse_presse_date(raw):
+    d = H.unescape(strip_tags(raw)).strip().lower()
+    m = RANGE_RE.match(d)  # ex. "mai - juin 2024" -> 1er du 1er mois
+    if m:
+        return f"{int(m.group(3)):04d}-{MONTHS[m.group(1)]:02d}-01 10:00:00"
+    return parse_fr_date(d)
+
+
+def scrape_presse(out_path):
+    req = urllib.request.Request(PRESS_URL, headers=UA)
+    src = urllib.request.urlopen(req, timeout=60).read().decode("utf-8")
+    sections = re.findall(
+        r'<section[^>]*class="[^"]*wixui-section"[^>]*>(.*?)</section>', src, re.S
+    )
+    # Sections 2-12 = articles propres (1 h5 + 1 h6 date). Les sections 0-1
+    # (header) et 13-18 (articles groupés/anciens vidéos, déjà dans presse.json)
+    # ne sont pas scrapées : un titre tronqué créerait des quasi-doublons.
+    sections = sections[2:13]
+    articles = []
+    for s in sections:
+        h5s = re.findall(r"<h5[^>]*>(.*?)</h5>", s, re.S)
+        m_date = re.search(r"<h6[^>]*>(.*?)</h6>", s, re.S)
+        if len(h5s) != 1 or not m_date:
+            continue  # header (0 h5) ou sections groupées (13/17/18)
+        try:
+            date = parse_presse_date(m_date.group(1))
+        except (ValueError, KeyError):
+            continue
+        title = clean_title(h5s[0])
+        # Apostrophes courbes (U+2019/U+2018) -> apostrophes droites : les
+        # titres existants en base (presse.json/port statique) utilisent le
+        # droit, on évite des quasi-doublons ("L'innovation" == post 23).
+        title = title.replace("\u2019", "'").replace("\u2018", "'")
+        paras = [
+            H.unescape(TAG_RE.sub("", p)).replace("\u200b", "").replace("\xa0", "").strip()
+            for p in re.findall(r"<p[^>]*>(.*?)</p>", s, re.S)
+        ]
+        paras = [p for p in paras if p]
+        excerpt = (paras[0][:300] + "…") if paras and len(paras[0]) > 300 else (paras[0] if paras else "")
+        blob = (title + " " + " ".join(paras)).lower()
+        source = ""
+        for key, label in SOURCE_MAP:
+            if key in blob:
+                source = label
+                break
+        urls = [
+            u for u in re.findall(r'href="([^"]+)"', s)
+            if u.startswith("http") and "wixstatic" not in u
+            and "labia-loirevalley.fr/_files" not in u
+        ]
+        pdfs = sorted(set(
+            u for u in re.findall(r'href="([^"]+\.pdf[^"]*)"', s)
+            if "_files/ugd" in u or "static.wixstatic.com/ugd" in u
+        ))
+        articles.append({
+            "title": title, "date": date, "source": source,
+            "url": urls[0] if urls else "", "excerpt": excerpt, "pdfs": pdfs,
+        })
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(articles, f, ensure_ascii=False, indent=1)
+    print(f"presse articles={len(articles)}")
+
+
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else
-         "wordpress-dev/theme/import-data/actualites-full.json")
+    if "--presse" in sys.argv:
+        scrape_presse("wordpress-dev/theme/import-data/presse-full.json")
+    else:
+        main(sys.argv[1] if len(sys.argv) > 1 else
+             "wordpress-dev/theme/import-data/actualites-full.json")
