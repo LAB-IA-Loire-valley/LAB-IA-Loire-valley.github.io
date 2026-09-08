@@ -23,6 +23,15 @@ def strip_tags(s):
     return H.unescape(TAG_RE.sub("", s)).strip()
 
 
+def clean_title(raw):
+    """Normalise un titre: retire U+200B, U+00A0 -> espace, aplatit les espaces/tabulations."""
+    s = strip_tags(raw)
+    s = s.replace("\u200b", "")
+    s = s.replace("\xa0", " ")
+    s = re.sub(r"[ \t]+", " ", s)
+    return s.strip()
+
+
 def parse_fr_date(raw):
     d = H.unescape(strip_tags(raw)).strip().lower().replace("1er ", "1 ")
     day, month, year = d.split()
@@ -77,13 +86,13 @@ def main(out_path):
         if not m_title:
             m_title = re.search(r'<h1[^>]*class="[^"]*font_0[^"]*"[^>]*>(.*?)</h1>', s, re.S)
         if m_title:
-            title = strip_tags(m_title.group(1))
+            title = clean_title(m_title.group(1))
         else:
             h6s = re.findall(r"<h6[^>]*>(.*?)</h6>", s, re.S)
             if len(h6s) < 2:
                 skipped.append((date, "no-title"))
                 continue
-            title = strip_tags(h6s[1])
+            title = clean_title(h6s[1])
         content = clean_html(s)
         imgs = []
         for u in re.findall(r'<img[^>]+src="(https://static\.wixstatic\.com/media/[^"]+)"', s):
