@@ -22,47 +22,48 @@ get_header();
   <div class="container">
 
     <?php
-    $articles = labia_get_news_articles();
-    if ( $articles ) :
+    $paged = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+    $news_query = new WP_Query( array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 12,
+        'paged'          => $paged,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ) );
+    if ( $news_query->have_posts() ) :
     ?>
-    <div class="news-feed">
-      <?php foreach ( $articles as $a ) :
-          $date     = get_post_meta( $a->ID, 'pub_date', true );
-          $category = get_post_meta( $a->ID, 'news_category', true );
-          $source   = get_post_meta( $a->ID, 'source_url', true );
-          $img_id   = get_post_meta( $a->ID, 'featured_image', true );
-          $img_url  = $img_id ? wp_get_attachment_url( $img_id ) : '';
-          $content  = apply_filters( 'the_content', $a->post_content );
-      ?>
-      <article class="news-article reveal">
-        <div class="news-article__header">
-          <div>
-            <?php if ( $category ) : ?><span class="badge badge-magenta" style="margin-bottom:8px;"><?php echo esc_html( $category ); ?></span><?php endif; ?>
-            <h2 class="news-article__title"><?php echo esc_html( $a->post_title ); ?></h2>
-          </div>
-          <div class="news-article__date"><?php echo $date ? date( 'd M Y', $date ) : ''; ?></div>
-        </div>
-        <?php if ( $img_url ) : ?>
-          <div class="news-article__image">
-            <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $a->post_title ); ?>" />
-          </div>
+    <div class="actu-grid">
+      <?php while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
+      <article class="actu-card reveal">
+        <?php if ( has_post_thumbnail() ) : ?>
+        <a class="actu-card__img" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true"><?php the_post_thumbnail( 'medium_large' ); ?></a>
         <?php endif; ?>
-        <div class="news-article__body">
-          <?php echo $content; ?>
-        </div>
-        <?php if ( $source ) : ?>
-          <div class="news-article__footer">
-            <a href="<?php echo esc_url( $source ); ?>" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
-              Lire l'article source
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
+        <div class="actu-card__body">
+          <div class="actu-card__date"><?php echo esc_html( get_the_date( 'd M Y' ) ); ?></div>
+          <h2 class="actu-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <p class="actu-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p>
+          <div class="actu-card__footer">
+            <a href="<?php the_permalink(); ?>" class="btn btn-sm btn-outline">Lire<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
           </div>
-        <?php endif; ?>
+        </div>
       </article>
-      <?php endforeach; ?>
+      <?php endwhile; ?>
     </div>
+    <?php
+    $big = 999999999;
+    echo paginate_links( array(
+        'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format'  => '?paged=%#%',
+        'current' => $paged,
+        'total'   => $news_query->max_num_pages,
+        'prev_text' => '←',
+        'next_text' => '→',
+    ) );
+    wp_reset_postdata();
+    ?>
     <?php else : ?>
-    <p class="text-muted" style="text-align:center; padding:80px 0;">Aucune actualité pour le moment.</p>
+    <p class="text-muted actu-empty">Aucune actualité pour le moment.</p>
     <?php endif; ?>
 
   </div>
