@@ -316,12 +316,12 @@ section.s-lg { padding: 140px 0; }
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 .nav__logo img {
-  height: 75px;
+  height: 38px;
   width: auto;
-  max-width: 160px;
+  max-width: 60px;
 }
 .nav__logo-text {
   font-family: var(--font-display);
@@ -330,11 +330,25 @@ section.s-lg { padding: 140px 0; }
   letter-spacing: -0.02em;
   line-height: 1.1;
   color: var(--ink);
+  white-space: nowrap;
   transition: color .3s;
 }
 .nav__logo-text span { color: var(--magenta); }
+.nav__logo-text em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-60);
+  letter-spacing: -0.01em;
+  margin-left: .34em;
+}
 .nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text { color: var(--white); }
 .nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text span { color: var(--magenta-light); }
+.nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text em { color: rgba(255,255,255,.60); }
+
+/* Home page: hero light override */
+.home .nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text { color: var(--ink); }
+.home .nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text span { color: var(--magenta); }
+.home .nav.nav--dark-page:not(.nav--scrolled) .nav__logo-text em { color: var(--ink-60); }
 .nav__links {
   display: flex;
   align-items: center;
