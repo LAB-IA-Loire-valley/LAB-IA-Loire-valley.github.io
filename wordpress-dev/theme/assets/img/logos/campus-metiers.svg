@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Campus des Métiers et des Qualifications Excellence Transformation Numérique (CMQe TransNum, Centre-Val de Loire) — déclinaison typographique institutionnelle (bleu/rouge Marianne : la marque ne diffuse pas de fichier logo public) -->
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="64" viewBox="0 0 240 64" fill="none">
+  <text x="6" y="27" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="19" font-weight="bold" fill="#000091">CAMPUS DES MÉTIERS</text>
+  <text x="6" y="51" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="12.5" letter-spacing="1" fill="#2B2B2B">TRANSFORMATION NUMÉRIQUE</text>
+  <rect x="6" y="56" width="36" height="4" fill="#E1000F"/>
+</svg>

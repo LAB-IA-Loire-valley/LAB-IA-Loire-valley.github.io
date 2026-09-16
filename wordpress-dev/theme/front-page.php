@@ -250,21 +250,21 @@ get_header();
       <!-- set 1 -->
       <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>laposte.svg" alt="La Poste" /></div>
       <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>keolis.svg" alt="Keolis" /></div>
-      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>afnor.svg" alt="AFNOR" /></div>
-      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>antea.svg" alt="Antea Group" /></div>
+      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>afnor.png" alt="AFNOR" /></div>
+      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>antea.png" alt="Antea Group" /></div>
       <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>devup.svg" alt="Dev'Up" /></div>
       <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>aract.png" alt="ARACT CVL" /></div>
       <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>greta.png" alt="GRETA" /></div>
-      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>wildcodeschool.svg" alt="Wild Code School" /></div>
+      <div class="logo-item"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>wildcodeschool.png" alt="Wild Code School" /></div>
       <!-- set 2 (aria-hidden pour accessibilité) -->
       <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>laposte.svg" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>keolis.svg" alt="" /></div>
-      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>afnor.svg" alt="" /></div>
-      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>antea.svg" alt="" /></div>
+      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>afnor.png" alt="" /></div>
+      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>antea.png" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>devup.svg" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>aract.png" alt="" /></div>
       <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>greta.png" alt="" /></div>
-      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>wildcodeschool.svg" alt="" /></div>
+      <div class="logo-item" aria-hidden="true"><img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' ); ?>wildcodeschool.png" alt="" /></div>
     </div>
   </div>
 

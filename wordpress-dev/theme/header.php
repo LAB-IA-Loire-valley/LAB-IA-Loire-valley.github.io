@@ -14,8 +14,7 @@
     <div class="container">
         <div class="nav__inner">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav__logo">
-                <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/logo labia mark.png' ); ?>" alt="" />
-                <span class="nav__logo-text">LAB'<span>IA</span><em>Loire Valley</em></span>
+                <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/logo-labia-loire-valley.png' ); ?>" alt="LAB'IA Loire Valley" />
             </a>
             <ul class="nav__links">
                 <li><a href="<?php echo esc_url( home_url( '/notre-offre/' ) ); ?>" class="nav__link<?php echo is_page( 'notre-offre' ) ? ' active' : ''; ?>">Notre offre</a></li>

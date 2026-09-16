@@ -52,14 +52,20 @@ get_header();
     </div>
     <?php
     $big = 999999999;
-    echo paginate_links( array(
+    $pagination = paginate_links( array(
         'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
         'format'  => '?paged=%#%',
         'current' => $paged,
         'total'   => $news_query->max_num_pages,
         'prev_text' => '←',
         'next_text' => '→',
+        'type'    => 'list',
     ) );
+    if ( $pagination ) : ?>
+    <nav class="pagination" aria-label="Pagination des actualités">
+      <?php echo $pagination; ?>
+    </nav>
+    <?php endif;
     wp_reset_postdata();
     ?>
     <?php else : ?>

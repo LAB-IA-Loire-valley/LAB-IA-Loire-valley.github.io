@@ -26,7 +26,7 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
         <div class="footer__grid">
             <div class="footer__brand">
                 <div class="footer__logo">
-                    <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/logo labia without name.png' ); ?>" alt="LAB'IA Loire Valley" />
+                    <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/logo-labia-loire-valley.png' ); ?>" alt="LAB'IA Loire Valley" />
                 </div>
                 <p class="footer__desc"><?php echo esc_html( $footer_desc ); ?></p>
                 <div class="footer__social">
