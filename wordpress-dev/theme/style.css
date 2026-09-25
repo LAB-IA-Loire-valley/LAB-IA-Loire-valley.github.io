@@ -1010,13 +1010,11 @@ html.js.sda .steps-v::after {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  opacity: 0.6;
-  filter: grayscale(1);
+  opacity: 1;
   transition: opacity .3s, filter .3s;
 }
 .logo-item:hover {
-  opacity: 1;
-  filter: grayscale(0);
+  opacity: .8;
 }
 .logo-item img {
   height: 100%;
@@ -1851,7 +1849,7 @@ html.js.sda .steps-v::after {
       align-items: stretch;
       gap: 16px;
       width: max-content;
-      animation: clientTicker 60s linear infinite;
+      animation: clientTicker 180s linear infinite;
     }
     .client-ticker:hover .client-track {
       animation-play-state: paused;
@@ -1865,13 +1863,11 @@ html.js.sda .steps-v::after {
       width: auto;
       max-width: 120px;
       object-fit: contain;
-      filter: grayscale(1);
-      opacity: 0.7;
-      transition: filter .3s, opacity .3s;
+      opacity: 1;
+      transition: opacity .3s;
     }
     .client-logo-item:hover img {
-      filter: grayscale(0);
-      opacity: 1;
+      opacity: .8;
     }
     @media (prefers-reduced-motion: reduce) {
       .client-track { animation: none; }
