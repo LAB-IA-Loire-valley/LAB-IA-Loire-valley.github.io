@@ -27,25 +27,24 @@ get_header();
         <span class="badge" style="background:rgba(226,0,125,.2);color:var(--magenta-light);margin-bottom:20px;">🎙️ À écouter &amp; regarder</span>
         <div class="media-highlight__title">Frédéric Ros &amp; Corinne Neau dans les médias</div>
         <div class="media-highlight__desc">Retrouvez les interventions de nos dirigeants sur France 3, France Bleu, VoxRadio, Chérie FM Tours et plus encore — pour comprendre les enjeux de l'IA en région Centre-Val de Loire.</div>
-        <a href="#" class="btn btn-outline-white btn-sm">Voir toutes les vidéos</a>
       </div>
       <div class="media-embeds">
-        <a href="#" class="media-embed-item" style="text-decoration:none;">
+        <div class="media-embed-item">
           <span class="press-item__type-icon">📺</span>
           <div><strong>France 3 Centre-Val de Loire</strong><br/><span>IA, le grand bouleversement — Février 2025</span></div>
-        </a>
-        <a href="#" class="media-embed-item" style="text-decoration:none;">
+        </div>
+        <div class="media-embed-item">
           <span class="press-item__type-icon">🎙️</span>
           <div><strong>France Bleu — Podcast IA</strong><br/><span>Opportunités et défis de l'IA en région</span></div>
-        </a>
-        <a href="#" class="media-embed-item" style="text-decoration:none;">
+        </div>
+        <div class="media-embed-item">
           <span class="press-item__type-icon">📻</span>
           <div><strong>VoxRadio — Interview</strong><br/><span>Vision de l'IA par Frédéric Ros — Janvier 2024</span></div>
-        </a>
-        <a href="#" class="media-embed-item" style="text-decoration:none;">
+        </div>
+        <div class="media-embed-item">
           <span class="press-item__type-icon">📻</span>
           <div><strong>Chérie FM Tours</strong><br/><span>L'IA dans notre quotidien — Novembre 2023</span></div>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -128,7 +127,7 @@ get_header();
     <p class="reveal reveal-delay-1" style="color:rgba(255,255,255,.5); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;">Pour toute demande d'interview, d'information ou de visuels, contactez directement notre équipe.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-2">
       <a href="mailto:<?php echo esc_attr( labia_opt( 'email', 'contact@labia-loirevalley.fr' ) ); ?>" class="btn btn-primary">✉ contact@labia-loirevalley.fr</a>
-      <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 87' ) ) ); ?>" class="btn btn-outline-white">📞 02 38 69 80 87</a>
+      <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 24' ) ) ); ?>" class="btn btn-outline-white">📞 <?php echo esc_html( labia_opt( 'phone', '02 38 69 80 24' ) ); ?></a>
     </div>
   </div>
 </section>

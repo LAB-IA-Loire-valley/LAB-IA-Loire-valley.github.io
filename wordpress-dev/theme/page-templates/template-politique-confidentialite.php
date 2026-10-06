@@ -27,7 +27,7 @@ get_header();
       Courrier postal : LAB'IA Loire Valley – Le LAB'O – CS 30019 – 1, avenue du Champ de Mars – 45074 Orléans
     </p>
     <p class="t-body text-muted">
-      En utilisant ce site et/ou nos services, vous consentez au traitement de vos données personnelles tel que décrit dans cette politique de confidentialité.
+      Le site propose des formulaires de contact et de demande d’accompagnement. La simple consultation du site ne vaut pas consentement à un traitement pour lequel le consentement est requis.
     </p>
 
     <hr class="legal-hr">
@@ -35,8 +35,8 @@ get_header();
     <h2 class="t-h3">1. Définitions</h2>
     <p class="t-body text-muted">
       <strong>Données personnelles :</strong> toute information relative à une personne physique identifiée ou identifiable.<br>
-      <strong>Traitement :</strong> toute opération ou ensemble d'opérations effectuées sur des Données Personnelles.<br>
-      <strong>Sujet des données :</strong> une personne physique dont les données personnelles sont traitées.<br>
+      <strong>Traitement :</strong> toute opération effectuée sur des données personnelles.<br>
+      <strong>Personne concernée :</strong> une personne physique dont les données personnelles sont traitées.<br>
       <strong>Nous :</strong> Orléans Val de Loire Technopole.
     </p>
 
@@ -59,73 +59,64 @@ get_header();
     <ul class="legal-list">
       <li><strong>Droit à l'information</strong> — savoir si vos données sont traitées, lesquelles, d'où elles proviennent, pourquoi et par qui.</li>
       <li><strong>Droit d'accès</strong> — accéder aux données collectées et en obtenir une copie.</li>
-      <li><strong>Droit de rectification</strong> — demander la rectification ou l'effacement de données inexactes ou incomplètes.</li>
-      <li><strong>Droit à l'oubli</strong> — demander l'effacement de vos données dans certaines circonstances.</li>
-      <li><strong>Droit de retirer votre consentement</strong> — retirer tout consentement donné pour le traitement de vos données.</li>
-      <li><strong>Droit de limiter le traitement</strong> — restreindre le traitement de vos données lorsque certaines conditions s'appliquent.</li>
-      <li><strong>Droit d'opposition</strong> — vous opposer au traitement de vos données, notamment en cas de marketing direct.</li>
-      <li><strong>Droit d'opposition au traitement automatisé</strong> — ne pas faire l'objet d'une décision fondée uniquement sur un traitement automatisé, y compris le profilage.</li>
-      <li><strong>Droit à la portabilité</strong> — obtenir vos données dans un format lisible par machine.</li>
-      <li><strong>Droit de recours</strong> — saisir une autorité de surveillance (CNIL).</li>
+      <li><strong>Droit de rectification</strong> — faire corriger des données inexactes ou incomplètes.</li>
+      <li><strong>Droit à l'effacement</strong> — demander l'effacement de vos données dans les cas prévus par la réglementation.</li>
+      <li><strong>Droit à la limitation</strong> — demander la limitation du traitement dans certaines circonstances.</li>
+      <li><strong>Droit d'opposition</strong> — vous opposer à certains traitements dans les cas prévus par la réglementation.</li>
+      <li><strong>Droit à la portabilité</strong> — recevoir les données que vous nous avez fournies dans les conditions prévues par la réglementation.</li>
+      <li><strong>Droit de retirer votre consentement</strong> — lorsque le traitement repose sur votre consentement, le retirer à tout moment sans affecter la licéité du traitement antérieur.</li>
+      <li><strong>Droit de réclamation</strong> — saisir la CNIL si vous estimez que le traitement de vos données ne respecte pas vos droits.</li>
     </ul>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">4. Données personnelles collectées</h2>
     <p class="t-body text-muted">
-      <strong>Informations que vous nous fournissez :</strong> adresse e-mail, nom, adresse, etc. — principalement les informations nécessaires pour vous fournir un service ou améliorer votre expérience utilisateur.
-    </p>
-    <p class="t-body text-muted">
-      <strong>Informations collectées automatiquement :</strong> adresse IP, historique de navigation, etc. via les cookies et autres outils de session, utilisées pour améliorer votre expérience utilisateur.
+      Lorsque vous utilisez un formulaire, nous recueillons les informations demandées pour traiter votre sollicitation : nom, adresse e-mail, coordonnées professionnelles et, selon le formulaire, téléphone, objet, besoin, nombre de participants et message. Vous pouvez aussi nous transmettre des données en nous écrivant directement à l’adresse de contact. Pour limiter les soumissions automatisées, le formulaire utilise temporairement une empreinte cryptographique de l’adresse IP de connexion.
     </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">5. Utilisation de vos données</h2>
-    <p class="t-body text-muted">Nous utilisons vos données pour :</p>
+    <p class="t-body text-muted">Les informations transmises par formulaire sont utilisées pour répondre à votre demande. Le formulaire vous demande votre accord pour ce traitement. Une empreinte temporaire de l’adresse IP est utilisée pour limiter les envois automatisés et protéger le service.</p>
     <ul class="legal-list">
-      <li>Vous fournir l'accès à nos services, la communication avec vous et la notification des changements.</li>
-      <li>Améliorer l'expérience utilisateur.</li>
-      <li>Remplir une obligation légale ou contractuelle.</li>
-      <li>Effectuer des questionnaires de satisfaction.</li>
+      <li>Répondre aux messages et demandes que vous nous adressez.</li>
+      <li>Assurer le suivi de votre demande et communiquer avec vous à ce sujet.</li>
+      <li>Limiter les envois automatisés abusifs des formulaires.</li>
     </ul>
-    <p class="t-body text-muted">
-      Nous pouvons traiter vos données pour des finalités supplémentaires compatibles avec l'objectif initial, en veillant à ce que des mesures de protection appropriées soient mises en œuvre.
-    </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">6. Durée de conservation</h2>
     <p class="t-body text-muted">
-      Vos données sont conservées pendant une durée conforme aux dispositions légales ou proportionnelle aux finalités pour lesquelles elles ont été enregistrées, et au maximum 12 mois pour les informations de facturation. Nous supprimons de façon sécurisée les données dont la conservation n'est plus justifiée.
+      Les demandes envoyées par formulaire sont transmises par courriel à l’adresse de contact configurée pour le site ; le thème ne les enregistre pas dans la base de données WordPress. Leur conservation dépend ensuite des règles de gestion de la boîte de réception destinataire. L’empreinte temporaire utilisée pour limiter les envois est conservée au maximum une heure. Les messages que vous adressez directement par courriel sont conservés selon les règles applicables à la boîte de réception.
     </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">7. Destinataires des données</h2>
     <p class="t-body text-muted">
-      Nous ne partageons pas vos données avec des tiers non autorisés. Elles peuvent être fournies à nos partenaires de confiance pour rendre le service possible :
+      Les demandes envoyées par formulaire sont transmises à l’adresse de contact du LAB’IA Loire Valley au moyen du service de messagerie configuré sur le serveur. Le thème charge également des polices depuis Google Fonts ; lorsque ces polices sont demandées par votre navigateur, Google reçoit les données techniques nécessaires à cette requête. Le site est hébergé par OVH.
     </p>
-    <ul class="legal-list">
-      <li><strong>WIX</strong> — hébergement du site web</li>
-      <li><strong>CARAKTER</strong> — maintenance et administration du site web</li>
-    </ul>
     <p class="t-body text-muted">
-      Nous ne divulguons vos données à des tiers ou à des organismes publics que lorsque nous sommes légalement obligés de le faire.
+      La carte OpenStreetMap intégrée au pied de page charge des ressources depuis les services d’OpenStreetMap lorsque votre navigateur l’affiche. Cette requête transmet à OpenStreetMap des données techniques, notamment l’adresse IP et des informations sur le navigateur. Pour en savoir plus, consultez la <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer" style="color:var(--magenta);">politique de confidentialité de la Fondation OpenStreetMap</a>.
+    </p>
+    <p class="t-body text-muted">
+      Les données ne sont communiquées aux autorités que lorsque la loi l’exige.
     </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">8. Sécurité</h2>
     <p class="t-body text-muted">
-      Nous mettons tout en œuvre pour garantir la sécurité et la confidentialité de vos données. Nous nous engageons à informer les autorités compétentes en cas d'atteinte à la protection des données et à vous en informer si vos droits ou intérêts sont menacés.
+      L’éditeur met en œuvre des mesures de sécurité adaptées aux traitements réellement effectués. En cas de violation de données, les personnes concernées et l’autorité de contrôle sont informées lorsque la réglementation l’exige.
     </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">9. Exercice de vos droits</h2>
     <p class="t-body text-muted">
-      Vous pouvez exercer vos droits à tout moment par mail à <a href="mailto:contact@labia-loirevalley.fr" style="color:var(--magenta);">contact@labia-loirevalley.fr</a> ou par courrier postal. Votre demande sera traitée dans les meilleurs délais, sous réserve de justifier de votre identité.
+      Vous pouvez exercer les droits applicables à votre situation en écrivant à <a href="mailto:contact@labia-loirevalley.fr" style="color:var(--magenta);">contact@labia-loirevalley.fr</a> ou à l’adresse postale indiquée en haut de cette page. Une vérification d’identité proportionnée pourra être demandée si nécessaire. La réponse intervient dans les délais prévus par la réglementation.
     </p>
     <p class="t-body text-muted">
       Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL :

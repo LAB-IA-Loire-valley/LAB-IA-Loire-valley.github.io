@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $footer_desc   = labia_opt( 'footer_description', "Centre de ressources partagées autour de la donnée, porté par la Technopole d'Orléans depuis 2021." );
-$phone         = labia_opt( 'phone', '02 38 69 80 87' );
+$phone         = labia_opt( 'phone', '02 38 69 80 24' );
 $email         = labia_opt( 'email', 'contact@labia-loirevalley.fr' );
 $addr1         = labia_opt( 'address_line_1', "Le LAB'O" );
 $addr2         = labia_opt( 'address_line_2', '1 avenue du Champ de Mars, CS 30019' );
@@ -23,6 +23,25 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
 ?>
 <footer class="footer">
     <div class="container">
+        <section class="footer-map" aria-labelledby="footer-map-title">
+            <div class="footer-map__details">
+                <p class="footer-map__eyebrow">Nous trouver</p>
+                <h2 class="footer-map__title" id="footer-map-title">LAB’IA Loire Valley au LAB’O Village by CA</h2>
+                <address class="footer-map__address">1 avenue du Champ de Mars<br>45100 Orléans</address>
+                <a class="footer-map__link" href="https://www.openstreetmap.org/directions?to=47.8941%2C1.8942" target="_blank" rel="noopener noreferrer">
+                    Ouvrir la carte et préparer votre itinéraire <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+            <div class="footer-map__visual">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=1.8870%2C47.8910%2C1.9010%2C47.8972&amp;layer=mapnik&amp;marker=47.8941%2C1.8942"
+                    title="Carte OpenStreetMap autour du LAB’O Village by CA à Orléans"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+                <p class="footer-map__attribution">Carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> et ses contributeurs</p>
+            </div>
+        </section>
         <div class="footer__grid">
             <div class="footer__brand">
                 <div class="footer__logo">
@@ -61,7 +80,7 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
                     <li><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></li>
                     <li><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></li>
                 </ul>
-                <div style="margin-top:20px; font-size:.82rem; line-height:1.6; color:rgba(255,255,255,.35);">
+                <div style="margin-top:20px; font-size:.82rem; line-height:1.6; color:rgba(255,255,255,.8);">
                     <?php echo esc_html( $addr1 ); ?><br/>
                     <?php echo esc_html( $addr2 ); ?><br/>
                     <?php echo esc_html( $addr3 ); ?>

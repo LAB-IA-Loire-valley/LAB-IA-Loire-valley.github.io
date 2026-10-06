@@ -1,6 +1,7 @@
 /* ============================================================
    LAB'IA LOIRE VALLEY — Main JS
    ============================================================ */
+document.documentElement.classList.replace('no-js', 'js');
 
 // ── Navigation scroll behavior ──────────────────────────────
 (function() {
@@ -26,22 +27,57 @@
   const closeBtn = document.querySelector('.nav__mobile-close');
   if (!burger || !mobile) return;
 
-  burger.addEventListener('click', () => {
-    mobile.classList.toggle('open');
-    document.body.style.overflow = mobile.classList.contains('open') ? 'hidden' : '';
-  });
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      mobile.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+  mobile.hidden = true;
+  document.querySelectorAll('.nav__dropdown-menu').forEach(menu => { menu.hidden = true; });
+  let previousFocus = null;
+  let previousOverflow = '';
+  const getFocusable = () => Array.from(mobile.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+  function openMenu() {
+    previousFocus = document.activeElement;
+    previousOverflow = document.body.style.overflow;
+    mobile.hidden = false;
+    mobile.classList.add('open');
+    mobile.setAttribute('role', 'dialog');
+    mobile.setAttribute('aria-modal', 'true');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+    (closeBtn || getFocusable()[0] || mobile).focus();
   }
-  mobile.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobile.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+  function closeMenu(restoreFocus = true) {
+    mobile.classList.remove('open');
+    mobile.hidden = true;
+    mobile.setAttribute('role', 'navigation');
+    mobile.removeAttribute('aria-modal');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = previousOverflow;
+    if (restoreFocus) (previousFocus || burger).focus();
+  }
+
+  burger.addEventListener('click', () => {
+    if (mobile.hidden) openMenu();
+    else closeMenu();
   });
+  if (closeBtn) closeBtn.addEventListener('click', () => closeMenu());
+  mobile.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu(false)));
+  document.addEventListener('keydown', event => {
+    if (mobile.hidden) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+    if (event.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) { event.preventDefault(); mobile.focus(); return; }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+  });
+  mobile.addEventListener('click', event => { if (event.target === mobile) closeMenu(); });
 })();
 
 // // ── Active nav link ─────────────────────────────────────────
@@ -60,6 +96,8 @@
 
 // ── Scroll reveal ────────────────────────────────────────────
 (function() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) { document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')); return; }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -117,6 +155,15 @@
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    counters.forEach(el => {
+      const target = parseFloat(el.dataset.count);
+      el.textContent = (el.dataset.prefix || '') + (Number.isInteger(target) ? target : target.toFixed(1)) + (el.dataset.suffix || '');
+    });
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -160,7 +207,7 @@
 // ── Hero Canvas network animation ───────────────────────────
 (function() {
   const canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
+  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ctx = canvas.getContext('2d');
   let w, h, particles, animId;
@@ -242,26 +289,27 @@
   loop();
 })();
 
-// ── Dropdown nav (with hover delay) ─────────────────────────
+// ── Accessible desktop dropdown navigation ───────────────────
 (function() {
   document.querySelectorAll('.nav__dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector('.nav__dropdown-toggle');
     const menu = dropdown.querySelector('.nav__dropdown-menu');
-    if (!menu) return;
-    let closeTimer;
+    if (!trigger || !menu) return;
 
-    dropdown.addEventListener('mouseenter', () => {
-      clearTimeout(closeTimer);
-      menu.style.display = 'block';
-      // Small delay before showing for clean UX
-      requestAnimationFrame(() => { menu.style.opacity = '1'; menu.style.transform = 'translateX(-50%) translateY(0)'; });
+    function setOpen(open, returnFocus = false) {
+      trigger.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+      if (returnFocus) trigger.focus();
+    }
+    trigger.addEventListener('click', () => setOpen(menu.hidden));
+    dropdown.addEventListener('focusout', event => {
+      if (!dropdown.contains(event.relatedTarget)) setOpen(false);
     });
-
-    dropdown.addEventListener('mouseleave', () => {
-      closeTimer = setTimeout(() => {
-        menu.style.display = '';
-        menu.style.opacity = '';
-        menu.style.transform = '';
-      }, 220);
+    dropdown.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        event.preventDefault();
+        setOpen(false, true);
+      }
     });
   });
 })();
@@ -299,7 +347,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     }
   });
 });

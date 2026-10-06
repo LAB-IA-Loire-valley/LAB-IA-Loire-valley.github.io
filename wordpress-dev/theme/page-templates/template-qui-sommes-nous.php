@@ -78,7 +78,7 @@ get_header();
         if ( empty( $members ) ) continue;
 
         $term       = get_term_by( 'slug', $slug, 'team_pole' );
-        $pole_color = $term ? get_term_meta( $term->term_id, 'pole_color', true ) : '';
+        $pole_color = $term ? sanitize_hex_color( get_term_meta( $term->term_id, 'pole_color', true ) ) : '';
         $pole_style = '';
         if ( $pole_color ) {
             $faint = labia_hex_to_rgba( $pole_color, 0.08 );
@@ -94,18 +94,18 @@ get_header();
                 $role      = get_post_meta( $member->ID, 'role', true );
                 $bio       = get_post_meta( $member->ID, 'bio', true );
                 $initials  = get_post_meta( $member->ID, 'initials', true );
-                $init_bg   = get_post_meta( $member->ID, 'initials_bg', true );
-                $init_clr  = get_post_meta( $member->ID, 'initials_color', true );
+                $init_bg   = sanitize_hex_color( get_post_meta( $member->ID, 'initials_bg', true ) );
+                $init_clr  = sanitize_hex_color( get_post_meta( $member->ID, 'initials_color', true ) );
                 $is_horiz  = $pole['horizontal'];
                 $style = $is_horiz ? 'text-align:left;flex-direction:row;gap:20px;align-items:flex-start;' : '';
                 $photo_style = $photo_url ? '' : ( ( $init_bg && ! $pole_color ) ? 'background:' . $init_bg : '' ) . ( $is_horiz ? ';flex-shrink:0;' : ';' );
             ?>
-                <div class="card card--team reveal<?php echo isset( $delay_map[ $i ] ) ? $delay_map[ $i ] : ''; ?>"<?php echo $style ? ' style="' . $style . '"' : ''; ?>>
-                    <div class="card--team-photo"<?php echo $photo_style ? ' style="' . $photo_style . '"' : ''; ?>>
+                <div class="card card--team reveal<?php echo isset( $delay_map[ $i ] ) ? $delay_map[ $i ] : ''; ?>"<?php echo $style ? ' style="' . esc_attr( $style ) . '"' : ''; ?>>
+                    <div class="card--team-photo"<?php echo $photo_style ? ' style="' . esc_attr( $photo_style ) . '"' : ''; ?>>
                         <?php if ( $photo_url ) : ?>
                             <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $member->post_title ); ?>" />
                         <?php else : ?>
-                            <span<?php echo ( $init_clr && ! $pole_color ) ? ' style="color:' . $init_clr . ';"' : ''; ?>><?php echo esc_html( $initials ); ?></span>
+                            <span<?php echo ( $init_clr && ! $pole_color ) ? ' style="color:' . esc_attr( $init_clr ) . ';"' : ''; ?>><?php echo esc_html( $initials ); ?></span>
                         <?php endif; ?>
                     </div>
                     <div>
@@ -129,7 +129,7 @@ get_header();
     <div class="grid-3">
       <div class="consortium-card reveal">
         <div>
-          <span class="badge badge-blue mb-12">Loire Valley Data Hub</span>
+          <img class="consortium-card__logo" src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/lvdh.png' ); ?>" alt="Loire Valley Data Hub" loading="lazy" decoding="async">
           <h3 class="t-h3">Loire Valley Data Hub</h3>
           <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Piloté par DEV'UP Centre-Val de Loire</p>
         </div>
@@ -142,7 +142,7 @@ get_header();
       </div>
       <div class="consortium-card reveal reveal-delay-1">
         <div>
-          <span class="badge mb-12" style="background:#f0fff4;color:#22863a;">PrevizO</span>
+          <img class="consortium-card__logo" src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/previzo.png' ); ?>" alt="PrevizO" loading="lazy" decoding="async">
           <h3 class="t-h3">Consortium PrevizO</h3>
           <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Région Centre-Val de Loire · Climate Data Hub</p>
         </div>
@@ -157,7 +157,7 @@ get_header();
       </div>
       <div class="consortium-card reveal reveal-delay-2">
         <div>
-          <span class="badge mb-12" style="background:#e3f2fd;color:#1565c0;">Interreg</span>
+          <img class="consortium-card__logo" src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/boost-ai.png' ); ?>" alt="Boost AI" loading="lazy" decoding="async">
           <h3 class="t-h3">Interreg</h3>
           <p style="font-size:.88rem;color:var(--ink-60);margin-top:4px;">Union Européenne</p>
         </div>
@@ -186,7 +186,7 @@ get_header();
           <strong style="color:rgba(255,255,255,.9);">45074 Orléans Cedex 2</strong>
         </p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;">
-          <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 87' ) ) ); ?>" class="btn btn-outline-white btn-sm">📞 02 38 69 80 87</a>
+          <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 24' ) ) ); ?>" class="btn btn-outline-white btn-sm">📞 <?php echo esc_html( labia_opt( 'phone', '02 38 69 80 24' ) ); ?></a>
           <a href="mailto:<?php echo esc_attr( labia_opt( 'email', 'contact@labia-loirevalley.fr' ) ); ?>" class="btn btn-outline-white btn-sm">✉ contact@labia-loirevalley.fr</a>
         </div>
       </div>

@@ -47,10 +47,10 @@ if ( $solutions ) :
             <?php foreach ( $tags_lines as $tag ) :
                 $parts = explode( ':', $tag );
                 $label = $parts[0];
-                $color = $parts[1] ?? '#000';
-                $style = $color ? 'background:' . $color : '';
+                $color = sanitize_hex_color( $parts[1] ?? '' ) ?: '#000';
+                $style = 'background:' . $color . ';';
             ?>
-              <span class="badge" style="<?php echo esc_attr( $style ); ?>color:white;"><?php echo esc_html( $label ); ?></span>
+              <span class="badge" style="<?php echo esc_attr( $style . 'color:white;' ); ?>"><?php echo esc_html( $label ); ?></span>
             <?php endforeach; ?>
           </div>
           <h3 class="t-h2 mb-12"><?php echo esc_html( $solution->post_title ); ?></h3>

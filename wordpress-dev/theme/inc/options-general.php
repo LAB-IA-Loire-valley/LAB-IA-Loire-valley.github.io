@@ -52,7 +52,7 @@ function labia_register_options_page() {
         'name'    => 'Téléphone',
         'id'      => 'phone',
         'type'    => 'text',
-        'default' => '02 38 69 80 87',
+        'default' => '02 38 69 80 24',
     ) );
 
     $opt_page->add_field( array(

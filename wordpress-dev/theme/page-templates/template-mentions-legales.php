@@ -24,7 +24,7 @@ get_header();
       LE LAB'O<br>
       1 avenue du Champ de Mars, CS 30019<br>
       45074 Orléans Cedex 2<br>
-      Tél : 02 38 69 80 98
+      Tél : 02 38 69 80 24
     </p>
     <p class="t-body text-muted">
       <strong>Directeur de la publication :</strong> Frédéric Ros — <a href="mailto:frederic.ros@tech-orleans.fr" style="color:var(--magenta);">frederic.ros@tech-orleans.fr</a>
@@ -34,30 +34,21 @@ get_header();
 
     <h2 class="t-h3">Hébergeur</h2>
     <p class="t-body text-muted">
-      OVH<br>
-      Hébergement de sites web<br>
+      OVH SAS<br>
       2 rue Kellermann<br>
       59100 Roubaix – France<br>
-      <a href="http://www.ovh.com/fr/support" target="_blank" rel="noopener" style="color:var(--magenta);">http://www.ovh.com/fr/support</a>
+      <a href="https://www.ovhcloud.com/fr/terms-and-conditions/" target="_blank" rel="noopener" style="color:var(--magenta);">Informations légales OVHcloud</a>
     </p>
 
     <hr class="legal-hr">
 
     <h2 class="t-h3">Données personnelles</h2>
     <p class="t-body text-muted">
-      Toute information personnelle que l'internaute serait amené à transmettre à la Technopole d'Orléans pour l'utilisation de certains services ou pour la participation à des jeux, concours organisés par la Technopole d'Orléans et/ou l'un de ses partenaires est soumise aux dispositions de la Loi n° 78-17 Informatique et Libertés du 06 janvier 1978.
+      Les données personnelles éventuellement recueillies lors de l’utilisation du site sont traitées conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés. Les informations sur les traitements et l’exercice de vos droits figurent dans notre <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>" style="color:var(--magenta);">politique de confidentialité</a>.
     </p>
     <p class="t-body text-muted">
-      À ce titre, l'internaute dispose d'un droit d'accès, de rectification et de suppression des informations personnelles le concernant qu'il peut exercer à tout moment par écrit à l'adresse suivante :
+      Pour toute demande concernant vos données personnelles, vous pouvez contacter l’éditeur aux coordonnées ci-dessus ou à l’adresse <a href="mailto:contact@labia-loirevalley.fr" style="color:var(--magenta);">contact@labia-loirevalley.fr</a>.
     </p>
-    <p class="t-body text-muted">
-      Technopole d'Orléans<br>
-      LE LAB'O<br>
-      1 avenue du Champ de Mars, CS 30019<br>
-      45074 Orléans Cedex 2<br>
-      Tél : 02 38 69 80 98
-    </p>
-
   </div>
 </section>
 

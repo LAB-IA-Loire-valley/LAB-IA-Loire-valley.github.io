@@ -26,11 +26,11 @@ get_header();
       <div style="display:flex;flex-direction:column;gap:16px;">
         <div class="section-label reveal"><span>Nous trouver</span></div>
 
-        <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 87' ) ) ); ?>" class="contact-info-item reveal" style="text-decoration:none;">
+        <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 24' ) ) ); ?>" class="contact-info-item reveal" style="text-decoration:none;">
           <div class="contact-info-icon">📞</div>
           <div>
             <div class="contact-info-label">Téléphone</div>
-            <div class="contact-info-value"><?php echo esc_html( labia_opt( 'phone', '02 38 69 80 87' ) ); ?></div>
+            <div class="contact-info-value"><?php echo esc_html( labia_opt( 'phone', '02 38 69 80 24' ) ); ?></div>
             <div class="contact-info-sub">Lun–Ven, 9h–17h</div>
           </div>
         </a>
@@ -76,45 +76,58 @@ get_header();
         <h2 class="t-h3 mb-8">Envoyez-nous un message</h2>
         <p class="t-body text-muted mb-32">Projet, formation, partenariat, presse — remplissez le formulaire, nous vous recontactons rapidement.</p>
 
-        <form>
+        <?php if ( isset( $_GET['form_status'] ) && sanitize_key( wp_unslash( $_GET['form_status'] ) ) === 'success' ) : ?>
+          <p id="form-feedback" role="status" tabindex="-1" class="t-body" style="color:green;">Merci, votre demande a bien été reçue. Nous vous répondrons sous 48h ouvrées.</p>
+        <?php elseif ( isset( $_GET['form_status'] ) && sanitize_key( wp_unslash( $_GET['form_status'] ) ) === 'error' ) : ?>
+          <p id="form-feedback" role="alert" tabindex="-1" class="t-body" style="color:#b00020;">Votre demande n’a pas pu être envoyée. Vérifiez les champs obligatoires et réessayez.</p>
+        <?php endif; ?>
+        <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+          <input type="hidden" name="action" value="labia_contact_form" />
+          <input type="hidden" name="labia_form" value="contact" />
+          <input type="hidden" name="return_url" value="<?php echo esc_url( get_permalink() ); ?>" />
+          <input type="hidden" name="form_started" value="<?php echo esc_attr( time() ); ?>" />
+          <?php wp_nonce_field( 'labia_contact_form', 'labia_form_nonce' ); ?>
+          <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+            <label for="contact-website">Ne pas remplir ce champ</label><input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Prénom &amp; Nom <span class="required">*</span></label>
-              <input type="text" class="form-input" placeholder="Jean Dupont" required />
+              <label class="form-label" for="contact-name">Prénom &amp; Nom <span class="required">*</span></label>
+              <input type="text" id="contact-name" name="name" class="form-input" placeholder="Jean Dupont" autocomplete="name" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Société / Organisation</label>
-              <input type="text" class="form-input" placeholder="Mon entreprise" />
+              <label class="form-label" for="contact-organization">Société / Organisation</label>
+              <input type="text" id="contact-organization" name="organization" class="form-input" placeholder="Mon entreprise" autocomplete="organization" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Email <span class="required">*</span></label>
-              <input type="email" class="form-input" placeholder="vous@entreprise.fr" required />
+              <label class="form-label" for="contact-email">Email <span class="required">*</span></label>
+              <input type="email" id="contact-email" name="email" class="form-input" placeholder="vous@entreprise.fr" autocomplete="email" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Téléphone</label>
-              <input type="tel" class="form-input" placeholder="06 XX XX XX XX" />
+              <label class="form-label" for="contact-phone">Téléphone</label>
+              <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="06 XX XX XX XX" autocomplete="tel" />
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Objet de votre demande <span class="required">*</span></label>
-            <select class="form-select" required>
+            <label class="form-label" for="contact-request">Objet de votre demande <span class="required">*</span></label>
+            <select id="contact-request" name="request" class="form-select" required>
               <option value="">— Sélectionnez —</option>
-              <option>Projet Data / IA — accompagnement</option>
-              <option>Formation pour mon équipe</option>
-              <option>Conférence / Sensibilisation</option>
-              <option>Partenariat</option>
-              <option>Presse / Médias</option>
-              <option>Autre demande</option>
+              <option value="Projet Data / IA — accompagnement">Projet Data / IA — accompagnement</option>
+              <option value="Formation pour mon équipe">Formation pour mon équipe</option>
+              <option value="Conférence / Sensibilisation">Conférence / Sensibilisation</option>
+              <option value="Partenariat">Partenariat</option>
+              <option value="Presse / Médias">Presse / Médias</option>
+              <option value="Autre demande">Autre demande</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Votre message <span class="required">*</span></label>
-            <textarea class="form-textarea" placeholder="Décrivez votre projet, vos besoins ou votre question..." style="min-height:140px;" required></textarea>
+            <label class="form-label" for="contact-message">Votre message <span class="required">*</span></label>
+            <textarea id="contact-message" name="message" class="form-textarea" placeholder="Décrivez votre projet, vos besoins ou votre question..." style="min-height:140px;" required></textarea>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:28px;font-size:.8rem;color:var(--ink-60);">
-            <input type="checkbox" id="rgpd" style="margin-top:2px;flex-shrink:0;accent-color:var(--magenta);" required />
+            <input type="checkbox" id="rgpd" name="consent" value="1" style="margin-top:2px;flex-shrink:0;accent-color:var(--magenta);" required />
             <label for="rgpd">J'accepte que mes données soient traitées par le LAB'IA Loire Valley afin de répondre à ma demande, conformément à la <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>" style="color:var(--magenta);">politique de confidentialité</a>.</label>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">

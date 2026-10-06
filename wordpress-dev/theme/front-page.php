@@ -126,7 +126,7 @@ get_header();
     <div class="grid-3">
       <a href="<?php echo esc_url( home_url( '/nos-solutions/' ) ); ?>#assistant" class="card card--solution reveal" style="text-decoration:none; color:inherit;">
         <div class="card-img">
-          <div class="card-img-inner" style="background:linear-gradient(135deg,#0D0D0D,#0a1a1a);">
+          <div class="card-img-inner" style="background:linear-gradient(135deg,#10142C 0%,#201A45 55%,#3A1140 100%);">
             <span style="font-size:2.5rem;color:rgba(79,176,255,.6);">🤖</span>
           </div>
         </div>
@@ -142,13 +142,13 @@ get_header();
 
       <a href="<?php echo esc_url( home_url( '/nos-solutions/' ) ); ?>#extraction" class="card card--solution reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
         <div class="card-img">
-          <div class="card-img-inner" style="background:linear-gradient(135deg,#0D0D0D,#1a1a0a);">
-            <span style="font-size:2.5rem;color:rgba(198,138,0,.6);">📄</span>
+          <div class="card-img-inner" style="background:linear-gradient(135deg,#10142C 0%,#201A45 55%,#3A1140 100%);">
+            <span style="font-size:2.5rem;color:rgba(168,108,199,.8);">📄</span>
           </div>
         </div>
         <div>
           <div class="card-tags">
-            <span class="badge" style="background:#fff8e1;color:#c68a00;">Documents</span>
+            <span class="badge badge-violet">Documents</span>
             <span class="badge badge-dark">OCR · LLM</span>
           </div>
           <h3 class="t-h3 mt-12 mb-8">Extraction intelligente</h3>
@@ -158,7 +158,7 @@ get_header();
 
       <a href="<?php echo esc_url( home_url( '/nos-solutions/' ) ); ?>#mails" class="card card--solution reveal reveal-delay-2" style="text-decoration:none; color:inherit;">
         <div class="card-img">
-          <div class="card-img-inner" style="background:linear-gradient(135deg,#0D0D0D,#1a0a1a);">
+          <div class="card-img-inner" style="background:linear-gradient(135deg,#10142C 0%,#201A45 55%,#3A1140 100%);">
             <span style="font-size:2.5rem;color:rgba(226,0,125,.6);">📧</span>
           </div>
         </div>
@@ -291,12 +291,12 @@ get_header();
         $author    = get_post_meta( $t->ID, 'author', true );
         $author_role = get_post_meta( $t->ID, 'author_role', true );
         $company   = get_post_meta( $t->ID, 'company', true );
-        $photo_id  = get_post_meta( $t->ID, 'photo', true );
-        $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : '';
+        $photo_url = labia_get_testimonial_image_url( $t->ID, 'photo' );
         $initials  = labia_get_initials( $author );
         $accent    = labia_avatar_color( $i );
         $faint     = labia_hex_to_rgba( $accent, 0.12 );
-        $role_line = $author_role || $company ? ( $author_role ? ( $company ? "$author_role — $company" : $author_role ) : $company ) : '';
+        $display_role = labia_get_testimonial_display_role( $author_role, $company );
+        $role_line = $display_role && $company ? "$display_role — $company" : ( $display_role ?: $company );
       ?>
       <div class="card card--testimonial reveal<?php echo $i ? ' reveal-delay-' . $i : ''; ?>">
         <p class="card--testimonial-quote">"<?php echo esc_html( $quote ); ?>"</p>

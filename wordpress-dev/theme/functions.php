@@ -30,3 +30,4 @@ add_theme_support( 'post-thumbnails' );
 // Load in correct order (CPTs first, then CMB2 config, then enqueue).
 require_once LABIA_THEME_DIR . '/inc/enqueue.php';
 require_once LABIA_THEME_DIR . '/inc/cmb2-config.php';
+require_once LABIA_THEME_DIR . '/inc/form-handlers.php';

@@ -387,40 +387,57 @@ get_header();
       <p class="t-lead reveal reveal-delay-1 mt-16">Notre équipe vous recontacte sous 48h.</p>
     </div>
     <div class="reveal">
-      <form>
+      <?php if ( isset( $_GET['form_status'] ) && sanitize_key( wp_unslash( $_GET['form_status'] ) ) === 'success' ) : ?>
+        <p id="form-feedback" role="status" tabindex="-1" class="t-body text-center" style="color:green;">Merci, votre demande a bien été reçue. Nous vous répondrons sous 48h ouvrées.</p>
+      <?php elseif ( isset( $_GET['form_status'] ) && sanitize_key( wp_unslash( $_GET['form_status'] ) ) === 'error' ) : ?>
+        <p id="form-feedback" role="alert" tabindex="-1" class="t-body text-center" style="color:#b00020;">Votre demande n’a pas pu être envoyée. Vérifiez les champs obligatoires et réessayez.</p>
+      <?php endif; ?>
+      <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+        <input type="hidden" name="action" value="labia_contact_form" />
+        <input type="hidden" name="labia_form" value="offre" />
+        <input type="hidden" name="return_url" value="<?php echo esc_url( get_permalink() ); ?>" />
+        <input type="hidden" name="form_started" value="<?php echo esc_attr( time() ); ?>" />
+        <?php wp_nonce_field( 'labia_offre_form', 'labia_form_nonce' ); ?>
+        <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+          <label for="offre-website">Ne pas remplir ce champ</label><input type="text" id="offre-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Nom / Société <span class="required">*</span></label>
-            <input type="text" class="form-input" placeholder="Votre nom ou société" />
+            <label class="form-label" for="offre-name">Nom / Société <span class="required">*</span></label>
+            <input type="text" id="offre-name" name="name" class="form-input" placeholder="Votre nom ou société" autocomplete="name" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Email <span class="required">*</span></label>
-            <input type="email" class="form-input" placeholder="vous@entreprise.fr" />
+            <label class="form-label" for="offre-email">Email <span class="required">*</span></label>
+            <input type="email" id="offre-email" name="email" class="form-input" placeholder="vous@entreprise.fr" autocomplete="email" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Téléphone <span class="required">*</span></label>
-            <input type="tel" class="form-input" placeholder="06 XX XX XX XX" />
+            <label class="form-label" for="offre-phone">Téléphone <span class="required">*</span></label>
+            <input type="tel" id="offre-phone" name="phone" class="form-input" placeholder="06 XX XX XX XX" autocomplete="tel" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Vous souhaitez</label>
-            <select class="form-select">
+            <label class="form-label" for="offre-request">Vous souhaitez</label>
+            <select id="offre-request" name="request" class="form-select">
               <option value="">— Sélectionnez —</option>
-              <option>Un accompagnement projet</option>
-              <option>Une formation</option>
-              <option>Une conférence / sensibilisation</option>
-              <option>Autre</option>
+              <option value="Un accompagnement projet">Un accompagnement projet</option>
+              <option value="Une formation">Une formation</option>
+              <option value="Une conférence / sensibilisation">Une conférence / sensibilisation</option>
+              <option value="Autre">Autre</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Nombre de participants</label>
-          <input type="number" class="form-input" placeholder="ex : 12" min="1" />
+          <label class="form-label" for="offre-participants">Nombre de participants</label>
+          <input type="number" id="offre-participants" name="participants" class="form-input" placeholder="ex : 12" min="1" />
         </div>
         <div class="form-group">
-          <label class="form-label">Message / Précisions</label>
-          <textarea class="form-textarea" placeholder="Décrivez votre projet ou vos besoins..."></textarea>
+          <label class="form-label" for="offre-message">Message / Précisions</label>
+          <textarea id="offre-message" name="message" class="form-textarea" placeholder="Décrivez votre projet ou vos besoins..."></textarea>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin:20px 0 28px;font-size:.8rem;color:var(--ink-60);">
+          <input type="checkbox" id="offre-consent" name="consent" value="1" style="margin-top:2px;flex-shrink:0;accent-color:var(--magenta);" required />
+          <label for="offre-consent">J'accepte que mes données soient traitées afin de répondre à ma demande, conformément à la <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>" style="color:var(--magenta);">politique de confidentialité</a>.</label>
         </div>
         <div style="text-align:center; margin-top:8px;">
           <button type="submit" class="btn btn-primary btn-lg">

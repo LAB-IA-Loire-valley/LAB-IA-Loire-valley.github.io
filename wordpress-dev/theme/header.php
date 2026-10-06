@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,15 +21,15 @@
                 <li><a href="<?php echo esc_url( home_url( '/nos-solutions/' ) ); ?>" class="nav__link<?php echo is_page( 'nos-solutions' ) ? ' active' : ''; ?>">Nos solutions</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/qui-sommes-nous/' ) ); ?>" class="nav__link<?php echo is_page( 'qui-sommes-nous' ) ? ' active' : ''; ?>">Qui sommes-nous</a></li>
                 <li class="nav__dropdown">
-                    <a href="#" class="nav__link<?php echo ( is_page( 'ils-nous-font-confiance' ) || is_page( 'partenariat' ) ) ? ' active' : ''; ?>">Références ▾</a>
-                    <div class="nav__dropdown-menu">
+                    <button type="button" class="nav__link nav__dropdown-toggle<?php echo ( is_page( 'ils-nous-font-confiance' ) || is_page( 'partenariat' ) ) ? ' active' : ''; ?>" aria-expanded="false" aria-controls="nav-references-menu">Références <span aria-hidden="true">▾</span></button>
+                    <div class="nav__dropdown-menu" id="nav-references-menu">
                         <a href="<?php echo esc_url( home_url( '/ils-nous-font-confiance/' ) ); ?>">Ils nous font confiance</a>
                         <a href="<?php echo esc_url( home_url( '/partenariat/' ) ); ?>">Partenaires</a>
                     </div>
                 </li>
                 <li class="nav__dropdown">
-                    <a href="#" class="nav__link<?php echo ( is_page( 'actualites' ) || is_page( 'presse' ) ) ? ' active' : ''; ?>">Médias ▾</a>
-                    <div class="nav__dropdown-menu">
+                    <button type="button" class="nav__link nav__dropdown-toggle<?php echo ( is_page( 'actualites' ) || is_page( 'presse' ) ) ? ' active' : ''; ?>" aria-expanded="false" aria-controls="nav-medias-menu">Médias <span aria-hidden="true">▾</span></button>
+                    <div class="nav__dropdown-menu" id="nav-medias-menu">
                         <a href="<?php echo esc_url( home_url( '/actualites/' ) ); ?>">Actualités</a>
                         <a href="<?php echo esc_url( home_url( '/presse/' ) ); ?>">Presse</a>
                     </div>
@@ -38,15 +38,15 @@
             <div class="nav__actions">
                 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn-primary btn-sm<?php echo is_page( 'contact' ) ? ' active' : ''; ?>">Nous contacter</a>
             </div>
-            <button class="nav__burger" aria-label="Menu">
+            <button class="nav__burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-navigation">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
 
-<div class="nav__mobile" role="dialog" aria-label="Menu mobile">
-    <button class="nav__mobile-close" aria-label="Fermer">✕</button>
+<div class="nav__mobile" id="mobile-navigation" role="navigation" aria-label="Navigation mobile">
+    <button type="button" class="nav__mobile-close" aria-label="Fermer">✕</button>
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo is_front_page() ? ' class="active"' : ''; ?>>Accueil</a>
     <a href="<?php echo esc_url( home_url( '/notre-offre/' ) ); ?>"<?php echo is_page( 'notre-offre' ) ? ' class="active"' : ''; ?>>Notre offre</a>
     <a href="<?php echo esc_url( home_url( '/nos-solutions/' ) ); ?>"<?php echo is_page( 'nos-solutions' ) ? ' class="active"' : ''; ?>>Nos solutions</a>

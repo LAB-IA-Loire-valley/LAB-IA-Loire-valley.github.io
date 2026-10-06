@@ -67,38 +67,32 @@ if ( $clients ) :
             $author = get_post_meta( $t->ID, 'author', true );
             $author_role = get_post_meta( $t->ID, 'author_role', true );
             $company = get_post_meta( $t->ID, 'company', true );
-            $emoji  = get_post_meta( $t->ID, 'emoji', true ) ?: '🏢';
+            $company_logo_url = labia_get_testimonial_image_url( $t->ID, 'company_logo' );
             $sector = get_post_meta( $t->ID, 'sector', true );
-            $sector_color = get_post_meta( $t->ID, 'sector_color', true ) ?: '';
-            $photo_id = get_post_meta( $t->ID, 'photo', true );
-            $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : '';
+            $sector_color = sanitize_hex_color( get_post_meta( $t->ID, 'sector_color', true ) );
+            $photo_url = labia_get_testimonial_image_url( $t->ID, 'photo' );
             $initials = labia_get_initials( $author );
+            $display_role = labia_get_testimonial_display_role( $author_role, $company );
             $accent = labia_avatar_color( $i );
             $faint = labia_hex_to_rgba( $accent, 0.12 );
         ?>
         <div class="case-study reveal<?php echo $i ? '' : ''; ?>">
           <div class="case-study__header">
-            <div class="case-study__avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>">
-              <?php if ( $photo_url ) : ?>
-                <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $author ); ?>" />
-              <?php elseif ( $initials ) : ?>
-                <span><?php echo esc_html( $initials ); ?></span>
-              <?php else : ?>
-                <span><?php echo esc_html( $emoji ); ?></span>
-              <?php endif; ?>
-            </div>
+            <?php if ( $company_logo_url ) : ?><div class="case-study__logo"><img src="<?php echo esc_url( $company_logo_url ); ?>" alt="<?php echo esc_attr( $company ?: $t->post_title ); ?>" /></div><?php endif; ?>
             <div>
               <?php if ( $sector ) : ?>
-                <div class="badge mb-8" style="<?php echo $sector_color ? 'background:' . $sector_color . ';color:white;' : ''; ?>"><?php echo esc_html( $sector ); ?></div>
+                <div class="badge mb-8" style="<?php echo $sector_color ? 'background:' . esc_attr( $sector_color ) . ';color:white;' : ''; ?>"><?php echo esc_html( $sector ); ?></div>
               <?php endif; ?>
               <h3 class="t-h3"><?php echo esc_html( $company ?: $t->post_title ); ?></h3>
-              <?php if ( $author_role ) : ?><p class="t-small text-muted"><?php echo esc_html( $author_role ); ?></p><?php endif; ?>
             </div>
           </div>
           <div class="case-study__body">
             <p class="case-study__quote">"<?php echo esc_html( $quote ); ?>"</p>
             <?php if ( $author ) : ?>
-              <div class="case-study__author"><?php echo esc_html( $author ); ?><?php if ( $company ) echo ' — ' . esc_html( $company ); ?></div>
+              <div class="case-study__author">
+                <?php if ( $photo_url || $initials ) : ?><div class="case-study__author-avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>"><?php if ( $photo_url ) : ?><img src="<?php echo esc_url( $photo_url ); ?>" alt="" /><?php else : ?><span><?php echo esc_html( $initials ); ?></span><?php endif; ?></div><?php endif; ?>
+                <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">— <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
+              </div>
             <?php endif; ?>
           </div>
         </div>
@@ -109,27 +103,20 @@ if ( $clients ) :
           <?php foreach ( $last_two as $i => $t ) :
             $quote  = get_post_meta( $t->ID, 'quote', true );
             $author = get_post_meta( $t->ID, 'author', true );
+            $author_role = get_post_meta( $t->ID, 'author_role', true );
             $company = get_post_meta( $t->ID, 'company', true );
-            $emoji  = get_post_meta( $t->ID, 'emoji', true ) ?: '🏢';
+            $company_logo_url = labia_get_testimonial_image_url( $t->ID, 'company_logo' );
             $sector = get_post_meta( $t->ID, 'sector', true );
-            $sector_color = get_post_meta( $t->ID, 'sector_color', true ) ?: '';
-            $photo_id = get_post_meta( $t->ID, 'photo', true );
-            $photo_url = $photo_id ? wp_get_attachment_url( $photo_id ) : '';
+            $sector_color = sanitize_hex_color( get_post_meta( $t->ID, 'sector_color', true ) );
+            $photo_url = labia_get_testimonial_image_url( $t->ID, 'photo' );
             $initials = labia_get_initials( $author );
             $accent = labia_avatar_color( $i + 4 );
             $faint = labia_hex_to_rgba( $accent, 0.12 );
+            $display_role = labia_get_testimonial_display_role( $author_role, $company );
           ?>
           <div class="case-study reveal<?php echo $i ? ' reveal-delay-1' : ''; ?>" style="margin-bottom:0;">
             <div class="case-study__header">
-              <div class="case-study__avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>">
-                <?php if ( $photo_url ) : ?>
-                  <img src="<?php echo esc_url( $photo_url ); ?>" alt="<?php echo esc_attr( $author ); ?>" />
-                <?php elseif ( $initials ) : ?>
-                  <span><?php echo esc_html( $initials ); ?></span>
-                <?php else : ?>
-                  <span><?php echo esc_html( $emoji ); ?></span>
-                <?php endif; ?>
-              </div>
+              <?php if ( $company_logo_url ) : ?><div class="case-study__logo"><img src="<?php echo esc_url( $company_logo_url ); ?>" alt="<?php echo esc_attr( $company ?: $t->post_title ); ?>" /></div><?php endif; ?>
               <div>
                 <?php if ( $sector ) : ?>
                   <div class="badge badge-dark mb-8"><?php echo esc_html( $sector ); ?></div>
@@ -140,7 +127,10 @@ if ( $clients ) :
             <div class="case-study__body">
               <p class="case-study__quote">"<?php echo esc_html( $quote ); ?>"</p>
               <?php if ( $author ) : ?>
-                <div class="case-study__author"><?php echo esc_html( $author ); ?><?php if ( $company ) echo ' — ' . esc_html( $company ); ?></div>
+                <div class="case-study__author">
+                  <?php if ( $photo_url || $initials ) : ?><div class="case-study__author-avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>"><?php if ( $photo_url ) : ?><img src="<?php echo esc_url( $photo_url ); ?>" alt="" /><?php else : ?><span><?php echo esc_html( $initials ); ?></span><?php endif; ?></div><?php endif; ?>
+                  <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">— <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
+                </div>
               <?php endif; ?>
             </div>
           </div>
