@@ -10,7 +10,7 @@ docker compose up -d
 ```
 
 **Site** : http://localhost:8765
-**Admin** : http://localhost:8765/wp-admin — `admin` / `adminpass`
+- **Admin WordPress** : récupérer les identifiants depuis le gestionnaire de secrets de l’équipe. S’ils sont absents, réinitialiser le compte via un canal d’administration autorisé avant tout accès.
 
 ## Structure
 

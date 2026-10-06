@@ -94,7 +94,7 @@ Rejeu de la procédure §1-5 pour pousser le nouveau contenu ( distant dev : 181
 
 ### Rappels utiles
 
-- **Admin WP** : identifiants identiques à l'ancien serveur (`admin` / `adminpass` — à changer !)
+- **Admin WordPress** : récupérer les identifiants depuis le gestionnaire de secrets de l’équipe. S’ils sont absents, réinitialiser le compte via un canal d’administration autorisé avant tout accès.
 - **PhpMyAdmin OVH** : https://phpmyadmin.ovh.net (user `savqafoadmin`)
 - **Fichiers** : les modifications de thème se font dans le repo (`wordpress-dev/theme/`), puis upload vers `www/wp-content/themes/labia-wp/` via FTP
 - **L'ancien serveur (10.0.18.215) tourne toujours** → fallback possible en cas de problème
