@@ -37,11 +37,14 @@ Les pages avec contenu éditable depuis l'admin utilisent des boucles CPT dans l
 - Le thème est bind-mounté depuis `wordpress-dev/theme/` dans le container Docker
 - Modifier un fichier → recharger le navigateur, pas de build step
 
-### Server distant (dev)
+### Déploiement (production)
 
-Le site tourne sur un serveur Linux à l'adresse `http://10.0.18.215:8765` accessible depuis le réseau local.
+- **Prod** : https://labia-loirevalley.fr (hébergement OVH, cluster131)
+- **Thème** : upload FTP via le script du repo (credentials par variables d'env, jamais dans le code) :
 
-- **Fichiers** : copier `wordpress-dev/` vers le serveur via `./deploy.sh` ou rsync
-- **Connexion** : `ssh -p 43 -i ~/.ssh/id_monitoring selim@10.0.18.215`
-- **Containers** : `docker compose up -d` dans `~/labia-wp/`
-- **Base de données** : la DB locale (`docker exec labia_wpdb mysqldump -u wp -pwppass wordpress > dump.sql`) peut être importée sur le serveur
+  ```bash
+  OVH_FTP_PASS=... uv run tools/upload.py wordpress-dev/theme www/wp-content/themes/labia-wp
+  ```
+
+- **Base de données prod** : phpMyAdmin OVH (user `savqafoadmin`) — procédure complète dans `docs/migration-ovh.md`
+- ⚠️ L'ancien serveur docker `10.0.18.215:8765` n'est plus utilisé pour le site — ne plus y déployer ni s'en servir comme environnement de dev.

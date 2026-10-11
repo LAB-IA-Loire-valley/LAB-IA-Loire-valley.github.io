@@ -97,7 +97,7 @@ Rejeu de la procédure §1-5 pour pousser le nouveau contenu ( distant dev : 181
 - **Admin WordPress** : récupérer les identifiants depuis le gestionnaire de secrets de l’équipe. S’ils sont absents, réinitialiser le compte via un canal d’administration autorisé avant tout accès.
 - **PhpMyAdmin OVH** : https://phpmyadmin.ovh.net (user `savqafoadmin`)
 - **Fichiers** : les modifications de thème se font dans le repo (`wordpress-dev/theme/`), puis upload vers `www/wp-content/themes/labia-wp/` via FTP
-- **L'ancien serveur (10.0.18.215) tourne toujours** → fallback possible en cas de problème
+- **L'ancien serveur (10.0.18.215) n'est plus utilisé pour le site** (décision du 2026-10-12) — ne plus y déployer, ne plus s'en servir comme fallback
 - Si un jour le FTP rejette un fichier avec `451` : ajouter un préfixe de commentaire inoffensif et re-uploader
 
 ## Fichiers de travail (temporaires, dans /tmp/opencode/labia-ovh/)
