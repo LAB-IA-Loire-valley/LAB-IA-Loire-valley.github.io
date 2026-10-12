@@ -121,25 +121,52 @@ document.documentElement.classList.replace('no-js', 'js');
   if (!steps.length) return;
   const dots = steps.map(s => s.querySelector('.steps-v-dot'));
 
-  // Couleur de chaque point : couleur du dégradé du rail à sa position
-  const STOPS = [
-    [0.00, [0x4F, 0xB0, 0xFF]], // bleu
-    [0.33, [0x47, 0x52, 0x97]], // indigo
-    [0.66, [0x85, 0x2F, 0x85]], // violet
-    [1.00, [0xE2, 0x00, 0x7D]]  // magenta
-  ];
+  // Couleurs par phase : reprises des badges (Cadrage, Réalisation, Lancement)
+  const FALLBACK = [[226, 0, 125], [26, 122, 204], [17, 17, 17]];
+  function parseColor(c, fb) {
+    const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(c || '');
+    return m ? [+m[1], +m[2], +m[3]] : fb;
+  }
+  const phases = Array.prototype.slice.call(list.querySelectorAll('.steps-v-phase'));
+  const phaseColors = phases.map((ph, i) => {
+    const b = ph.querySelector('.badge');
+    return parseColor(b ? getComputedStyle(b).color : '', FALLBACK[i] || FALLBACK[FALLBACK.length - 1]);
+  });
+  if (phaseColors.length < 2) phaseColors.push(FALLBACK[0]); // garde-fou
+
+  // Dégradé du rail : zones à plat par phase + courtes transitions aux frontières
+  const TRANS = 0.04; // demi-largeur d'une transition (fraction de la hauteur du rail)
+  let STOPS = [];
+  function computeStops() {
+    const lr = list.getBoundingClientRect();
+    const railTop = lr.top + 16;
+    const railH = lr.height - 32;
+    if (railH <= 0) return;
+    STOPS = [[0, phaseColors[0]]];
+    phases.slice(1).forEach((ph, i) => {
+      const r = ph.getBoundingClientRect();
+      const t = (r.top + r.height / 2 - railTop) / railH;
+      STOPS.push([Math.max(0, t - TRANS), phaseColors[i]]);
+      STOPS.push([Math.min(1, t + TRANS), phaseColors[i + 1]]);
+    });
+    STOPS.push([1, phaseColors[phaseColors.length - 1]]);
+  }
   function gradColor(t) {
     t = Math.max(0, Math.min(1, t));
     for (let i = 1; i < STOPS.length; i++) {
       if (t <= STOPS[i][0]) {
         const a = STOPS[i - 1], b = STOPS[i];
-        const k = (t - a[0]) / (b[0] - a[0]);
+        const k = (t - a[0]) / ((b[0] - a[0]) || 1);
         return a[1].map((v, j) => Math.round(v + (b[1][j] - v) * k));
       }
     }
     return STOPS[STOPS.length - 1][1];
   }
-  function paintDots() {
+  function paint() {
+    computeStops();
+    if (STOPS.length < 2) return;
+    list.style.setProperty('--rail-grad',
+      'linear-gradient(180deg, ' + STOPS.map(([t, c]) => 'rgb(' + c.join(', ') + ') ' + (t * 100).toFixed(2) + '%').join(', ') + ')');
     const lr = list.getBoundingClientRect();
     const railTop = lr.top + 16;
     const railH = lr.height - 32;
@@ -147,8 +174,7 @@ document.documentElement.classList.replace('no-js', 'js');
     dots.forEach((dot, i) => {
       if (!dot) return;
       const dr = dot.getBoundingClientRect();
-      const t = (dr.top + dr.height / 2 - railTop) / railH;
-      const c = gradColor(t);
+      const c = gradColor((dr.top + dr.height / 2 - railTop) / railH);
       steps[i].style.setProperty('--dot-color', 'rgb(' + c.join(', ') + ')');
       steps[i].style.setProperty('--dot-glow', 'rgba(' + c.join(', ') + ', .30)');
     });
@@ -180,10 +206,10 @@ document.documentElement.classList.replace('no-js', 'js');
     list.style.setProperty('--fill', '100%');
   }
 
-  paintDots();
+  paint();
   update();
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => { paintDots(); update(); });
+    document.fonts.ready.then(() => { paint(); update(); });
   }
   if (reduce) { finish(); return; }
 
@@ -193,7 +219,7 @@ document.documentElement.classList.replace('no-js', 'js');
     ticking = true;
     requestAnimationFrame(() => { update(); ticking = false; });
   }, { passive: true });
-  window.addEventListener('resize', () => { paintDots(); update(); });
+  window.addEventListener('resize', () => { paint(); update(); });
 
   const ioSteps = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

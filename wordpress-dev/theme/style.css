@@ -902,7 +902,7 @@ section.s-lg { padding: 140px 0; }
   position: absolute;
   left: 43px; top: 16px; bottom: 16px;
   width: 2px;
-  background: linear-gradient(180deg, var(--blue) 0%, var(--indigo) 33%, var(--violet) 66%, var(--magenta) 100%);
+  background: var(--rail-grad, linear-gradient(180deg, #E2007D 0%, #E2007D 30%, #1a7acc 39%, #1a7acc 66%, #111 74%, #111 100%));
   border-radius: 2px;
   clip-path: inset(0 0 calc(100% - var(--fill, 0%)) 0);
 }
