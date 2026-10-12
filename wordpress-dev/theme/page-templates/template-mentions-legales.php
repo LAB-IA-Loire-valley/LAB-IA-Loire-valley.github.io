@@ -27,7 +27,7 @@ get_header();
       Tél : 02 38 69 80 24
     </p>
     <p class="t-body text-muted">
-      <strong>Directeur de la publication :</strong> Frédéric Ros — <a href="mailto:frederic.ros@tech-orleans.fr" style="color:var(--magenta);">frederic.ros@tech-orleans.fr</a>
+      <strong>Directeur de la publication :</strong> Frédéric Ros · <a href="mailto:frederic.ros@tech-orleans.fr" style="color:var(--magenta);">frederic.ros@tech-orleans.fr</a>
     </p>
 
     <hr class="legal-hr">

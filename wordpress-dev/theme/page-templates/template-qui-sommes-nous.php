@@ -42,7 +42,7 @@ get_header();
           </div>
           <div style="display:flex;gap:12px;align-items:center;padding:16px;background:var(--offwhite);border-radius:var(--radius-md);">
             <span style="color:var(--magenta);font-weight:700;flex-shrink:0;">→</span>
-            <span class="t-body">De l'idée jusqu'à l'industrialisation — une approche structurée en 6 étapes</span>
+            <span class="t-body">De l'idée jusqu'à l'industrialisation : une approche structurée en 6 étapes</span>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ get_header();
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div class="chiffre-block"><div class="chiffre-number">2021</div><div class="chiffre-label">Année de fondation au LAB'O d'Orléans</div></div>
           <div class="chiffre-block"><div class="chiffre-number">38%</div><div class="chiffre-label">De productivité gagnée grâce à l'IA d'ici 2035</div></div>
-          <div class="chiffre-block"><div class="chiffre-number">1950</div><div class="chiffre-label">L'année fondatrice de l'IA — test de Turing</div></div>
+          <div class="chiffre-block"><div class="chiffre-number">1950</div><div class="chiffre-label">L'année fondatrice de l'IA (test de Turing)</div></div>
           <div class="chiffre-block" style="background:var(--magenta);"><div class="chiffre-number" style="color:white;">+100</div><div class="chiffre-label" style="color:rgba(255,255,255,.7);">Structures accompagnées en région</div></div>
         </div>
       </div>
@@ -68,9 +68,9 @@ get_header();
     <?php
     $poles = array(
         'pole-operationnel'      => array( 'label' => 'Pôle opérationnel', 'grid' => 'grid-3', 'horizontal' => false ),
-        'pole-technique'         => array( 'label' => 'Pôle technique — Data Scientists', 'grid' => 'grid-3', 'horizontal' => false ),
-        'reseau-experts'         => array( 'label' => 'Réseau d\'experts — Data Scientists partenaires', 'grid' => 'grid-2', 'horizontal' => true ),
-        'equipe-technopolitaine' => array( 'label' => 'Équipe Technopolitaine — en support', 'grid' => 'grid-4', 'horizontal' => false ),
+        'pole-technique'         => array( 'label' => 'Pôle technique · Data Scientists', 'grid' => 'grid-3', 'horizontal' => false ),
+        'reseau-experts'         => array( 'label' => 'Réseau d\'experts · Data Scientists partenaires', 'grid' => 'grid-2', 'horizontal' => true ),
+        'equipe-technopolitaine' => array( 'label' => 'Équipe Technopolitaine · support', 'grid' => 'grid-4', 'horizontal' => false ),
     );
     $delay_map = array( 0 => '', 1 => ' reveal-delay-1', 2 => ' reveal-delay-2', 3 => ' reveal-delay-3' );
     foreach ( $poles as $slug => $pole ) :
@@ -180,7 +180,7 @@ get_header();
       <div class="map-block__info">
         <h3 class="t-h2 mb-16" style="color:white;">LAB'IA Loire Valley</h3>
         <p style="font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:24px;">
-          Le LAB'O — Village By CA Orléans<br/>
+          Le LAB'O, Village By CA Orléans<br/>
           1 avenue du Champ de Mars, CS 30019<br/>
           <strong style="color:rgba(255,255,255,.9);">45074 Orléans Cedex 2</strong>
         </p>
@@ -190,7 +190,7 @@ get_header();
         </div>
       </div>
       <div class="map-block__plan">
-        <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/plan-labia.png' ); ?>" alt="Plan d'accès — LAB'IA Loire Valley, Le LAB'O Village by CA à Orléans" width="880" height="497" loading="lazy" decoding="async">
+        <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/plan-labia.png' ); ?>" alt="Plan d'accès du LAB'IA Loire Valley au LAB'O Village by CA, Orléans" width="880" height="497" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
@@ -200,7 +200,7 @@ get_header();
 <section class="ctx-magenta cta-section">
   <div class="container">
     <h2 class="t-h1 reveal" style="color:var(--white);">Rejoignez l'aventure IA en région</h2>
-    <p class="t-lead reveal reveal-delay-1" style="color:rgba(255,255,255,.75);">Que vous soyez entreprise, institution ou expert — le LAB'IA est fait pour collaborer.</p>
+    <p class="t-lead reveal reveal-delay-1" style="color:rgba(255,255,255,.75);">Que vous soyez entreprise, institution ou expert, le LAB'IA est fait pour collaborer.</p>
     <div class="flex-center gap-16 flex-wrap reveal reveal-delay-2" style="margin-top:40px;">
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn-white btn-lg" style="color:var(--magenta);">Nous contacter<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       <a href="<?php echo esc_url( home_url( '/partenariat/' ) ); ?>" class="btn btn-outline-white btn-lg">Devenir partenaire</a>

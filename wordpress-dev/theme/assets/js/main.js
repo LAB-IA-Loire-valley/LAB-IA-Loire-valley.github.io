@@ -402,7 +402,9 @@ document.documentElement.classList.replace('no-js', 'js');
   if (!navLinks.length) return;
 
   const sections = Array.from(navLinks)
-    .map(a => document.querySelector(a.getAttribute('href')))
+    .map(a => a.getAttribute('href'))
+    .filter(href => href && href.charAt(0) === '#')
+    .map(href => document.querySelector(href))
     .filter(Boolean);
 
   function updateActive() {

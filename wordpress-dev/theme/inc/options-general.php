@@ -63,21 +63,21 @@ function labia_register_options_page() {
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'Adresse — ligne 1',
+        'name'    => 'Adresse (ligne 1)',
         'id'      => 'address_line_1',
         'type'    => 'text',
-        'default' => "Le LAB'O — Village By CA Orléans",
+        'default' => "Le LAB'O, Village By CA Orléans",
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'Adresse — ligne 2',
+        'name'    => 'Adresse (ligne 2)',
         'id'      => 'address_line_2',
         'type'    => 'text',
         'default' => '1 avenue du Champ de Mars, CS 30019',
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'Adresse — ville',
+        'name'    => 'Adresse (ville)',
         'id'      => 'address_city',
         'type'    => 'text',
         'default' => '45074 Orléans Cedex 2',
@@ -151,28 +151,28 @@ function labia_register_options_page() {
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'CTA 1 — texte',
+        'name'    => 'CTA 1 (texte)',
         'id'      => 'hero_cta_1_text',
         'type'    => 'text',
         'default' => 'Découvrir notre offre',
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'CTA 1 — URL',
+        'name'    => 'CTA 1 (URL)',
         'id'      => 'hero_cta_1_url',
         'type'    => 'text',
         'default' => '/notre-offre/',
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'CTA 2 — texte',
+        'name'    => 'CTA 2 (texte)',
         'id'      => 'hero_cta_2_text',
         'type'    => 'text',
         'default' => 'Parler de mon projet',
     ) );
 
     $opt_page->add_field( array(
-        'name'    => 'CTA 2 — URL',
+        'name'    => 'CTA 2 (URL)',
         'id'      => 'hero_cta_2_url',
         'type'    => 'text',
         'default' => '/contact/',

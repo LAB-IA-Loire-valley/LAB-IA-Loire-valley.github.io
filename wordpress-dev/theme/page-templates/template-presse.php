@@ -13,7 +13,7 @@ get_header();
     <div class="page-hero__inner">
       <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">On parle de nous</span></div>
       <h1 class="t-display page-hero__title">Presse</h1>
-      <p class="page-hero__lead t-lead">Articles, vidéos, podcasts, interviews — la présence médiatique du LAB'IA Loire Valley depuis 2021.</p>
+      <p class="page-hero__lead t-lead">Articles, vidéos, podcasts, interviews : la présence médiatique du LAB'IA Loire Valley depuis 2021.</p>
     </div>
   </div>
 </div>
@@ -26,24 +26,24 @@ get_header();
       <div>
         <span class="badge" style="background:rgba(226,0,125,.2);color:var(--magenta-light);margin-bottom:20px;">🎙️ À écouter &amp; regarder</span>
         <div class="media-highlight__title">Frédéric Ros &amp; Corinne Neau dans les médias</div>
-        <div class="media-highlight__desc">Retrouvez les interventions de nos dirigeants sur France 3, France Bleu, VoxRadio, Chérie FM Tours et plus encore — pour comprendre les enjeux de l'IA en région Centre-Val de Loire.</div>
+        <div class="media-highlight__desc">Retrouvez les interventions de nos dirigeants sur France 3, France Bleu, VoxRadio, Chérie FM Tours et plus encore, pour comprendre les enjeux de l'IA en région Centre-Val de Loire.</div>
       </div>
       <div class="media-embeds">
         <div class="media-embed-item">
           <span class="press-item__type-icon">📺</span>
-          <div><strong>France 3 Centre-Val de Loire</strong><br/><span>IA, le grand bouleversement — Février 2025</span></div>
+          <div><strong>France 3 Centre-Val de Loire</strong><br/><span>IA, le grand bouleversement · Février 2025</span></div>
         </div>
         <div class="media-embed-item">
           <span class="press-item__type-icon">🎙️</span>
-          <div><strong>France Bleu — Podcast IA</strong><br/><span>Opportunités et défis de l'IA en région</span></div>
+          <div><strong>France Bleu · Podcast IA</strong><br/><span>Opportunités et défis de l'IA en région</span></div>
         </div>
         <div class="media-embed-item">
           <span class="press-item__type-icon">📻</span>
-          <div><strong>VoxRadio — Interview</strong><br/><span>Vision de l'IA par Frédéric Ros — Janvier 2024</span></div>
+          <div><strong>VoxRadio · Interview</strong><br/><span>Vision de l'IA par Frédéric Ros · Janvier 2024</span></div>
         </div>
         <div class="media-embed-item">
           <span class="press-item__type-icon">📻</span>
-          <div><strong>Chérie FM Tours</strong><br/><span>L'IA dans notre quotidien — Novembre 2023</span></div>
+          <div><strong>Chérie FM Tours</strong><br/><span>L'IA dans notre quotidien · Novembre 2023</span></div>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@ get_header();
         $by_year = array();
         foreach ( $articles as $a ) {
             $d = get_post_meta( $a->ID, 'pub_date', true );
-            $y = $d ? date( 'Y', $d ) : '—';
+            $y = $d ? date( 'Y', $d ) : 'Sans date';
             $by_year[ $y ][] = $a;
         }
         krsort( $by_year );
@@ -100,7 +100,7 @@ get_header();
                 ?>
                 <div class="press-item" data-type="<?php echo esc_attr( $type_slug ); ?>">
                     <div>
-                        <div class="press-item__date"><?php echo $date ? date( 'd M Y', $date ) : '—'; ?></div>
+                        <div class="press-item__date"><?php echo $date ? date( 'd M Y', $date ) : 'Sans date'; ?></div>
                         <div class="press-item__source"><span class="press-item__type-icon"><?php echo esc_html( $type_icon ); ?></span> <?php echo esc_html( $source ); ?></div>
                     </div>
                     <div>

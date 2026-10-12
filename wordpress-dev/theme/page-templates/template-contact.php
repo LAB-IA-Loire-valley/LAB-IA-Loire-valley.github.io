@@ -13,7 +13,7 @@ get_header();
     <div class="page-hero__inner">
       <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">On vous répond sous 48h</span></div>
       <h1 class="t-display page-hero__title">Parlons de<br/>votre projet.</h1>
-      <p class="page-hero__lead t-lead">Pré-diagnostic offert — partagez votre problématique, nos experts définissent avec vous la meilleure approche.</p>
+      <p class="page-hero__lead t-lead">Pré-diagnostic offert : partagez votre problématique, nos experts définissent avec vous la meilleure approche.</p>
     </div>
   </div>
 </div>
@@ -48,7 +48,7 @@ get_header();
           <div class="contact-info-icon">📍</div>
           <div>
             <div class="contact-info-label">Adresse</div>
-            <div class="contact-info-value">Le LAB'O — Village By CA Orléans</div>
+            <div class="contact-info-value">Le LAB'O, Village By CA Orléans</div>
             <div class="contact-info-sub">1 avenue du Champ de Mars, CS 30019<br/>45074 Orléans Cedex 2</div>
           </div>
         </div>
@@ -74,7 +74,7 @@ get_header();
       <!-- Formulaire -->
       <div class="form-card reveal reveal-delay-1">
         <h2 class="t-h3 mb-8">Envoyez-nous un message</h2>
-        <p class="t-body text-muted mb-32">Projet, formation, partenariat, presse — remplissez le formulaire, nous vous recontactons rapidement.</p>
+        <p class="t-body text-muted mb-32">Projet, formation, partenariat, presse : remplissez le formulaire, nous vous recontactons rapidement.</p>
 
         <?php if ( isset( $_GET['form_status'] ) && sanitize_key( wp_unslash( $_GET['form_status'] ) ) === 'success' ) : ?>
           <p id="form-feedback" role="status" tabindex="-1" class="t-body" style="color:green;">Merci, votre demande a bien été reçue. Nous vous répondrons sous 48h ouvrées.</p>
@@ -113,8 +113,8 @@ get_header();
           <div class="form-group">
             <label class="form-label" for="contact-request">Objet de votre demande <span class="required">*</span></label>
             <select id="contact-request" name="request" class="form-select" required>
-              <option value="">— Sélectionnez —</option>
-              <option value="Projet Data / IA — accompagnement">Projet Data / IA — accompagnement</option>
+              <option value="">Sélectionnez…</option>
+              <option value="Accompagnement d'un projet Data / IA">Accompagnement d'un projet Data / IA</option>
               <option value="Formation pour mon équipe">Formation pour mon équipe</option>
               <option value="Conférence / Sensibilisation">Conférence / Sensibilisation</option>
               <option value="Partenariat">Partenariat</option>

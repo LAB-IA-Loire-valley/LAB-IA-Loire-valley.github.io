@@ -13,7 +13,7 @@ get_header();
     <div class="page-hero__inner">
       <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Références</span></div>
       <h1 class="t-display page-hero__title">Ils nous font confiance</h1>
-      <p class="page-hero__lead t-lead">Entreprises, institutions, opérateurs, écoles de formation — un écosystème régional engagé dans la transformation IA.</p>
+      <p class="page-hero__lead t-lead">Entreprises, institutions, opérateurs, écoles de formation : un écosystème régional engagé dans la transformation IA.</p>
     </div>
   </div>
 </div>
@@ -91,7 +91,7 @@ if ( $clients ) :
             <?php if ( $author ) : ?>
               <div class="case-study__author">
                 <?php if ( $photo_url || $initials ) : ?><div class="case-study__author-avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>"><?php if ( $photo_url ) : ?><img src="<?php echo esc_url( $photo_url ); ?>" alt="" /><?php else : ?><span><?php echo esc_html( $initials ); ?></span><?php endif; ?></div><?php endif; ?>
-                <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">— <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
+                <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">· <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
               </div>
             <?php endif; ?>
           </div>
@@ -129,7 +129,7 @@ if ( $clients ) :
               <?php if ( $author ) : ?>
                 <div class="case-study__author">
                   <?php if ( $photo_url || $initials ) : ?><div class="case-study__author-avatar" style="<?php echo $photo_url ? '' : esc_attr( "--avatar-color:$accent;--avatar-faint:$faint;" ); ?>"><?php if ( $photo_url ) : ?><img src="<?php echo esc_url( $photo_url ); ?>" alt="" /><?php else : ?><span><?php echo esc_html( $initials ); ?></span><?php endif; ?></div><?php endif; ?>
-                  <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">— <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
+                  <span class="case-study__author-copy"><span class="case-study__author-name"><?php echo esc_html( $author ); ?></span><?php if ( $display_role ) : ?> <span class="case-study__author-role">· <?php echo esc_html( $display_role ); ?></span><?php endif; ?></span>
                 </div>
               <?php endif; ?>
             </div>

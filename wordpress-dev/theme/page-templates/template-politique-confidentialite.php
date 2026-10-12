@@ -48,7 +48,7 @@ get_header();
       <li>Le traitement est légal, équitable et transparent.</li>
       <li>Le traitement est limité à la finalité pour laquelle les données ont été collectées.</li>
       <li>Le traitement se fait avec un minimum de données.</li>
-      <li>Le traitement est limité dans le temps — nous ne conservons pas vos données plus longtemps que nécessaire.</li>
+      <li>Le traitement est limité dans le temps : nous ne conservons pas vos données plus longtemps que nécessaire.</li>
       <li>Nous assurons l'exactitude, l'intégrité et la confidentialité des données.</li>
     </ul>
 
@@ -57,15 +57,15 @@ get_header();
     <h2 class="t-h3">3. Vos droits</h2>
     <p class="t-body text-muted">Vous disposez des droits suivants :</p>
     <ul class="legal-list">
-      <li><strong>Droit à l'information</strong> — savoir si vos données sont traitées, lesquelles, d'où elles proviennent, pourquoi et par qui.</li>
-      <li><strong>Droit d'accès</strong> — accéder aux données collectées et en obtenir une copie.</li>
-      <li><strong>Droit de rectification</strong> — faire corriger des données inexactes ou incomplètes.</li>
-      <li><strong>Droit à l'effacement</strong> — demander l'effacement de vos données dans les cas prévus par la réglementation.</li>
-      <li><strong>Droit à la limitation</strong> — demander la limitation du traitement dans certaines circonstances.</li>
-      <li><strong>Droit d'opposition</strong> — vous opposer à certains traitements dans les cas prévus par la réglementation.</li>
-      <li><strong>Droit à la portabilité</strong> — recevoir les données que vous nous avez fournies dans les conditions prévues par la réglementation.</li>
-      <li><strong>Droit de retirer votre consentement</strong> — lorsque le traitement repose sur votre consentement, le retirer à tout moment sans affecter la licéité du traitement antérieur.</li>
-      <li><strong>Droit de réclamation</strong> — saisir la CNIL si vous estimez que le traitement de vos données ne respecte pas vos droits.</li>
+      <li><strong>Droit à l'information</strong> : savoir si vos données sont traitées, lesquelles, d'où elles proviennent, pourquoi et par qui.</li>
+      <li><strong>Droit d'accès</strong> : accéder aux données collectées et en obtenir une copie.</li>
+      <li><strong>Droit de rectification</strong> : faire corriger des données inexactes ou incomplètes.</li>
+      <li><strong>Droit à l'effacement</strong> : demander l'effacement de vos données dans les cas prévus par la réglementation.</li>
+      <li><strong>Droit à la limitation</strong> : demander la limitation du traitement dans certaines circonstances.</li>
+      <li><strong>Droit d'opposition</strong> : vous opposer à certains traitements dans les cas prévus par la réglementation.</li>
+      <li><strong>Droit à la portabilité</strong> : recevoir les données que vous nous avez fournies dans les conditions prévues par la réglementation.</li>
+      <li><strong>Droit de retirer votre consentement</strong> : lorsque le traitement repose sur votre consentement, le retirer à tout moment sans affecter la licéité du traitement antérieur.</li>
+      <li><strong>Droit de réclamation</strong> : saisir la CNIL si vous estimez que le traitement de vos données ne respecte pas vos droits.</li>
     </ul>
 
     <hr class="legal-hr">

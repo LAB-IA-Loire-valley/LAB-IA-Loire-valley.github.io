@@ -15,7 +15,7 @@ get_header();
       <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Ce que nous faisons</span></div>
       <h1 class="t-display page-hero__title">Notre Offre</h1>
       <p class="page-hero__lead t-lead">
-        Des prestations sur-mesure pour imaginer, explorer et déployer vos solutions IA —
+        Des prestations sur-mesure pour imaginer, explorer et déployer vos solutions IA,
         de la sensibilisation à l'industrialisation.
       </p>
     </div>
@@ -43,7 +43,7 @@ get_header();
         <div class="section-label reveal"><span>Sensibilisation</span></div>
         <h2 class="t-h1 reveal mt-16 mb-24">Éveiller les consciences,<br/>initier les premiers usages.</h2>
         <p class="t-lead reveal reveal-delay-1">
-          Conférences inspirantes, ateliers interactifs, quiz et supports visuels —
+          Conférences inspirantes, ateliers interactifs, quiz et supports visuels :
           des formats participatifs qui démystifient l'IA pour tous les publics.
         </p>
         <div style="margin-top:40px; display:flex;flex-direction:column;gap:20px;" class="reveal reveal-delay-2">
@@ -92,7 +92,7 @@ get_header();
       <div>
         <h2 class="t-h1 reveal mt-16">Monter en compétences,<br/>concrètement.</h2>
         <p class="t-lead reveal reveal-delay-1 mt-16" style="max-width:520px;">
-          Des parcours pédagogiques adaptés au monde du travail — plus de 60% du temps
+          Des parcours pédagogiques adaptés au monde du travail : plus de 60% du temps
           consacré à la pratique.
         </p>
       </div>
@@ -135,7 +135,7 @@ get_header();
     <div class="formation-grid">
       <div class="formation-card reveal">
         <span class="badge badge-magenta mb-12">4 jours</span>
-        <h4 class="t-h4">IA Engineering — Formation intensive</h4>
+        <h4 class="t-h4">IA Engineering · Formation intensive</h4>
         <p>Préparation, entraînement et évaluation de modèles supervisés. Choix des algorithmes, gestion du sur-apprentissage, déploiement API.</p>
         <div class="formation-card-meta">
           <span class="badge badge-dark">Scikit-learn</span>
@@ -145,7 +145,7 @@ get_header();
       </div>
       <div class="formation-card reveal reveal-delay-1">
         <span class="badge badge-magenta mb-12">½ à 1 jour</span>
-        <h4 class="t-h4">IA Générative — Formation pratique</h4>
+        <h4 class="t-h4">IA Générative · Formation pratique</h4>
         <p>Optimisation des connaissances théoriques et pratiques. Version "grand débutant" ou "approfondie" selon les besoins.</p>
         <div class="formation-card-meta">
           <span class="badge badge-dark">LLM</span>
@@ -154,7 +154,7 @@ get_header();
       </div>
       <div class="formation-card reveal">
         <span class="badge badge-blue mb-12">3 à 5 jours</span>
-        <h4 class="t-h4">Python — Parcours complet</h4>
+        <h4 class="t-h4">Python · Parcours complet</h4>
         <p>Initiation (3j) → Programmation POO (3j) → Développement avancé (5j). Syntaxe, bonnes pratiques PEP 8, frameworks FastAPI/Django.</p>
         <div class="formation-card-meta">
           <span class="badge badge-dark">Python</span>
@@ -191,25 +191,25 @@ get_header();
         <h2 class="t-h1 reveal mt-16 mb-24">Du diagnostic à l'industrialisation</h2>
         <p class="t-lead reveal reveal-delay-1">
           Que vous souhaitiez explorer un cas d'usage, prototyper une solution ou
-          déployer un système en production — nos Data Scientists vous guident
+          déployer un système en production, nos Data Scientists vous guident
           à chaque étape.
         </p>
         <ul style="margin-top:32px; display:flex; flex-direction:column; gap:16px;" class="reveal reveal-delay-2">
           <li style="display:flex;gap:12px;align-items:flex-start;">
             <span style="width:20px;height:20px;border-radius:50%;background:var(--magenta-faint);color:var(--magenta);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;margin-top:2px;">✓</span>
-            <span class="t-body"><strong>Pré-diagnostic offert</strong> — Évaluation gratuite de la faisabilité et de la valeur de votre projet IA.</span>
+            <span class="t-body"><strong>Pré-diagnostic offert</strong> : Évaluation gratuite de la faisabilité et de la valeur de votre projet IA.</span>
           </li>
           <li style="display:flex;gap:12px;align-items:flex-start;">
             <span style="width:20px;height:20px;border-radius:50%;background:var(--magenta-faint);color:var(--magenta);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;margin-top:2px;">✓</span>
-            <span class="t-body"><strong>Contenu co-construit</strong> — Chaque intervention est adaptée à votre marché, vos métiers et vos objectifs.</span>
+            <span class="t-body"><strong>Contenu co-construit</strong> : Chaque intervention est adaptée à votre marché, vos métiers et vos objectifs.</span>
           </li>
           <li style="display:flex;gap:12px;align-items:flex-start;">
             <span style="width:20px;height:20px;border-radius:50%;background:var(--magenta-faint);color:var(--magenta);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;margin-top:2px;">✓</span>
-            <span class="t-body"><strong>Approche éco-responsable</strong> — IA frugale, open source et déploiement local privilégiés.</span>
+            <span class="t-body"><strong>Approche éco-responsable</strong> : IA frugale, open source et déploiement local privilégiés.</span>
           </li>
           <li style="display:flex;gap:12px;align-items:flex-start;">
             <span style="width:20px;height:20px;border-radius:50%;background:var(--magenta-faint);color:var(--magenta);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;margin-top:2px;">✓</span>
-            <span class="t-body"><strong>Maintenance incluse</strong> — Accompagnement après livraison pour garantir la pérennité de votre solution.</span>
+            <span class="t-body"><strong>Maintenance incluse</strong> : Accompagnement après livraison pour garantir la pérennité de votre solution.</span>
           </li>
         </ul>
         <div style="margin-top:40px;" class="reveal reveal-delay-3">
@@ -308,7 +308,7 @@ get_header();
 
       <div class="reveal reveal-delay-1">
         <div style="background:var(--dark);border-radius:var(--radius-xl);padding:48px;">
-          <div style="font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta-light);margin-bottom:32px;">Charte IA — déroulé type</div>
+          <div style="font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta-light);margin-bottom:32px;">Charte IA · déroulé type</div>
           <div style="display:flex;flex-direction:column;gap:0;">
             <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);">
               <div style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--magenta);opacity:.5;flex-shrink:0;line-height:1;width:32px;">1</div>
@@ -321,7 +321,7 @@ get_header();
               <div style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--magenta);opacity:.5;flex-shrink:0;line-height:1;width:32px;">2</div>
               <div>
                 <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:4px;">Rédaction des points cruciaux</div>
-                <div style="font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.5;">Formalisation des principes, règles d'usage, responsabilités et limites — adaptés à votre culture d'entreprise.</div>
+                <div style="font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.5;">Formalisation des principes, règles d'usage, responsabilités et limites, adaptés à votre culture d'entreprise.</div>
               </div>
             </div>
             <div style="display:flex;gap:20px;align-items:flex-start;padding:20px 0;">
@@ -419,7 +419,7 @@ get_header();
           <div class="form-group">
             <label class="form-label" for="offre-request">Vous souhaitez</label>
             <select id="offre-request" name="request" class="form-select">
-              <option value="">— Sélectionnez —</option>
+              <option value="">Sélectionnez…</option>
               <option value="Un accompagnement projet">Un accompagnement projet</option>
               <option value="Une formation">Une formation</option>
               <option value="Une conférence / sensibilisation">Une conférence / sensibilisation</option>

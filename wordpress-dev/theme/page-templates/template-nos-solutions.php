@@ -15,7 +15,7 @@ get_header();
       <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Prêt à déployer</span></div>
       <h1 class="t-display page-hero__title">Nos Solutions</h1>
       <p class="page-hero__lead t-lead">
-        Trois solutions IA développées et éprouvées, déployables en quelques semaines —
+        Trois solutions IA développées et éprouvées, déployables en quelques semaines :
         souveraines, hébergées chez vous, adaptées à vos enjeux terrain.
       </p>
     </div>

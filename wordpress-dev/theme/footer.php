@@ -100,7 +100,7 @@ $fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.
             </div>
         </div>
         <div class="footer__bottom">
-            <span class="footer__bottom-text">© <?php echo date( 'Y' ); ?> LAB'IA Loire Valley — Technopole d'Orléans</span>
+            <span class="footer__bottom-text">© <?php echo date( 'Y' ); ?> LAB'IA Loire Valley · Technopole d'Orléans</span>
             <div class="footer__bottom-links">
                 <a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a>
                 <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">Politique de confidentialité</a>

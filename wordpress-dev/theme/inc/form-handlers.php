@@ -73,7 +73,7 @@ function labia_handle_contact_form() {
         }
     }
     $allowed_requests = $form === 'contact'
-        ? array( 'Projet Data / IA — accompagnement', 'Formation pour mon équipe', 'Conférence / Sensibilisation', 'Partenariat', 'Presse / Médias', 'Autre demande' )
+        ? array( 'Accompagnement d\'un projet Data / IA', 'Formation pour mon équipe', 'Conférence / Sensibilisation', 'Partenariat', 'Presse / Médias', 'Autre demande' )
         : array( '', 'Un accompagnement projet', 'Une formation', 'Une conférence / sensibilisation', 'Autre' );
     if ( ! in_array( $fields['request'], $allowed_requests, true ) ) {
         $valid = false;
@@ -112,7 +112,7 @@ function labia_handle_contact_form() {
         }
     }
 
-    $subject = 'Nouvelle demande — LAB\'IA Loire Valley (' . ( $form === 'contact' ? 'Contact' : 'Notre Offre' ) . ')';
+    $subject = 'Nouvelle demande · LAB\'IA Loire Valley (' . ( $form === 'contact' ? 'Contact' : 'Notre Offre' ) . ')';
     $headers = array( 'Reply-To: ' . $fields['email'] );
     $sent    = wp_mail( $recipient, $subject, $body, $headers );
     $redirect( $sent ? 'success' : 'error' );

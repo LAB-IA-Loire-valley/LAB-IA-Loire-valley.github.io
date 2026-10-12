@@ -596,19 +596,25 @@ section.s-lg { padding: 140px 0; }
   flex-direction: column;
   gap: 16px;
   position: relative;
-  overflow: hidden;
 }
-.card--service::after {
-  content: '';
+.card-trace {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--magenta);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s var(--ease-out);
+  inset: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  overflow: visible;
+  pointer-events: none;
 }
-.card--service:hover::after { transform: scaleX(1); }
+.card-trace rect {
+  fill: none;
+  stroke: var(--magenta);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset .9s var(--ease-out);
+}
+.card--service:hover .card-trace rect { stroke-dashoffset: 0; }
 
 .card-icon {
   width: 52px;
@@ -629,9 +635,9 @@ section.s-lg { padding: 140px 0; }
 .card-icon.accent-violet     { background: rgba(133,47,133,.1); }
 .card-icon.accent-violet svg { color: #852f85; }
 
-.card--service.accent-blue::after     { background: #4FB0FF; }
-.card--service.accent-indigo::after   { background: #475297; }
-.card--service.accent-violet::after   { background: #852F85; }
+.card--service.accent-blue .card-trace rect   { stroke: #4FB0FF; }
+.card--service.accent-indigo .card-trace rect { stroke: #475297; }
+.card--service.accent-violet .card-trace rect { stroke: #852F85; }
 .card-icon.blue { background: var(--blue-faint); }
 .card-icon.blue svg { color: #1a7acc; }
 
@@ -1032,6 +1038,7 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
 /* Accessibilité : respecter prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .logo-track { animation: none; }
+  .card-trace rect { transition: none; }
 }
 
 /* ── Hero ─────────────────────────────────────────────────────── */
