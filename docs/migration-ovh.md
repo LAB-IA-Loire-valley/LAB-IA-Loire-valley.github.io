@@ -78,6 +78,15 @@ Rejeu de la procédure §1-5 pour pousser le nouveau contenu ( distant dev : 181
 - **État OVH actuel** : 181 posts / 24 presse, thème avec feed cartes + timeline presse. Durée totale ~67 min.
 - ⚠️ `/tmp/opencode/labia-ovh/` (dont `upload.py`) avait été effacé (tmp volatile) → tout reconstruit ; mot de passe FTP passé par variable d'env, **jamais stocké** (ni repo ni rapport). Pour les prochains runs : garder un `upload.py` sans credential (env-based) versionné ou adossé à cette doc.
 
+## Re-déploiement 2026-10-12 (thème : roadmap, plan d'accès, cartes service, tirets)
+
+Mise en ligne des 5 commits du jour (`b1de17c..cccd31a`) — thème seul, delta minimal.
+
+- **Delta** : 17 fichiers (`style.css`, `assets/js/main.js`, `front-page.php`, `template-qui-sommes-nous.php`, `plan-labia.png` + templates/inc reformulés), poussés via `upload.py` → **17 uploadés / 0 échec**. Fichiers dev exclus (`preview-*.html`, `import-data/`, `inc/import-from-wix.php` — jamais déployés, absents du FTP).
+- **Avant** : prod exactement à l'état `b1de17c` (MD5 `style.css` = `76beb663…`, `main.js` = `3a0cf610…`).
+- **Après** : MD5 prod = repo HEAD (`style.css` = `37b5a887…`, `main.js` = `f1729187…`) ; `plan-labia.png` 200 (67 983 o) ; marqueurs OK (`map-block__plan`, `card-trace`, footer « · Technopole d'Orléans ») ; 11 pages principales → 200, 0 erreur PHP.
+- **Reste (base prod, en attente de validation)** : reformulation des tirets cadratins en base — 16 visibles en prod (`/presse/` 8, `/ils-nous-font-confiance/` 4, `/nos-solutions/` 3, `/actualites/` 1) + contenus/attachments. Faite en **local uniquement** (`dash-fix.sql`).
+
 ## Reprendre plus tard
 
 ### Quand `labia-loirevalley.fr` est prêt (DNS)
