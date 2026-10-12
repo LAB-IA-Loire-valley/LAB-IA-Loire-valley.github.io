@@ -1941,15 +1941,22 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
       background: var(--grad-dark-charte);
       border-radius: var(--radius-xl);
       padding: 48px;
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
       gap: 48px;
       align-items: center;
     }
-    .map-pin {
-      font-size: 3rem;
-      flex-shrink: 0;
+    .map-block__plan {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 20px;
     }
-    @media (max-width:768px) { .map-block { flex-direction: column; gap: 24px; padding: 32px; } }
+    .map-block__plan img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    @media (max-width:900px) { .map-block { grid-template-columns: 1fr; gap: 28px; padding: 32px; } }
 
 /* --- From ils-nous-font-confiance.html --- */
 /* Ticker override pour les client cards */

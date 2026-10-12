@@ -177,8 +177,7 @@ get_header();
   <div class="container">
     <div class="section-label reveal mb-32"><span>Nous trouver</span></div>
     <div class="map-block reveal">
-      <div class="map-pin">📍</div>
-      <div>
+      <div class="map-block__info">
         <h3 class="t-h2 mb-16" style="color:white;">LAB'IA Loire Valley</h3>
         <p style="font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:24px;">
           Le LAB'O — Village By CA Orléans<br/>
@@ -189,6 +188,9 @@ get_header();
           <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', labia_opt( 'phone', '02 38 69 80 24' ) ) ); ?>" class="btn btn-outline-white btn-sm">📞 <?php echo esc_html( labia_opt( 'phone', '02 38 69 80 24' ) ); ?></a>
           <a href="mailto:<?php echo esc_attr( labia_opt( 'email', 'contact@labia-loirevalley.fr' ) ); ?>" class="btn btn-outline-white btn-sm">✉ contact@labia-loirevalley.fr</a>
         </div>
+      </div>
+      <div class="map-block__plan">
+        <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/plan-labia.png' ); ?>" alt="Plan d'accès — LAB'IA Loire Valley, Le LAB'O Village by CA à Orléans" width="880" height="497" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
