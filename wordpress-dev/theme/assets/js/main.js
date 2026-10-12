@@ -110,39 +110,95 @@ document.documentElement.classList.replace('no-js', 'js');
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 
-// ── Steps vertical progress (6 étapes, rail + fade) ──────────────
+// ── Steps vertical progress (6 étapes, rail + points) ──────────────
 (function() {
   document.documentElement.classList.add('js');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sda = !reduce && window.CSS && window.CSS.supports
-    && CSS.supports('animation-timeline: view()')
-    && CSS.supports('view-timeline-name: --x');
-  if (sda) document.documentElement.classList.add('sda');
 
   const list = document.querySelector('.steps-v');
   if (!list) return;
   const steps = Array.prototype.slice.call(list.querySelectorAll('.steps-v-step'));
   if (!steps.length) return;
+  const dots = steps.map(s => s.querySelector('.steps-v-dot'));
 
-  // Remplissage du rail au fil des étapes (fallback navigateurs sans scroll-driven)
-  function fill() {
-    if (sda) return;
-    const n = list.querySelectorAll('.steps-v-step.on').length;
-    list.style.setProperty('--fill', (n / steps.length * 100) + '%');
+  // Couleur de chaque point : couleur du dégradé du rail à sa position
+  const STOPS = [
+    [0.00, [0x4F, 0xB0, 0xFF]], // bleu
+    [0.33, [0x47, 0x52, 0x97]], // indigo
+    [0.66, [0x85, 0x2F, 0x85]], // violet
+    [1.00, [0xE2, 0x00, 0x7D]]  // magenta
+  ];
+  function gradColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    for (let i = 1; i < STOPS.length; i++) {
+      if (t <= STOPS[i][0]) {
+        const a = STOPS[i - 1], b = STOPS[i];
+        const k = (t - a[0]) / (b[0] - a[0]);
+        return a[1].map((v, j) => Math.round(v + (b[1][j] - v) * k));
+      }
+    }
+    return STOPS[STOPS.length - 1][1];
+  }
+  function paintDots() {
+    const lr = list.getBoundingClientRect();
+    const railTop = lr.top + 16;
+    const railH = lr.height - 32;
+    if (railH <= 0) return;
+    dots.forEach((dot, i) => {
+      if (!dot) return;
+      const dr = dot.getBoundingClientRect();
+      const t = (dr.top + dr.height / 2 - railTop) / railH;
+      const c = gradColor(t);
+      steps[i].style.setProperty('--dot-color', 'rgb(' + c.join(', ') + ')');
+      steps[i].style.setProperty('--dot-glow', 'rgba(' + c.join(', ') + ', .30)');
+    });
+  }
+
+  // Remplissage du rail + point courant : le bout suit la ligne de lecture (62 % de l'écran)
+  function update() {
+    const r = list.getBoundingClientRect();
+    const railTop = r.top + 16;
+    const railH = r.height - 32;
+    if (railH <= 0) return;
+    const readingY = window.innerHeight * 0.62;
+    const pct = Math.max(0, Math.min(1, (readingY - railTop) / railH));
+    list.style.setProperty('--fill', (pct * 100).toFixed(2) + '%');
+
+    // Point courant = dernière boule atteinte par le bout de la ligne
+    let current = null;
+    dots.forEach((dot, i) => {
+      if (!dot) return;
+      const dr = dot.getBoundingClientRect();
+      if (dr.top + dr.height / 2 <= readingY) current = steps[i];
+    });
+    list.querySelectorAll('.steps-v-step.now').forEach(s => { if (s !== current) s.classList.remove('now'); });
+    if (current) current.classList.add('now');
   }
   function finish() {
     steps.forEach(s => s.classList.add('on'));
     steps[steps.length - 1].classList.add('now');
-    fill();
+    list.style.setProperty('--fill', '100%');
+  }
+
+  paintDots();
+  update();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { paintDots(); update(); });
   }
   if (reduce) { finish(); return; }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', () => { paintDots(); update(); });
 
   const ioSteps = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        list.querySelectorAll('.steps-v-step.now').forEach(s => s.classList.remove('now'));
-        entry.target.classList.add('on', 'now');
-        fill();
+        entry.target.classList.add('on');
         ioSteps.unobserve(entry.target);
       }
     });
