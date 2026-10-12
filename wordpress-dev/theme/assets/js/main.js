@@ -122,7 +122,7 @@ document.documentElement.classList.replace('no-js', 'js');
   const dots = steps.map(s => s.querySelector('.steps-v-dot'));
 
   // Couleurs par phase : reprises des badges (Cadrage, Réalisation, Lancement)
-  const FALLBACK = [[226, 0, 125], [26, 122, 204], [17, 17, 17]];
+  const FALLBACK = [[26, 122, 204], [133, 47, 133], [226, 0, 125]];
   function parseColor(c, fb) {
     const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(c || '');
     return m ? [+m[1], +m[2], +m[3]] : fb;

@@ -187,48 +187,48 @@ get_header();
     </div>
 
     <div class="steps-v">
-      <div class="steps-v-phase"><span class="badge badge-magenta">Cadrage</span><span class="steps-v-rule" aria-hidden="true"></span></div>
+      <div class="steps-v-phase"><span class="badge badge-blue">Cadrage</span><span class="steps-v-rule" aria-hidden="true"></span></div>
       <div class="steps-v-step steps-v-first">
         <div class="steps-v-dot">1</div>
         <div class="steps-v-card">
-          <h3>Planification <span class="badge badge-magenta">Offert</span></h3>
+          <h3>Planification <span class="badge badge-blue">Offert</span></h3>
           <p>Cahier des charges, feuille de route et pré-diagnostic offert pour poser les fondations solides de votre projet.</p>
         </div>
       </div>
       <div class="steps-v-step">
         <div class="steps-v-dot">2</div>
         <div class="steps-v-card">
-          <h3>Maquettage <span class="badge badge-magenta">Maquette</span></h3>
+          <h3>Maquettage <span class="badge badge-blue">Maquette</span></h3>
           <p>Conception de visualisations et maquettes attrayantes pour donner vie à votre idée avant le développement.</p>
         </div>
       </div>
-      <div class="steps-v-phase"><span class="badge badge-blue">Réalisation</span><span class="steps-v-rule" aria-hidden="true"></span></div>
+      <div class="steps-v-phase"><span class="badge badge-violet">Réalisation</span><span class="steps-v-rule" aria-hidden="true"></span></div>
       <div class="steps-v-step">
         <div class="steps-v-dot">3</div>
         <div class="steps-v-card">
-          <h3>Conception <span class="badge badge-blue">Prototype</span></h3>
+          <h3>Conception <span class="badge badge-violet">Prototype</span></h3>
           <p>Développement éco-responsable et éthique par nos Data Scientists — intégration harmonieuse et efficace.</p>
         </div>
       </div>
       <div class="steps-v-step">
         <div class="steps-v-dot">4</div>
         <div class="steps-v-card">
-          <h3>Tests &amp; Recettage <span class="badge badge-blue">Validé</span></h3>
+          <h3>Tests &amp; Recettage <span class="badge badge-violet">Validé</span></h3>
           <p>Chaque détail est examiné et ajusté lors de notre phase de recettage pour vous assurer un produit parfait.</p>
         </div>
       </div>
-      <div class="steps-v-phase"><span class="badge badge-dark">Lancement</span><span class="steps-v-rule" aria-hidden="true"></span></div>
+      <div class="steps-v-phase"><span class="badge badge-magenta">Lancement</span><span class="steps-v-rule" aria-hidden="true"></span></div>
       <div class="steps-v-step">
         <div class="steps-v-dot">5</div>
         <div class="steps-v-card">
-          <h3>Déploiement <span class="badge badge-dark">En prod</span></h3>
+          <h3>Déploiement <span class="badge badge-magenta">En prod</span></h3>
           <p>Mise en production guidée selon notre processus éprouvé pour un envol réussi de votre solution.</p>
         </div>
       </div>
       <div class="steps-v-step">
         <div class="steps-v-dot">6</div>
         <div class="steps-v-card">
-          <h3>Maintenance <span class="badge badge-dark">Suivi</span></h3>
+          <h3>Maintenance <span class="badge badge-magenta">Suivi</span></h3>
           <p>Accompagnement post-livraison pour assurer la pérennité de votre solution et soutenir votre croissance.</p>
         </div>
       </div>
