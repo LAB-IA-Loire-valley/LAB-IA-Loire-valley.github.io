@@ -12,11 +12,14 @@
 .idea/
 .mcp.json
 .superpowers/
+.opencode/
+opencode.json
 
 # Import Wix (outils de dev, pas utilisés en production)
 wordpress-dev/import-data/
 wordpress-dev/theme/import-data/
 wordpress-dev/theme/inc/import-from-wix.php
+wordpress-dev/theme/preview-*.html
 
 # Git
 .gitmodules
@@ -34,3 +37,5 @@ wordpress-dev/theme/assets/css/style.css
 
 # Working docs
 docs/superpowers/
+HANDOFF.md
+wix-content-extract.md
