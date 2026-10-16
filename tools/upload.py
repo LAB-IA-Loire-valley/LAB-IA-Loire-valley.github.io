@@ -3,21 +3,28 @@
 
 Aucun credential dans le code : tout passe par des variables d'environnement.
 
-    OVH_FTP_HOST  (défaut: ftp.cluster131.hosting.ovh.net)
-    OVH_FTP_USER  (défaut: savqafo)
-    OVH_FTP_PASS  (obligatoire)
+    OVH_FTP_HOST    (défaut: ftp.cluster131.hosting.ovh.net)
+    OVH_FTP_USER    (défaut: savqafo)
+    OVH_FTP_PASS    (obligatoire)
+    OVH_FTP_EXCLUDE (optionnel) : motifs fnmatch supplémentaires, séparés par des virgules
 
 Usage:
-    OVH_FTP_PASS=... uv run tools/upload.py <local_dir> <remote_dir>
+    OVH_FTP_PASS=... uv run tools/upload.py <local_dir> <remote_dir> [--dry-run]
 
 Exemple (thème seul) :
     OVH_FTP_PASS=... uv run tools/upload.py \
         wordpress-dev/theme www/wp-content/themes/labia-wp
 
+Exclusions par défaut (fichiers de dev du thème, jamais déployés) :
+    preview-*.html, import-data/*, inc/import-from-wix.php,
+    inc/migrate-news-images.php, assets/css/style.css, *:Zone.Identifier
+
 Le script skippe un fichier si sa taille distante est identique (résumable),
 crée les dossiers distants manquants, et n'écrit jamais de secret sur disque.
+`--dry-run` liste ce qui serait envoyé, sans connexion FTP.
 """
 
+import fnmatch
 import os
 import sys
 import ftplib
@@ -26,6 +33,26 @@ from pathlib import Path
 HOST = os.environ.get("OVH_FTP_HOST", "ftp.cluster131.hosting.ovh.net")
 USER = os.environ.get("OVH_FTP_USER", "savqafo")
 PASS = os.environ.get("OVH_FTP_PASS")
+
+DEFAULT_EXCLUDES = (
+    "preview-*.html",
+    "import-data/*",
+    "inc/import-from-wix.php",
+    "inc/migrate-news-images.php",
+    "assets/css/style.css",
+    "*:Zone.Identifier",
+)
+
+
+def is_excluded(rel, patterns):
+    """Vrai si le chemin relatif (posix) matche un motif d'exclusion."""
+    for pat in patterns:
+        if fnmatch.fnmatch(rel, pat):
+            return True
+        # "dossier/*" exclut aussi tout le contenu imbriqué
+        if pat.endswith("/*") and rel.startswith(pat[:-1]):
+            return True
+    return False
 
 
 def connect():
@@ -66,18 +93,36 @@ def remote_exists(ftp, remote_path):
 
 
 def main():
-    if not PASS:
-        sys.exit("OVH_FTP_PASS manquant dans l'environnement.")
-    if len(sys.argv) != 3:
+    dry_run = "--dry-run" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--dry-run"]
+    if len(args) != 2:
         sys.exit(__doc__)
 
-    local_root = Path(sys.argv[1]).resolve()
-    remote_root = sys.argv[2].rstrip("/")
+    local_root = Path(args[0]).resolve()
+    remote_root = args[1].rstrip("/")
     if not local_root.is_dir():
         sys.exit(f"Dossier local introuvable: {local_root}")
 
-    files = sorted(p for p in local_root.rglob("*") if p.is_file())
-    print(f"{len(files)} fichiers locaux à examiner -> {remote_root}")
+    patterns = DEFAULT_EXCLUDES + tuple(
+        p.strip() for p in os.environ.get("OVH_FTP_EXCLUDE", "").split(",") if p.strip()
+    )
+    files = []
+    excluded = 0
+    for path in sorted(p for p in local_root.rglob("*") if p.is_file()):
+        rel = path.relative_to(local_root).as_posix()
+        if is_excluded(rel, patterns):
+            excluded += 1
+            continue
+        files.append(path)
+    print(f"{excluded} fichier(s) dev exclu(s) ; {len(files)} à examiner -> {remote_root}")
+
+    if dry_run:
+        for path in files:
+            print("  ·", path.relative_to(local_root).as_posix())
+        sys.exit(0)
+
+    if not PASS:
+        sys.exit("OVH_FTP_PASS manquant dans l'environnement.")
 
     ftp = connect()
     uploaded = skipped = failed = 0
