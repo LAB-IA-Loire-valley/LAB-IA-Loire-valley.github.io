@@ -16,7 +16,7 @@ get_header();
       $pub_date  = get_post_meta( get_the_ID(), 'pub_date', true );
       $category  = get_post_meta( get_the_ID(), 'news_category', true );
       $lead      = get_post_meta( get_the_ID(), 'sub_title', true );
-      $date_str  = $pub_date ? date( 'd M Y', $pub_date ) : get_the_date( 'd M Y' );
+      $date_str  = absint( $pub_date ) ? date( 'd M Y', absint( $pub_date ) ) : get_the_date( 'd M Y' );
       if ( ! $lead && has_excerpt() ) {
           $excerpt = get_the_excerpt();
           $content = get_post_field( 'post_content', get_the_ID() );

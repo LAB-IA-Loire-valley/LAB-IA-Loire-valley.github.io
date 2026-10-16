@@ -100,7 +100,7 @@ get_header();
                 ?>
                 <div class="press-item" data-type="<?php echo esc_attr( $type_slug ); ?>">
                     <div>
-                        <div class="press-item__date"><?php echo $date ? date( 'd M Y', $date ) : 'Sans date'; ?></div>
+                        <div class="press-item__date"><?php echo absint( $date ) ? date( 'd M Y', absint( $date ) ) : 'Sans date'; ?></div>
                         <div class="press-item__source"><span class="press-item__type-icon"><?php echo esc_html( $type_icon ); ?></span> <?php echo esc_html( $source ); ?></div>
                     </div>
                     <div>
