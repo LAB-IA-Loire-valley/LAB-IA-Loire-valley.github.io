@@ -91,15 +91,17 @@ Mise en ligne des 5 commits du jour (`b1de17c..cccd31a`) — thème seul, delta 
 
 ### Quand `labia-loirevalley.fr` est prêt (DNS)
 
-1. **OVH Manager → Hébergement → Multisite / Domaines** : ajouter `labia-loirevalley.fr` (si le domaine est chez OVH, il s'attache directement)
-2. **DNS** : si le domaine est externe, pointer les A records vers `cluster131.hosting.ovh.net` (IP 146.59.209.152) + CNAME si besoin (www, etc.)
-3. **Mettre à jour l'URL dans la DB** (sinon les liens internes restent sur l'URL temporaire) :
+> Checklist détaillée et à jour : `docs/checklist-mise-en-prod.md` (canonical **non-www** ; domaine enregistré chez OVH, DNS à rapatrier depuis Wix).
+
+1. **OVH Manager → Hébergement → Mes sites** : ajouter `labia-loirevalley.fr` (+ `www` auto) avec **dossier racine `www`**. Le domaine est enregistré chez OVH, seuls les DNS sont chez Wix → voir checklist §1 (option A : remettre les serveurs DNS OVH ; option B : éditer les enregistrements chez Wix).
+2. **DNS** : pointer `A labia-loirevalley.fr` et `A www` vers `146.59.209.152` (cluster131). ⚠️ **Préserver MX/SPF/TXT Google** (mail sur Google Workspace).
+3. **Mettre à jour les URLs dans la DB** (canonical **non-www**) :
    ```sql
    UPDATE wp_options SET option_value='https://labia-loirevalley.fr' WHERE option_name IN ('siteurl','home');
    ```
-   (via phpMyAdmin OVH : https://phpmyadmin.ovh.net, ou script temporaire comme à l'étape 4)
-4. Passer le site en HTTPS : OVH fournit le certificat SSL auto pour le domaine
-5. Vérifier la redirection http → https et re-tester wp-admin
+   puis search-replace serialization-safe complet de `http://savqafo.cluster131.hosting.ovh.net` → `https://labia-loirevalley.fr` (recommandé : plugin Better Search Replace, dry-run d'abord — voir checklist §2 ; via phpMyAdmin OVH : https://phpmyadmin.ovh.net)
+4. Passer le site en HTTPS : OVH fournit le certificat SSL auto pour le domaine (couvrir www + non-www)
+5. Redirections http→https, **www→non-www** et anciennes URLs Wix : bloc `.htaccess` testé, dans `docs/checklist-mise-en-prod.md` §5
 
 ### Rappels utiles
 
