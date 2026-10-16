@@ -248,9 +248,9 @@ get_header();
             <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Déploiement</div>
             <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Industrialisation &amp; mise en prod</div>
           </div>
-          <div style="padding:24px;background:var(--magenta-faint);border-radius:var(--radius-lg); border:1px solid rgba(226,0,125,.15);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.4;line-height:1;">06</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;color:var(--magenta);">Maintenance</div>
+          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">06</div>
+            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Maintenance</div>
             <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Suivi &amp; évolution dans le temps</div>
           </div>
         </div>
