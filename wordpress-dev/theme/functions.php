@@ -47,3 +47,4 @@ add_filter( 'admin_body_class', function ( $classes ) {
 require_once LABIA_THEME_DIR . '/inc/enqueue.php';
 require_once LABIA_THEME_DIR . '/inc/cmb2-config.php';
 require_once LABIA_THEME_DIR . '/inc/form-handlers.php';
+require_once LABIA_THEME_DIR . '/inc/seo-meta.php';
