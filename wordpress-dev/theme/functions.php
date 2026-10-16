@@ -27,6 +27,22 @@ add_theme_support( 'title-tag' );
 // Featured images (panneau « Image mise en avant » dans l'éditeur + rendu the_post_thumbnail)
 add_theme_support( 'post-thumbnails' );
 
+// Éditeur de blocs : interdire la traduction automatique du navigateur dans l'admin.
+// Google Translate réécrit le DOM géré par React → « removeChild ... not a child »
+// à l'ouverture du panneau Image mise en avant (bug Gutenberg #69597 / wp-calypso #101365).
+add_filter( 'language_attributes', function ( $output ) {
+    if ( is_admin() ) {
+        return $output . ' translate="no"';
+    }
+    return $output;
+} );
+add_action( 'admin_head', function () {
+    echo '<meta name="google" content="notranslate">' . "\n";
+} );
+add_filter( 'admin_body_class', function ( $classes ) {
+    return $classes . ' notranslate';
+} );
+
 // Load in correct order (CPTs first, then CMB2 config, then enqueue).
 require_once LABIA_THEME_DIR . '/inc/enqueue.php';
 require_once LABIA_THEME_DIR . '/inc/cmb2-config.php';
