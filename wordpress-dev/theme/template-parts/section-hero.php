@@ -15,7 +15,7 @@ $cta1_url  = labia_opt( 'hero_cta_1_url', '/notre-offre/' );
 $cta2_text = labia_opt( 'hero_cta_2_text', 'Parler de mon projet' );
 $cta2_url  = labia_opt( 'hero_cta_2_url', '/contact/' );
 $badge_id  = labia_opt( 'ambassador_badge_image' );
-$badge_url = $badge_id ? wp_get_attachment_url( $badge_id ) : 'https://static.wixstatic.com/media/667cf1_e5175fd9b21947b8bfc2f9016db01372~mv2.png';
+$badge_url = $badge_id ? wp_get_attachment_url( $badge_id ) : LABIA_THEME_URI . '/assets/img/badge-osez-lia.png';
 ?>
 <section class="hero" id="main-content">
     <canvas id="hero-canvas"></canvas>

@@ -108,12 +108,14 @@ function labia_register_options_page() {
         'name' => "Image financeurs LAB'IA",
         'id'   => 'financeur_image_1',
         'type' => 'file',
+        'options' => array( 'url' => false ),
     ) );
 
     $opt_page->add_field( array(
         'name' => 'Image financeurs Technopole',
         'id'   => 'financeur_image_2',
         'type' => 'file',
+        'options' => array( 'url' => false ),
     ) );
 
     // Hero
@@ -134,6 +136,7 @@ function labia_register_options_page() {
         'name' => 'Image badge ambassadeur',
         'id'   => 'ambassador_badge_image',
         'type' => 'file',
+        'options' => array( 'url' => false ),
     ) );
 
     $opt_page->add_field( array(

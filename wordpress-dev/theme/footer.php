@@ -18,8 +18,8 @@ $addr3         = labia_opt( 'address_city', '45074 Orléans Cedex 2' );
 $linkedin      = labia_opt( 'linkedin_url', 'https://www.linkedin.com/company/lab-ia-loire-valley' );
 $fin1_id       = labia_opt( 'financeur_image_1' );
 $fin2_id       = labia_opt( 'financeur_image_2' );
-$fin1_url      = $fin1_id ? wp_get_attachment_url( $fin1_id ) : 'https://static.wixstatic.com/media/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png/v1/fill/w_820,h_117,al_c,q_90,enc_auto/667cf1_2e4b6c62a12a4dbe84d1455c9ec29cfb~mv2.png';
-$fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : 'https://static.wixstatic.com/media/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png/v1/fill/w_820,h_108,al_c,q_90,enc_auto/667cf1_2d88a638c2664411bd62dc7111cf8ab1~mv2.png';
+$fin1_url      = $fin1_id ? wp_get_attachment_url( $fin1_id ) : LABIA_THEME_URI . '/assets/img/financeurs-1.png';
+$fin2_url      = $fin2_id ? wp_get_attachment_url( $fin2_id ) : LABIA_THEME_URI . '/assets/img/financeurs-2.png';
 ?>
 <footer class="footer">
     <div class="container">
