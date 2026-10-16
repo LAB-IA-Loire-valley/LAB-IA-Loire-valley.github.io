@@ -2429,3 +2429,32 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
 .pagination a.page-numbers:hover { border-color: var(--magenta); color: var(--magenta); }
 .pagination .page-numbers.current { background: var(--magenta); border-color: var(--magenta); color: white; }
 .pagination .page-numbers.dots { border: none; background: none; min-width: 0; }
+
+/* ── 404 ─────────────────────────────────────────────────────── */
+.error-404 { max-width: 760px; margin: 0 auto; text-align: center; }
+.error-404__actions { justify-content: center; align-items: center; }
+.error-404__hint {
+  font-family: var(--font-display);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin: 56px 0 20px;
+}
+.error-404__links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 28px; }
+.error-404__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--magenta);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s, color .2s;
+}
+.error-404__link svg { width: 16px; height: 16px; transition: transform .25s; }
+.error-404__link:hover { border-color: currentColor; }
+.error-404__link:hover svg { transform: translateX(3px); }
