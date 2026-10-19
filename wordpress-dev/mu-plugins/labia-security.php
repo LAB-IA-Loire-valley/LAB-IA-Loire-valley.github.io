@@ -21,6 +21,19 @@ add_filter( 'rest_endpoints', function ( $endpoints ) {
     return $endpoints;
 } );
 
+// Bloquer la recherche d'articles par auteur (?author=N) sur l'API wp/v2 pour les visiteurs.
+add_filter( 'rest_pre_dispatch', function ( $result, $server, $request ) {
+    $author = $request->get_param( 'author' );
+    if ( ! is_user_logged_in()
+        && 0 === strpos( $request->get_route(), '/wp/v2/' )
+        && null !== $author
+        && '' !== $author
+    ) {
+        return new WP_Error( 'rest_forbidden', 'Accès refusé.', array( 'status' => 403 ) );
+    }
+    return $result;
+}, 10, 3 );
+
 // Rediriger les archives auteur (?author=N) — évite la divulgation des identifiants.
 add_action( 'template_redirect', function () {
     if ( is_author() ) {
