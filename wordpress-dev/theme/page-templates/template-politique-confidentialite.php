@@ -9,7 +9,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Protection des données</span></div>
+      <div class="section-label"><span>Protection des données</span></div>
       <h1 class="t-display page-hero__title">Politique de confidentialité</h1>
     </div>
   </div>

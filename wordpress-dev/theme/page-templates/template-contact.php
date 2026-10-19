@@ -11,7 +11,7 @@ get_header();
 <div class="page-hero" id="main-content" style="padding-bottom:64px;">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">On vous répond sous 48h</span></div>
+      <div class="section-label"><span>On vous répond sous 48h</span></div>
       <h1 class="t-display page-hero__title">Parlons de<br/>votre projet.</h1>
       <p class="page-hero__lead t-lead">Pré-diagnostic offert : partagez votre problématique, nos experts définissent avec vous la meilleure approche.</p>
     </div>

@@ -12,7 +12,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Ce que nous faisons</span></div>
+      <div class="section-label"><span>Ce que nous faisons</span></div>
       <h1 class="t-display page-hero__title">Notre Offre</h1>
       <p class="page-hero__lead t-lead">
         Des prestations sur-mesure pour imaginer, explorer et déployer vos solutions IA,

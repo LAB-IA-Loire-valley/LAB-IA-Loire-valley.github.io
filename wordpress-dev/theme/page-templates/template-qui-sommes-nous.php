@@ -11,7 +11,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Notre histoire</span></div>
+      <div class="section-label"><span>Notre histoire</span></div>
       <h1 class="t-display page-hero__title">Qui sommes-nous</h1>
       <p class="page-hero__lead t-lead">Un projet né en 2021 au sein de la Technopole d'Orléans, avec une mission claire : démocratiser et simplifier l'usage de l'IA pour toutes les entreprises de la région.</p>
     </div>

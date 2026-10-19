@@ -11,7 +11,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">On parle de nous</span></div>
+      <div class="section-label"><span>On parle de nous</span></div>
       <h1 class="t-display page-hero__title">Presse</h1>
       <p class="page-hero__lead t-lead">Articles, vidéos, podcasts, interviews : la présence médiatique du LAB'IA Loire Valley depuis 2021.</p>
     </div>

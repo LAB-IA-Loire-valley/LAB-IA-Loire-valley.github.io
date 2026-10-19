@@ -9,7 +9,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Erreur 404</span></div>
+      <div class="section-label"><span>Erreur 404</span></div>
       <h1 class="t-display page-hero__title">Page introuvable</h1>
       <p class="page-hero__lead t-lead">La page demandée n’existe pas ou a été déplacée. Pas d’inquiétude : tout le reste du site est toujours là.</p>
     </div>

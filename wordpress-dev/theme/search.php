@@ -9,7 +9,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Recherche</span></div>
+      <div class="section-label"><span>Recherche</span></div>
       <h1 class="t-display page-hero__title">Résultats pour «&nbsp;<?php echo esc_html( get_search_query() ); ?>&nbsp;»</h1>
     </div>
   </div>

@@ -577,6 +577,8 @@ section.s-lg { padding: 140px 0; }
   text-transform: uppercase;
   color: var(--magenta);
 }
+.page-hero .section-label { margin-bottom: 16px; }
+.page-hero .section-label span { color: rgba(255, 255, 255, .4); }
 
 /* ── Cards ───────────────────────────────────────────────────── */
 .card {
@@ -1101,12 +1103,15 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
     -webkit-text-fill-color: transparent;
   }
 }
-.grad-text {
-  background: linear-gradient(90deg, #008AD1 0%, #6455A0 26%, #9B2485 50%, #DB037F 76%, #E6007E 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+.grad-text { color: var(--magenta); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .grad-text {
+    background: linear-gradient(90deg, #008AD1 0%, #6455A0 26%, #9B2485 50%, #DB037F 76%, #E6007E 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 .hero__overline {
   font-family: var(--font-display);

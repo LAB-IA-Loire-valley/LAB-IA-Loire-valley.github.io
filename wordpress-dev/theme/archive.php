@@ -9,7 +9,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Archives</span></div>
+      <div class="section-label"><span>Archives</span></div>
       <h1 class="t-display page-hero__title"><?php echo wp_kses_post( get_the_archive_title() ); ?></h1>
       <?php if ( get_the_archive_description() ) : ?>
       <p class="page-hero__lead t-lead"><?php echo wp_kses_post( get_the_archive_description() ); ?></p>

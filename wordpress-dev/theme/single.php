@@ -27,7 +27,7 @@ get_header();
       ?>
 
       <?php if ( $category ) : ?>
-        <div class="badge badge-magenta" style="margin-bottom:16px;"><?php echo esc_html( $category ); ?></div>
+        <div class="badge badge-magenta mb-16"><?php echo esc_html( $category ); ?></div>
       <?php endif; ?>
 
       <h1 class="t-display page-hero__title"><?php the_title(); ?></h1>

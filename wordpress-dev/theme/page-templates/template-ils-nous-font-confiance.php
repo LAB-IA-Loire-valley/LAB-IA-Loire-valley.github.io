@@ -11,7 +11,7 @@ get_header();
 <div class="page-hero" id="main-content">
   <div class="container">
     <div class="page-hero__inner">
-      <div class="section-label" style="margin-bottom:16px;"><span style="color:rgba(255,255,255,.4);">Références</span></div>
+      <div class="section-label"><span>Références</span></div>
       <h1 class="t-display page-hero__title">Ils nous font confiance</h1>
       <p class="page-hero__lead t-lead">Entreprises, institutions, opérateurs, écoles de formation : un écosystème régional engagé dans la transformation IA.</p>
     </div>

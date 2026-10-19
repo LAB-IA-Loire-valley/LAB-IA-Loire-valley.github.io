@@ -244,7 +244,7 @@ get_header();
 <section class="ctx-offwhite s-sm">
   <div class="container">
     <div style="text-align:center; margin-bottom:48px;">
-      <p class="t-label reveal" style="margin-bottom:16px;">Ils nous font confiance</p>
+      <p class="t-label reveal mb-16">Ils nous font confiance</p>
       <h2 class="t-h2 reveal mt-8">Un écosystème régional engagé</h2>
     </div>
   </div>
