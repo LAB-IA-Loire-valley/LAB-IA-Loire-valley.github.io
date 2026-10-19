@@ -152,8 +152,8 @@ function labia_resolve_client_logo_file( $file ) {
             continue;
         }
         if ( 'svg' === strtolower( pathinfo( $candidate, PATHINFO_EXTENSION ) )
-            && labia_svg_is_blank( $path ) ) {
-            continue; // logo blanc : invisible sur fond clair
+            && ! labia_svg_is_visible( $path ) ) {
+            continue; // fichier invalide (page 404 déguisée) ou logo blanc invisible
         }
         return $candidate;
     }
@@ -162,15 +162,19 @@ function labia_resolve_client_logo_file( $file ) {
 }
 
 /**
- * Détecte un SVG dont toutes les couleurs de remplissage sont blanches.
+ * Vérifie qu'un fichier est un SVG valide et visible (au moins une couleur
+ * autre que blanche). Rejette notamment les pages 404 déguisées en `.svg`.
  *
  * @param string $path Chemin du fichier SVG.
  * @return bool
  */
-function labia_svg_is_blank( $path ) {
+function labia_svg_is_visible( $path ) {
     $svg = @file_get_contents( $path );
-    if ( false === $svg || ! preg_match_all( '/(?:fill\s*:\s*|fill\s*=\s*["\'])\s*(#[0-9a-fA-F]{3,8})/', $svg, $m ) ) {
-        return false; // pas de fill explicite → on suppose visible
+    if ( false === $svg || false === stripos( $svg, '<svg' ) ) {
+        return false; // pas un vrai SVG
+    }
+    if ( ! preg_match_all( '/(?:fill\s*:\s*|fill\s*=\s*["\'])\s*(#[0-9a-fA-F]{3,8})/', $svg, $m ) ) {
+        return true; // pas de fill explicite → on suppose visible
     }
 
     foreach ( $m[1] as $hex ) {
@@ -179,11 +183,11 @@ function labia_svg_is_blank( $path ) {
             $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
         }
         if ( 'ffffff' !== substr( $hex, 0, 6 ) ) {
-            return false; // au moins une couleur non blanche
+            return true; // au moins une couleur non blanche
         }
     }
 
-    return true;
+    return false; // uniquement blanc → invisible
 }
 
 /**
