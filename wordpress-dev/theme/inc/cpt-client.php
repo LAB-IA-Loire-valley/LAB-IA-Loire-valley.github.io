@@ -116,3 +116,117 @@ function labia_get_clients( $type_slug = null ) {
 
     return get_posts( $args );
 }
+
+/**
+ * Résout le nom de fichier logo d'un client vers un fichier valide du thème.
+ *
+ * Corrige les références cassées : fichier absent, ou SVG entièrement blanc
+ * (invisible sur fond clair). Essaie d'abord le nom fourni, puis le même
+ * basename avec d'autres extensions.
+ *
+ * @param string $file Nom de fichier (ex: "afnor.svg").
+ * @return string Nom du fichier valide, ou chaîne vide.
+ */
+function labia_resolve_client_logo_file( $file ) {
+    $file = ltrim( (string) $file, '/' );
+    if ( '' === $file || false !== strpos( $file, '/' ) ) {
+        return '';
+    }
+
+    $dir = trailingslashit( get_template_directory() ) . 'assets/img/logos/';
+
+    $candidates = array( $file );
+    $ext        = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+    if ( $ext ) {
+        $base = substr( $file, 0, -( strlen( $ext ) + 1 ) );
+        foreach ( array( 'png', 'svg', 'jpg', 'jpeg', 'webp' ) as $alt ) {
+            if ( $alt !== $ext ) {
+                $candidates[] = $base . '.' . $alt;
+            }
+        }
+    }
+
+    foreach ( $candidates as $candidate ) {
+        $path = $dir . $candidate;
+        if ( ! is_file( $path ) ) {
+            continue;
+        }
+        if ( 'svg' === strtolower( pathinfo( $candidate, PATHINFO_EXTENSION ) )
+            && labia_svg_is_blank( $path ) ) {
+            continue; // logo blanc : invisible sur fond clair
+        }
+        return $candidate;
+    }
+
+    return '';
+}
+
+/**
+ * Détecte un SVG dont toutes les couleurs de remplissage sont blanches.
+ *
+ * @param string $path Chemin du fichier SVG.
+ * @return bool
+ */
+function labia_svg_is_blank( $path ) {
+    $svg = @file_get_contents( $path );
+    if ( false === $svg || ! preg_match_all( '/(?:fill\s*:\s*|fill\s*=\s*["\'])\s*(#[0-9a-fA-F]{3,8})/', $svg, $m ) ) {
+        return false; // pas de fill explicite → on suppose visible
+    }
+
+    foreach ( $m[1] as $hex ) {
+        $hex = strtolower( ltrim( $hex, '#' ) );
+        if ( 3 === strlen( $hex ) ) {
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+        }
+        if ( 'ffffff' !== substr( $hex, 0, 6 ) ) {
+            return false; // au moins une couleur non blanche
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Retourne le HTML du logo d'un client : média WordPress, sinon fichier du
+ * thème, sinon emoji.
+ *
+ * @param int|WP_Post $client Client.
+ * @param string      $size   Taille d'image WP pour le média.
+ * @return string HTML.
+ */
+function labia_client_logo_html( $client, $size = 'medium' ) {
+    $client = get_post( $client );
+    if ( ! $client ) {
+        return '';
+    }
+
+    $alt    = $client->post_title;
+    $att_id = (int) get_post_meta( $client->ID, 'logo', true );
+    if ( $att_id ) {
+        $img = wp_get_attachment_image( $att_id, $size, false, array(
+            'class'    => 'client-logo__img',
+            'alt'      => $alt,
+            'loading'  => 'lazy',
+            'decoding' => 'async',
+        ) );
+        if ( $img ) {
+            return $img;
+        }
+    }
+
+    $file = labia_resolve_client_logo_file( get_post_meta( $client->ID, 'logo_file', true ) );
+    if ( $file ) {
+        return sprintf(
+            '<img class="client-logo__img" src="%s" alt="%s" loading="lazy" decoding="async" />',
+            esc_url( LABIA_THEME_URI . '/assets/img/logos/' . $file ),
+            esc_attr( $alt )
+        );
+    }
+
+    $emoji = get_post_meta( $client->ID, 'emoji', true );
+    if ( $emoji ) {
+        return '<div class="client-emoji">' . esc_html( $emoji ) . '</div>';
+    }
+
+    return '';
+}

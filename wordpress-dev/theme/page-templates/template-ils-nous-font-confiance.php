@@ -33,16 +33,10 @@ if ( $clients ) :
   <div class="client-track">
     <?php for ( $s = 0; $s < 2; $s++ ) :
         foreach ( $clients as $client ) :
-            $logo_file = get_post_meta( $client->ID, 'logo_file', true );
-            $emoji     = get_post_meta( $client->ID, 'emoji', true );
-            $sector    = get_post_meta( $client->ID, 'sector', true );
+            $sector = get_post_meta( $client->ID, 'sector', true );
     ?>
       <div class="client-logo-item"<?php echo $s > 0 ? ' aria-hidden="true"' : ''; ?>>
-        <?php if ( $logo_file ) : ?>
-          <img src="<?php echo esc_url( LABIA_THEME_URI . '/assets/img/logos/' . $logo_file ); ?>" alt="<?php echo esc_attr( $client->post_title ); ?>" />
-        <?php else : ?>
-          <div class="client-emoji"><?php echo esc_html( $emoji ); ?></div>
-        <?php endif; ?>
+        <?php echo labia_client_logo_html( $client ); ?>
         <div class="client-name"><?php echo esc_html( $client->post_title ); ?></div>
         <?php if ( $sector ) : ?><div class="client-sector"><?php echo esc_html( $sector ); ?></div><?php endif; ?>
       </div>
