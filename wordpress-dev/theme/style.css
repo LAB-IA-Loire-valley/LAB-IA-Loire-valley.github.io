@@ -1710,7 +1710,7 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
 @media (max-width: 768px) {
   section { padding: 72px 0; }
   .container { padding: 0 20px; }
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .timeline { grid-template-columns: 1fr; }
   .timeline::before { display: none; }
   .timeline-connector { display: none; }
@@ -2501,4 +2501,10 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
   color: var(--ink-60);
   margin-top: 4px;
   line-height: 1.5;
+}
+
+/* ── Intro de la section « Notre offre » (accueil) ───────────── */
+.offer-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; margin-bottom: 64px; }
+@media (max-width: 768px) {
+  .offer-intro { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
 }

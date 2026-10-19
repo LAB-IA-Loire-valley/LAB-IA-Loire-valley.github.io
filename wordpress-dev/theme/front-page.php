@@ -33,7 +33,7 @@ get_header();
 <section>
   <div class="container">
     <div class="section-label reveal"><span>Notre offre</span></div>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; margin-bottom: 64px;">
+    <div class="offer-intro">
       <h2 class="t-h1 reveal">Des prestations<br/>sur-mesure pour<br/>concrétiser l'IA.</h2>
       <div class="reveal reveal-delay-2">
         <p class="t-lead" style="margin-bottom:28px;">
