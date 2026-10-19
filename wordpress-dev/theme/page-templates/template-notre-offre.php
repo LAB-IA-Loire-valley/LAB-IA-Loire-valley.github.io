@@ -222,36 +222,36 @@ get_header();
 
       <!-- 6 étapes compactes -->
       <div class="reveal reveal-delay-1">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">01</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Planification</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Cahier des charges &amp; feuille de route</div>
+        <div class="mini-steps">
+          <div class="mini-step">
+            <div class="mini-step__num">01</div>
+            <div class="mini-step__title">Planification</div>
+            <div class="mini-step__desc">Cahier des charges &amp; feuille de route</div>
           </div>
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">02</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Maquettage</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Visualisation &amp; conception UX</div>
+          <div class="mini-step">
+            <div class="mini-step__num">02</div>
+            <div class="mini-step__title">Maquettage</div>
+            <div class="mini-step__desc">Visualisation &amp; conception UX</div>
           </div>
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">03</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Développement</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">IA éco-responsable &amp; éthique</div>
+          <div class="mini-step">
+            <div class="mini-step__num">03</div>
+            <div class="mini-step__title">Développement</div>
+            <div class="mini-step__desc">IA éco-responsable &amp; éthique</div>
           </div>
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">04</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Tests</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Recettage &amp; validation qualité</div>
+          <div class="mini-step">
+            <div class="mini-step__num">04</div>
+            <div class="mini-step__title">Tests</div>
+            <div class="mini-step__desc">Recettage &amp; validation qualité</div>
           </div>
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">05</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Déploiement</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Industrialisation &amp; mise en prod</div>
+          <div class="mini-step">
+            <div class="mini-step__num">05</div>
+            <div class="mini-step__title">Déploiement</div>
+            <div class="mini-step__desc">Industrialisation &amp; mise en prod</div>
           </div>
-          <div style="padding:24px;background:var(--offwhite);border-radius:var(--radius-lg);">
-            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--magenta);opacity:.2;line-height:1;">06</div>
-            <div style="font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-top:4px;">Maintenance</div>
-            <div style="font-size:.8rem;color:var(--ink-60);margin-top:4px;line-height:1.5;">Suivi &amp; évolution dans le temps</div>
+          <div class="mini-step">
+            <div class="mini-step__num">06</div>
+            <div class="mini-step__title">Maintenance</div>
+            <div class="mini-step__desc">Suivi &amp; évolution dans le temps</div>
           </div>
         </div>
       </div>

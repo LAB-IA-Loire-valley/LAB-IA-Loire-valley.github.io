@@ -133,6 +133,13 @@ function labia_register_options_page() {
     ) );
 
     $opt_page->add_field( array(
+        'name'    => 'Positionnement hero (surtitre, HTML autorisé)',
+        'id'      => 'hero_descriptor',
+        'type'    => 'textarea',
+        'default' => 'Centre de ressources partagées autour de la <span class="grad-text">donnée</span>',
+    ) );
+
+    $opt_page->add_field( array(
         'name' => 'Image badge ambassadeur',
         'id'   => 'ambassador_badge_image',
         'type' => 'file',

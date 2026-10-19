@@ -7,8 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$brand     = labia_opt( 'hero_brand', "LAB'<span>IA</span> Loire Valley" );
-$tagline   = labia_opt( 'hero_title', "L'intelligence artificielle, <em>accessible à tous.</em>" );
+$brand      = labia_opt( 'hero_brand', "LAB'<span>IA</span> Loire Valley" );
+$descriptor = labia_opt( 'hero_descriptor', 'Centre de ressources partagées autour de la <span class="grad-text">donnée</span>' );
+$tagline    = labia_opt( 'hero_title', "L'intelligence artificielle, <em>accessible à tous.</em>" );
 $lead      = labia_opt( 'hero_lead', "Le LAB'IA Loire Valley accompagne les entreprises et structures de la région Centre-Val de Loire dans leurs projets Data & IA, du diagnostic à l'industrialisation." );
 $cta1_text = labia_opt( 'hero_cta_1_text', 'Découvrir notre offre' );
 $cta1_url  = labia_opt( 'hero_cta_1_url', '/notre-offre/' );
@@ -22,6 +23,9 @@ $badge_url = $badge_id ? wp_get_attachment_url( $badge_id ) : LABIA_THEME_URI . 
 
     <div class="container">
         <div class="hero__inner">
+            <?php if ( $descriptor ) : ?>
+            <p class="hero__overline"><?php echo wp_kses_post( $descriptor ); ?></p>
+            <?php endif; ?>
             <h1 class="hero__brand"><?php echo wp_kses_post( $brand ); ?></h1>
             <p class="hero__tagline"><?php echo wp_kses_post( $tagline ); ?></p>
             <p class="hero__lead"><?php echo esc_html( $lead ); ?></p>

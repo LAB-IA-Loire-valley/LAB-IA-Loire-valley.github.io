@@ -1101,6 +1101,26 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
     -webkit-text-fill-color: transparent;
   }
 }
+.grad-text {
+  background: linear-gradient(90deg, #008AD1 0%, #6455A0 26%, #9B2485 50%, #DB037F 76%, #E6007E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.hero__overline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+  line-height: 1.32;
+  letter-spacing: -0.006em;
+  color: var(--ink-60);
+  max-width: 640px;
+  margin: 0 0 18px;
+}
+@media (max-width: 480px) {
+  .hero__overline { font-size: 1rem; }
+}
 .hero__tagline {
   font-family: var(--font-display);
   font-weight: 700;
@@ -2458,3 +2478,27 @@ html.js .steps-v-step.now .steps-v-dot { background: var(--dot-color, var(--mage
 .error-404__link svg { width: 16px; height: 16px; transition: transform .25s; }
 .error-404__link:hover { border-color: currentColor; }
 .error-404__link:hover svg { transform: translateX(3px); }
+
+/* ── Mini-étapes « Accompagnement » (/notre-offre) ───────────── */
+.mini-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.mini-step { padding: 24px; background: var(--offwhite); border-radius: var(--radius-lg); }
+.mini-step__num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--magenta);
+  opacity: .2;
+  line-height: 1;
+}
+.mini-step__title {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.mini-step__desc {
+  font-size: .8rem;
+  color: var(--ink-60);
+  margin-top: 4px;
+  line-height: 1.5;
+}
